@@ -310,7 +310,7 @@
       <aside style="min-width:260px">
         <div class="media-row">
           <!-- Mockup substituído conforme você enviou: imagem na raiz -->
-          <div class="thumb"><img src="b43548d4-6bf7-4430-aa9c-abba273f8470.jpeg" alt="Mockup visual do PAX — substitua pela sua imagem"></div>
+          <div class="thumb"><img src="fe97eb5b-e01d-4585-8363-72113c3dda1e.jfif" alt="Mockup visual do PAX — substitua pela sua imagem"></div>
           <div style="display:flex;gap:8px;justify-content:center">
             <a class="cta-large" href="https://pay.kiwify.com.br/r3bathm" target="_blank">QUERO MINHA CALMA DE VOLTA <span class="arrow">→</span></a>
             <a class="cta-ghost" href="#faq">VER FAQ</a>
