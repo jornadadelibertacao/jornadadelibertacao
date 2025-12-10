@@ -328,7 +328,7 @@
 
       <div style="margin-top:12px;text-align:center">
         <!-- FOTO ACIMA DO CTA (adicione o arquivo penultimate-photo.jpg no repo) -->
-        <img class="pen-photo" id="bonus-photo" src="1e852cad-daa9-43fa-8630-47685317ea33.jpeg" alt="Foto de destaque — coloque o arquivo no GitHub ou na pasta do site">
+        <img class="pen-photo" id="bonus-photo" src="b0a13308-51bd-4ffe-aed9-5469d4d72b3a (1).jfif" alt="Foto de destaque — coloque o arquivo no GitHub ou na pasta do site">
         <a class="cta-large" href="https://pay.kiwify.com.br/r3bathm" target="_blank">GARANTIR POR R$39,90 <span class="arrow">→</span></a>
       </div>
     </div>
