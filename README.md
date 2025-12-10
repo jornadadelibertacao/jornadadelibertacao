@@ -1,4 +1,4 @@
-<!doctype html>
+</body><!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
@@ -520,5 +520,4 @@
 
 })();
 </script>
-</body>
 </html>
