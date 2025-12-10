@@ -375,7 +375,7 @@
 
       <div style="margin-top:14px;text-align:center">
         <!-- FOTO acima do penúltimo CTA: substitua penultimate-photo.jpg pelo caminho do GitHub -->
-        <img class="pen-photo" id="penultimate-photo" src="cf71b606-2fd7-47d3-94c2-6892e781e84e.jpeg " alt="Foto de destaque — coloque o arquivo no GitHub ou na pasta do site">
+        <img class="pen-photo" id="penultimate-photo" src="fafc161b-5693-4393-9516-80e69cca55c9 (1).jfif " alt="Foto de destaque — coloque o arquivo no GitHub ou na pasta do site">
         <a class="cta-large" href="https://pay.kiwify.com.br/r3bathm" target="_blank">QUERO MUDAR HOJE <span class="arrow">→</span></a>
       </div>
     </div>
