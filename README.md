@@ -219,7 +219,7 @@
   <header class="hero" role="banner" aria-labelledby="hero-title">
     <div class="hero-banner" role="img" aria-label="Imagem de apresentação do PAX — O Caminho da Calma Divina">
       <!-- Substituído conforme você enviou: imagem na raiz -->
-      <img src="55b3b8ed-1b94-4839-9e12-29e6635262f8.jpeg" alt="Apresentação visual do PAX — O Caminho da Calma Divina">
+      <img src="6bc10ce2-2cbf-4da6-b1f7-9b577277af54.jfif" alt="Apresentação visual do PAX — O Caminho da Calma Divina">
     </div>
 
     <div class="hero-text">
