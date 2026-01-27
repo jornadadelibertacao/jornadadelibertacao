@@ -3,149 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diário da Lu | Minha Jornada</title>
+    <title>Vakinha | Malu precisa de você</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:italic,wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .serif { font-family: 'Lora', serif; }
-        .progress-bar { transition: width 3s ease-in-out; }
-        #pix-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 999; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
-        #pix-modal.active { display: flex; }
-        .carrossel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; }
-        .carrossel img { flex: 0 0 80%; scroll-snap-align: center; border-radius: 15px; height: 250px; object-cover: cover; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f8f9fa; }
+        .progress-bar { transition: width 2s ease-in-out; }
+        .notification-toast { display: none; position: fixed; bottom: 100px; left: 20px; z-index: 1000; }
+        .footer-sticky { position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 15px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 500; }
     </style>
 </head>
-<body class="bg-[#FCFCFC] text-[#333]">
+<body class="pb-24">
 
-    <div class="bg-purple-600 text-white text-[11px] py-2 text-center font-bold tracking-widest uppercase px-4">
-        Atualizado: Terça-feira, 27 de Janeiro de 2026 - Por Luana Oliveira
-    </div>
+    <header class="bg-white p-4 flex justify-between items-center border-b">
+        <img src="https://logodownload.org/wp-content/uploads/2018/10/vakinha-logo.png" class="h-8">
+        <div class="space-y-1">
+            <div class="w-6 h-0.5 bg-gray-600"></div>
+            <div class="w-6 h-0.5 bg-gray-600"></div>
+            <div class="w-6 h-0.5 bg-gray-600"></div>
+        </div>
+    </header>
 
-    <article class="max-w-2xl mx-auto bg-white shadow-sm pb-20">
+    <main class="max-w-md mx-auto bg-white min-h-screen shadow-sm">
         
-        <header class="p-8 text-center border-b border-gray-100">
-            <h1 class="serif italic text-4xl text-gray-800 mb-2 font-bold leading-tight">O que eu não contei para ninguém até agora...</h1>
-            <p class="text-gray-400 text-sm italic">Como minha vida mudou depois do Bolinha e o desafio de manter 14 anjos sozinha.</p>
-        </header>
+        <div class="p-6 text-center">
+            <p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-2">Animais / Pets</p>
+            <h1 class="text-2xl font-black text-[#444] leading-tight">Malu precisa de você 🙏</h1>
+            <p class="text-xs text-gray-500 mt-1 uppercase font-bold tracking-tighter">ID: 4088889</p>
+        </div>
 
-        <div class="px-4 py-6">
-            <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=800" class="w-full h-96 object-cover rounded-2xl shadow-lg mb-8">
-            
-            <div class="prose prose-purple mx-auto text-gray-700 leading-relaxed space-y-6">
-                <p class="text-lg serif italic">
-                    "Oi, se você chegou até aqui, provavelmente viu algum vídeo meu ou alguém que me conhece te mandou esse link. Meu nome é Luana, moro em [Sua Cidade] e hoje minha vida se resume a duas coisas: meus estudos na faculdade e o abrigo improvisado na minha garagem."
-                </p>
-
-                <h2 class="text-2xl font-bold text-gray-900 mt-10">Tudo começou com uma marmita...</h2>
-                <p>
-                    Eu estava no segundo semestre da faculdade quando o <b>Bolinha</b> apareceu. Ele dormia exatamente na frente do meu portão. No começo, eu dava só o que sobrava da janta, mas ele me olhava de um jeito que eu não conseguia ignorar. Comecei a comprar um saquinho de ração pequeno e, em menos de um mês, ele já era o dono da calçada.
-                </p>
-
-                <p>
-                    O tempo passou e as pessoas começaram a notar. Infelizmente, no nosso bairro, quando veem alguém cuidando, acham que podem abandonar mais. De repente, eram 3, depois 7... hoje estou com 14. Eu já doei 3 filhotes para amigos muito próximos da faculdade, porque sou super rigorosa, não entrego para qualquer um. Inclusive, em breve quero abrir um formulário oficial para adoção responsável, mas por enquanto, eles são minha responsabilidade.
-                </p>
-
-                <div class="bg-gray-50 p-4 rounded-3xl my-10">
-                    <p class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-tighter text-center">Conheça alguns dos meus pequenos:</p>
-                    <div class="carrossel pb-4">
-                        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400" alt="Dog 1">
-                        <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400" alt="Dog 2">
-                        <img src="https://images.unsplash.com/photo-1598133894008-61f7fdb8cc3a?w=400" alt="Dog 3">
-                        <img src="https://images.unsplash.com/photo-1517423440428-a5a00ad1e3e8?w=400" alt="Dog 4">
-                    </div>
-                </div>
-
-                <h2 class="text-2xl font-bold text-gray-900">O momento em que tudo apertou...</h2>
-                <p>
-                    Eu vinha conseguindo manter tudo com ajuda de alguns amigos e fazendo bicos. Mas esse mês foi o meu "limite". Tive gastos altíssimos com livros técnicos para o curso e, para piorar, uma pessoa da minha família que mora comigo adoeceu e quebrou a perna. Tive que ajudar com remédios e o orçamento que já era curto, simplesmente evaporou.
-                </p>
-                <p class="font-bold text-red-600 italic border-l-4 border-red-500 pl-4">
-                    Eu tive que escolher: ou eu pagava os materiais e a ajuda em casa, ou eu comprava a ração do mês. Eu optei pelos meus anjos, mas agora não tenho como comprar os remédios de verme e as vacinas atrasadas.
-                </p>
-
-                <div class="bg-purple-50 p-6 rounded-2xl border border-purple-100 my-8">
-                    <p class="text-sm text-purple-800 mb-4 font-semibold">Em breve vou organizar um sorteio para tentar estabilizar tudo, mas hoje a urgência é o prato de comida deles.</p>
-                    
-                    <div class="flex justify-between text-xs mb-1 font-bold text-purple-900">
-                        <span>Arrecadado: R$ <span id="val">2.842,00</span></span>
-                        <span>Meta: R$ 5.000</span>
-                    </div>
-                    <div class="w-full bg-gray-200 h-3 rounded-full overflow-hidden">
-                        <div id="bar" class="bg-purple-600 h-full progress-bar" style="width: 56%"></div>
-                    </div>
-                </div>
-
-                <div class="space-y-6 pt-6 border-t border-gray-100">
-                    <h3 class="text-xl font-bold text-center">Se você puder me ajudar com qualquer valor...</h3>
-                    
-                    <div class="grid gap-4">
-                        <button onclick="openPix('15,00', 'SEU_PIX_AQUI', 'QR_LINK')" class="w-full bg-white border-2 border-gray-200 p-6 rounded-2xl flex justify-between items-center hover:border-purple-500 transition shadow-sm">
-                            <div class="text-left">
-                                <span class="block font-bold text-gray-800">Doar R$ 15,00</span>
-                                <span class="text-xs text-gray-400 italic">"Ajuda com a ração do dia"</span>
-                            </div>
-                            <span class="text-purple-600 font-bold">DOAR PIX</span>
-                        </button>
-
-                        <button onclick="openPix('37,00', 'SEU_PIX_AQUI', 'QR_LINK')" class="w-full bg-purple-600 p-6 rounded-2xl flex justify-between items-center shadow-xl shadow-purple-100 scale-105 border-4 border-white">
-                            <div class="text-left">
-                                <span class="block font-bold text-white">Doar R$ 37,00</span>
-                                <span class="text-xs text-purple-200 italic">"Ração + Vacina de 1 dog"</span>
-                            </div>
-                            <span class="text-white font-black">MAIS ESCOLHIDO</span>
-                        </button>
-
-                        <button onclick="openPix('60,00', 'SEU_PIX_AQUI', 'QR_LINK')" class="w-full bg-white border-2 border-gray-200 p-6 rounded-2xl flex justify-between items-center hover:border-purple-500 transition shadow-sm">
-                            <div class="text-left">
-                                <span class="block font-bold text-gray-800">Doar R$ 60,00</span>
-                                <span class="text-xs text-gray-400 italic">"Kit cuidado completo"</span>
-                            </div>
-                            <span class="text-purple-600 font-bold">DOAR PIX</span>
-                        </button>
-                    </div>
-                </div>
-
-                <p class="text-center text-xs text-gray-400 pt-10">
-                    Obrigada por ler minha história. Cada vida salva é uma vitória nossa. <br> Com carinho, Luana.
-                </p>
+        <div class="relative px-4">
+            <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600" class="w-full rounded-2xl shadow-md h-64 object-cover">
+            <div class="absolute inset-y-0 left-6 flex items-center">
+                <div class="bg-green-500 p-2 rounded-full text-white shadow-lg opacity-80 cursor-pointer">◀</div>
+            </div>
+            <div class="absolute inset-y-0 right-6 flex items-center">
+                <div class="bg-green-500 p-2 rounded-full text-white shadow-lg opacity-80 cursor-pointer">▶</div>
             </div>
         </div>
-    </article>
 
-    <div id="pix-modal">
-        <div class="bg-white rounded-[40px] p-10 max-w-sm w-full text-center animate__animated animate__fadeInUp">
-            <p class="text-purple-600 font-bold text-xs mb-2">VOCÊ ESTÁ SALVANDO UMA VIDA!</p>
-            <h2 class="text-4xl font-black text-gray-900 mb-6">R$ <span id="vlr">0,00</span></h2>
-            <img id="qr" src="" class="w-48 h-48 mx-auto mb-6 p-2 border-2 border-dashed border-purple-200 rounded-3xl">
-            <button onclick="copyPix()" id="copy-btn" class="w-full bg-purple-600 text-white font-bold py-5 rounded-2xl shadow-lg active:scale-95 transition mb-4">COPIAR CÓDIGO PIX</button>
-            <button onclick="closePix()" class="text-gray-400 text-xs font-bold uppercase tracking-widest">Agora não</button>
+        <div class="p-6 flex items-center space-x-3">
+            <div class="flex -space-x-2">
+                <div class="w-8 h-8 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center text-[10px] text-white">❤️</div>
+                <div class="w-8 h-8 rounded-full bg-red-500 border-2 border-white flex items-center justify-center text-[10px] text-white">❤️</div>
+                <div class="w-8 h-8 rounded-full bg-green-500 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold">+</div>
+            </div>
+            <p class="text-sm font-bold text-gray-700 underline decoration-green-500 decoration-2 underline-offset-4">536 corações recebidos 💚</p>
+        </div>
+
+        <div class="px-6 flex items-start space-x-4 mb-6">
+            <div class="w-14 h-14 bg-pink-100 rounded-full flex items-center justify-center p-2 border border-pink-200">
+                <img src="https://cdn-icons-png.flaticon.com/512/194/194279.png" class="opacity-70">
+            </div>
+            <div>
+                <h3 class="font-black text-gray-800 text-sm">Anjos de 4 Patas</h3>
+                <p class="text-[10px] text-gray-500">Vila Velha / Espirito Santo</p>
+                <p class="text-[10px] text-gray-500 font-bold uppercase mt-0.5">Ativo(a) no Vakinha desde março/2021</p>
+                <div class="flex space-x-4 mt-1">
+                    <p class="text-[10px] font-bold text-gray-700">9 vaquinhas criadas</p>
+                    <p class="text-[10px] font-bold text-gray-700">3 vaquinhas apoiadas</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-6 mb-8">
+            <div class="flex justify-between items-end mb-1">
+                <span class="text-xl font-black text-green-500 italic">54%</span>
+            </div>
+            <div class="w-full bg-gray-200 h-2.5 rounded-full overflow-hidden">
+                <div class="bg-green-500 h-full progress-bar" style="width: 54%"></div>
+            </div>
+            <div class="flex justify-between mt-2 font-black">
+                <span class="text-xl text-green-600 font-black tracking-tighter">R$ 2.430,00</span>
+                <span class="text-sm text-gray-400 mt-1">de R$ 4.500,00</span>
+            </div>
+        </div>
+
+        <div class="px-6 border-t pt-6">
+            <div class="flex space-x-4 mb-4">
+                <span class="text-sm font-bold text-green-600 border-b-2 border-green-600 pb-1">Sobre</span>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 mb-8">
+                <p class="text-xs font-bold text-gray-500 mb-2 uppercase">Vaquinha criada em: 09/01/2026</p>
+                <p class="text-green-600 font-black mb-4 flex items-center">✅ História Verificada</p>
+                
+                <div class="space-y-4 text-sm text-gray-700 leading-relaxed font-medium">
+                    <p>Uma cachorrinha indefesa sofreu uma violência brutal, marcada por abuso e ferimentos graves. Deus nos chama a agir com compaixão. Você vai virar as costas?</p>
+                    <p>🚨 Malu sofreu uma crueldade inimaginável. Foi violentada, gravemente ferida e abandonada à própria dor. Ainda assim, Deus a sustentou quando tudo parecia perdido.</p>
+                    <p>Agora ela espera pelo milagre do amor — e esse milagre pode chegar através da sua doação.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-6 pb-20">
+            <h3 class="font-black text-gray-700 mb-6">Comentários recentes</h3>
+            
+            <div class="space-y-8">
+                <div class="flex space-x-3">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" class="w-10 h-10 rounded-full border">
+                    <div>
+                        <p class="text-xs font-black text-blue-700">Nicole Silva</p>
+                        <p class="text-xs text-gray-600 leading-snug mt-0.5 font-medium">Contribuí com 100 reais porque acompanho esse instituto há um tempo e confio no trabalho deles. Fiz o que pude, pois não suporto ver tanta dor nos olhinhos desses animais.</p>
+                        <div class="flex space-x-3 text-[10px] font-bold text-blue-800 mt-2 uppercase">
+                            <span>Responder</span> <span>•</span> <span>Curtir</span> <span>•</span> <span>Seguir</span> <span>•</span> <span class="text-gray-400">3 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex space-x-3">
+                    <img src="https://randomuser.me/api/portraits/women/12.jpg" class="w-10 h-10 rounded-full border">
+                    <div>
+                        <p class="text-xs font-black text-blue-700">Leandra Martins</p>
+                        <p class="text-xs text-gray-600 leading-snug mt-0.5 font-medium">Contribuí aqui também, sempre apoio eles porque transformam vidas.</p>
+                        <div class="flex space-x-3 text-[10px] font-bold text-blue-800 mt-2 uppercase">
+                            <span>Responder</span> <span>•</span> <span>Curtir</span> <span>•</span> <span>Seguir</span> <span>•</span> <span class="text-gray-400">7 min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="w-full bg-blue-500 text-white font-bold py-3 rounded-lg mt-10 text-sm">Ver todos os comentários</button>
+        </div>
+
+    </main>
+
+    <div id="notif-toast" class="notification-toast animate__animated animate__fadeInUp">
+        <div class="bg-white/95 shadow-2xl rounded-full px-6 py-3 border border-gray-100 flex items-center space-x-3">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" class="w-8 h-8 rounded-full border">
+            <div>
+                <p class="text-xs font-bold text-green-600">Gabriela Duarte</p>
+                <p class="text-[10px] font-black text-gray-500 uppercase tracking-tighter">Acabou de doar R$ 100,00</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-sticky">
+        <div class="max-w-md mx-auto">
+            <button onclick="window.location.href='TEU_LINK_DE_PAGAMENTO'" class="w-full bg-green-500 hover:bg-green-600 text-white font-black py-4 rounded-xl text-lg shadow-lg shadow-green-200 transition-all uppercase tracking-wider">
+                Quero Ajudar
+            </button>
         </div>
     </div>
 
     <script>
-        let pixCode = "";
-        let valAtual = 2842.00;
-
-        // Aumenta o valor conforme a pessoa fica no site
-        setInterval(() => {
-            valAtual += Math.random() * 2;
-            document.getElementById('val').innerText = valAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-            document.getElementById('bar').style.width = (valAtual / 5000 * 100) + "%";
-        }, 5000);
-
-        function openPix(v, p, i) {
-            document.getElementById('vlr').innerText = v;
-            document.getElementById('qr').src = i;
-            document.getElementById('pix-modal').classList.add('active');
-            pixCode = p;
+        // Lógica da Notificação Flutuante
+        function showNotification() {
+            const toast = document.getElementById('notif-toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.classList.replace('animate__fadeInUp', 'animate__fadeOutDown');
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                    toast.classList.replace('animate__fadeOutDown', 'animate__fadeInUp');
+                }, 1000);
+            }, 4000);
         }
-        function closePix() { document.getElementById('pix-modal').classList.remove('active'); }
-        function copyPix() {
-            navigator.clipboard.writeText(pixCode);
-            document.getElementById('copy-btn').innerText = "COPIADO!";
-            setTimeout(() => { document.getElementById('copy-btn').innerText = "COPIAR CÓDIGO PIX"; }, 3000);
-        }
+
+        // Mostra a notificação a cada 10 segundos
+        setInterval(showNotification, 10000);
+        setTimeout(showNotification, 3000);
+
+        // Aumenta a barra de progresso suavemente ao carregar
+        window.onload = () => {
+            const bar = document.querySelector('.progress-bar');
+            bar.style.width = '0%';
+            setTimeout(() => bar.style.width = '54%', 500);
+        };
     </script>
 </body>
 </html>
