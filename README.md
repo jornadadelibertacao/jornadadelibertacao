@@ -3,94 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajuda Urgente - Orfanato Esperança</title>
+    <title>Minha Missão: Anjos de Garagem</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .progress-bar { transition: width 2s ease-in-out; }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; z-index: 50; }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; z-index: 50; }
         .modal.active { display: flex; }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-50 font-sans text-gray-800">
 
-    <div class="bg-red-600 text-white text-center py-2 text-sm font-bold uppercase tracking-widest">
-        ⚠️ Campanha Emergencial: Alimentos acabando em 24h
-    </div>
-
-    <main class="max-w-md mx-auto bg-white min-h-screen shadow-lg pb-10">
-        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=500" alt="Orfanato" class="w-full h-64 object-cover">
+    <main class="max-w-md mx-auto bg-white min-h-screen shadow-2xl pb-12">
+        
+        <div class="relative">
+            <img src="https://images.unsplash.com/photo-1548191265-cc70d3d45ba1?q=80&w=500" alt="Resgate" class="w-full h-72 object-cover">
+            <div class="absolute bottom-0 left-0 bg-blue-600 text-white px-4 py-1 text-xs font-bold uppercase">
+                Minha Rotina Diária
+            </div>
+        </div>
 
         <div class="p-6">
-            <h1 class="text-2xl font-bold text-gray-800 leading-tight">Ajude a garantir o leite das 42 crianças do Abrigo Esperança</h1>
+            <h1 class="text-2xl font-extrabold text-gray-900 leading-tight">Não sou ONG, sou apenas eu e eles na minha garagem...</h1>
             
-            <div class="mt-6">
-                <div class="flex justify-between text-sm mb-1 font-bold">
-                    <span>Meta: R$ 5.000,00</span>
-                    <span class="text-red-600">Faltam R$ 642,00</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-4">
-                    <div class="bg-green-500 h-4 rounded-full progress-bar" style="width: 87%"></div>
-                </div>
-                <p class="text-xs text-gray-500 mt-2 italic font-semibold">142 doadores contribuíram hoje</p>
+            <div class="mt-4 flex items-center text-sm text-gray-500">
+                <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-bold">14 doguinhos hoje</span>
+                <span class="ml-2 underline italic">São Paulo, SP</span>
             </div>
 
-            <p class="mt-6 text-gray-600 leading-relaxed">
-                Cada doação é um prato de comida. Não temos apoio do governo e o estoque acaba amanhã. <b>Sua ajuda é a única esperança desses pequenos hoje.</b>
-            </p>
+            <article class="mt-6 text-gray-700 leading-relaxed text-base space-y-4">
+                <p>
+                    Oi, eu sou a [Nome da Menina]! Algum tempo atrás, eu não imaginava que minha vida mudaria tanto. Tudo começou com um potinho de comida na calçada para um gatinho que apareceu com fome.
+                </p>
+                <p>
+                    De repente, apareceram dois, três... e quando vi, minha garagem virou um refúgio. Comecei a recolher os cachorros abandonados aqui da região que estavam doentes. Eu mesma dou banho, cuido e tento encontrar donos responsáveis por aqui mesmo.
+                </p>
+                <p class="font-bold text-gray-900">
+                    Mas a realidade é dura: a ração acaba rápido e os custos aumentaram muito. Eu não tenho luxo, moro de forma simples, mas não aguento ver eles sem comer.
+                </p>
+            </article>
 
-            <div class="mt-8 space-y-4">
-                <button onclick="abrirModal('15,00', 'COLE_AQUI_CODIGO_PIX_15', 'https://via.placeholder.com/200?text=QR+15')" class="w-full bg-white border-2 border-green-500 text-green-600 font-bold py-4 rounded-xl hover:bg-green-50 shadow-sm transition">
-                    DOAR R$ 15,00 (Café da Manhã)
-                </button>
+            <div class="mt-8 bg-blue-50 p-4 rounded-2xl border border-blue-100">
+                <div class="flex justify-between text-sm mb-2 font-bold text-blue-800">
+                    <span>Meta de Ração (Semana)</span>
+                    <span>82%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div class="bg-blue-600 h-3 rounded-full progress-bar" style="width: 82%"></div>
+                </div>
+                <p class="text-[10px] text-gray-500 mt-2 text-center uppercase tracking-tighter">Faltam apenas R$ 185,00 para fechar o estoque de ração</p>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="text-center font-bold text-gray-500 uppercase text-xs mb-4">Escolha como você pode ajudar agora:</h3>
                 
-                <button onclick="abrirModal('27,90', 'COLE_AQUI_CODIGO_PIX_27', 'https://via.placeholder.com/200?text=QR+27')" class="w-full bg-green-600 text-white font-bold py-5 rounded-xl hover:bg-green-700 shadow-md transition scale-105 border-2 border-green-400">
-                    DOAR R$ 27,90 (1 Semana de Leite) ⭐
-                </button>
+                <div class="space-y-3">
+                    <button onclick="abrirModal('9,50', 'COLE_SEU_PIX_AQUI', 'LINK_DA_IMAGEM_QR')" class="w-full flex justify-between items-center bg-white border-2 border-gray-200 p-4 rounded-xl hover:border-blue-500 transition group">
+                        <span class="font-bold text-gray-700 group-hover:text-blue-600">Um Saco de Ração 1kg</span>
+                        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg font-bold text-sm">R$ 9,50</span>
+                    </button>
 
-                <button onclick="abrirModal('50,00', 'COLE_AQUI_CODIGO_PIX_50', 'https://via.placeholder.com/200?text=QR+50')" class="w-full bg-white border-2 border-green-500 text-green-600 font-bold py-4 rounded-xl hover:bg-green-50 shadow-sm transition">
-                    DOAR R$ 50,00 (Kit Higiene)
-                </button>
+                    <button onclick="abrirModal('24,90', 'COLE_SEU_PIX_AQUI', 'LINK_DA_IMAGEM_QR')" class="w-full flex justify-between items-center bg-blue-600 p-4 rounded-xl shadow-lg shadow-blue-200 scale-105 transition">
+                        <span class="font-bold text-white">Ração + Banho + Carinho</span>
+                        <span class="bg-white text-blue-600 px-3 py-1 rounded-lg font-bold text-sm">R$ 24,90</span>
+                    </button>
+
+                    <button onclick="abrirModal('45,00', 'COLE_SEU_PIX_AQUI', 'LINK_DA_IMAGEM_QR')" class="w-full flex justify-between items-center bg-white border-2 border-gray-200 p-4 rounded-xl hover:border-blue-500 transition group">
+                        <span class="font-bold text-gray-700 group-hover:text-blue-600">Ajuda com Remédios</span>
+                        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg font-bold text-sm">R$ 45,00</span>
+                    </button>
+                </div>
             </div>
+
+            <p class="mt-8 text-center text-xs text-gray-400">
+                Cada centavo vai direto para eles. Deus te abençoe! 🙏
+            </p>
         </div>
     </main>
 
     <div id="pixModal" class="modal p-4">
-        <div class="bg-white rounded-2xl p-6 max-w-xs w-full text-center relative">
-            <button onclick="fecharModal()" class="absolute top-2 right-4 text-gray-400 text-2xl font-bold">&times;</button>
-            <h2 class="text-xl font-bold text-gray-800">Sua Doação: R$ <span id="vlrTexto">0,00</span></h2>
-            <p class="text-sm text-gray-500 mb-4">Escaneie o QR Code ou copie o código abaixo</p>
+        <div class="bg-white rounded-3xl p-8 max-w-xs w-full text-center relative shadow-2xl">
+            <button onclick="fecharModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            <p class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2">Quase lá!</p>
+            <h2 class="text-2xl font-black text-gray-800 mb-4">R$ <span id="vlrTexto">0,00</span></h2>
             
-            <img id="qrImg" src="" alt="QR Code" class="mx-auto w-48 h-48 mb-4 border p-2">
+            <img id="qrImg" src="" alt="QR Code" class="mx-auto w-44 h-44 mb-6 border-4 border-gray-50 rounded-xl p-2">
             
-            <button id="btnCopiar" onclick="copiarPix()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg mb-2">
+            <button id="btnCopiar" onclick="copiarPix()" class="w-full bg-blue-600 text-white font-bold py-4 rounded-2xl shadow-lg active:scale-95 transition">
                 COPIAR CÓDIGO PIX
             </button>
-            <p id="feedback" class="text-green-600 text-xs font-bold hidden">Copiado com sucesso! Cole no seu Banco.</p>
+            <p id="feedback" class="text-green-600 text-[10px] font-bold mt-2 hidden uppercase">Copiado! Agora é só colar no seu banco.</p>
         </div>
     </div>
 
     <script>
         let pixAtual = "";
-
         function abrirModal(valor, pix, img) {
             document.getElementById('vlrTexto').innerText = valor;
             document.getElementById('qrImg').src = img;
             document.getElementById('pixModal').classList.add('active');
             document.getElementById('feedback').classList.add('hidden');
             pixAtual = pix;
+            document.getElementById('btnCopiar').innerText = "COPIAR CÓDIGO PIX";
         }
-
-        function fecharModal() {
-            document.getElementById('pixModal').classList.remove('active');
-        }
-
+        function fecharModal() { document.getElementById('pixModal').classList.remove('active'); }
         function copiarPix() {
             navigator.clipboard.writeText(pixAtual).then(() => {
-                const f = document.getElementById('feedback');
-                f.classList.remove('hidden');
-                const b = document.getElementById('btnCopiar');
-                b.innerText = "CÓDIGO COPIADO!";
-                setTimeout(() => { b.innerText = "COPIAR CÓDIGO PIX"; }, 3000);
+                document.getElementById('feedback').classList.remove('hidden');
+                document.getElementById('btnCopiar').innerText = "CÓDIGO COPIADO!";
             });
         }
     </script>
