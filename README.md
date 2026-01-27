@@ -2,84 +2,59 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RotaFixa | Ajudantes para sua Rota</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RotaFixa App</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@600;900&display=swap" rel="stylesheet">
     <style>
-        .yellow-gradient { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); }
+        body { font-family: 'Kanit', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .nav-bottom { box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-50 select-none">
 
-    <header class="yellow-gradient p-6 text-center shadow-lg">
-        <h1 class="text-3xl font-black italic tracking-tighter text-black">ROTA<span class="text-white">FIXA</span></h1>
-        <p class="text-black font-bold text-xs uppercase tracking-widest mt-1">O braço direito do motorista de entrega</p>
+    <header class="bg-yellow-400 p-5 pt-10 rounded-b-[30px] shadow-lg text-center">
+        <h1 class="text-3xl font-black italic tracking-tighter">ROTA<span class="text-white">FIXA</span></h1>
     </header>
 
-    <main class="max-w-md mx-auto p-6">
-        
-        <div class="bg-white rounded-3xl p-8 shadow-xl mb-8 border-t-8 border-black">
-            <h2 class="text-2xl font-black text-gray-800 mb-4 leading-tight">PRECISA DE AJUDANTE PARA A ROTA DE AMANHÃ?</h2>
-            <p class="text-gray-600 text-sm mb-6">Não perca tempo em postos. Contrate um ajudante verificado para te acompanhar na rota de <b>Móveis, Mercado ou Alimentos</b>.</p>
-            
-            <div class="space-y-3">
-                <div class="flex items-center gap-3 text-sm font-bold text-gray-700">
-                    <span class="bg-green-100 text-green-600 p-1 rounded-full text-[10px]">✔</span> Ajudante sobe na cabine e faz a rua
+    <main class="p-4 pb-24">
+        <div class="flex gap-2 overflow-x-auto pb-4 no-scrollbar text-[10px] font-bold">
+            <button class="bg-black text-white px-4 py-2 rounded-full whitespace-nowrap">MÓVEIS</button>
+            <button class="bg-white text-black border border-gray-200 px-4 py-2 rounded-full whitespace-nowrap">MERCADO</button>
+            <button class="bg-white text-black border border-gray-200 px-4 py-2 rounded-full whitespace-nowrap">ALIMENTOS</button>
+        </div>
+
+        <h2 class="text-gray-400 text-[10px] font-black uppercase mb-4">Ajudantes disponíveis para amanhã</h2>
+
+        <div class="space-y-4">
+            <div class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4">
+                <div class="w-16 h-16 bg-gray-200 rounded-2xl overflow-hidden">
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg" class="w-full h-full object-cover">
                 </div>
-                <div class="flex items-center gap-3 text-sm font-bold text-gray-700">
-                    <span class="bg-green-100 text-green-600 p-1 rounded-full text-[10px]">✔</span> Feche o contrato 24h antes
+                <div class="flex-1">
+                    <h3 class="font-black text-gray-800">RICARDO SILVA</h3>
+                    <p class="text-[10px] text-gray-500">⭐ 4.9 | Especialista em Mudanças</p>
+                    <button onclick="window.location.href='https://wa.me/55...'" class="mt-2 bg-yellow-400 text-black text-[10px] font-black px-3 py-1 rounded-lg">RESERVAR</button>
                 </div>
-                <div class="flex items-center gap-3 text-sm font-bold text-gray-700">
-                    <span class="bg-green-100 text-green-600 p-1 rounded-full text-[10px]">✔</span> Selecionados por tipo de carga
+            </div>
+            <div class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4">
+                <div class="w-16 h-16 bg-gray-200 rounded-2xl overflow-hidden">
+                    <img src="https://randomuser.me/api/portraits/men/2.jpg" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-black text-gray-800">MARCOS PAULO</h3>
+                    <p class="text-[10px] text-gray-500">⭐ 5.0 | Ajudante de Entrega</p>
+                    <button class="mt-2 bg-yellow-400 text-black text-[10px] font-black px-3 py-1 rounded-lg">RESERVAR</button>
                 </div>
             </div>
         </div>
-
-        <div class="grid grid-cols-1 gap-4">
-            <button onclick="window.location.href='SEU_LINK_WHATSAPP_MOTORISTA'" class="bg-black text-white p-6 rounded-2xl flex justify-between items-center group active:scale-95 transition">
-                <div class="text-left">
-                    <p class="font-black text-lg">SOU MOTORISTA</p>
-                    <p class="text-[10px] text-gray-400">Quero contratar para amanhã</p>
-                </div>
-                <span class="text-yellow-400 text-2xl font-bold">→</span>
-            </button>
-
-            <button onclick="window.location.href='SEU_LINK_WHATSAPP_AJUDANTE'" class="bg-white border-2 border-black p-6 rounded-2xl flex justify-between items-center active:scale-95 transition">
-                <div class="text-left">
-                    <p class="font-black text-lg text-black">SOU AJUDANTE</p>
-                    <p class="text-[10px] text-gray-500">Quero trabalhar nas rotas</p>
-                </div>
-                <span class="text-black text-2xl font-bold">→</span>
-            </button>
-        </div>
-
-        <div class="mt-12">
-            <p class="text-center text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">Especialidades disponíveis</p>
-            <div class="grid grid-cols-2 gap-3">
-                <div class="bg-white p-4 rounded-xl text-center shadow-sm">
-                    <span class="block text-2xl mb-1">📦</span>
-                    <p class="text-[10px] font-bold">MÓVEIS</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl text-center shadow-sm">
-                    <span class="block text-2xl mb-1">🛒</span>
-                    <p class="text-[10px] font-bold">MERCADO</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl text-center shadow-sm">
-                    <span class="block text-2xl mb-1">🍎</span>
-                    <p class="text-[10px] font-bold">ALIMENTOS</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl text-center shadow-sm">
-                    <span class="block text-2xl mb-1">🚛</span>
-                    <p class="text-[10px] font-bold">CARRETAS</p>
-                </div>
-            </div>
-        </div>
-
     </main>
 
-    <footer class="p-8 text-center text-[10px] text-gray-400 font-bold uppercase">
-        © 2026 RotaFixa Tecnologia - Logística Inteligente
-    </footer>
+    <nav class="fixed bottom-0 left-0 right-0 bg-white p-4 flex justify-around nav-bottom rounded-t-[25px]">
+        <button class="text-yellow-500 font-black text-[10px]">INÍCIO</button>
+        <button class="text-gray-400 font-black text-[10px]">MINHAS ROTAS</button>
+        <button class="text-gray-400 font-black text-[10px]">PERFIL</button>
+    </nav>
 
 </body>
 </html>
