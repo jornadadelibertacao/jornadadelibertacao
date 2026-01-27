@@ -3,168 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vakinha Online - Ajuda da Luana</title>
+    <title>Mestre do Ar - Guia Rápido de Manutenção</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f7f6; }
-        .progress-fill { transition: width 2s ease-in-out; }
-        .notif-float { display: none; position: fixed; bottom: 110px; left: 20px; z-index: 999; }
-        .sticky-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; box-shadow: 0 -5px 15px rgba(0,0,0,0.05); z-index: 100; }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(5px); }
-        .modal.active { display: flex; }
+        body { font-family: 'Inter', sans-serif; }
+        .bg-glow { background: radial-gradient(circle at 50% 50%, #1e40af 0%, #0f172a 100%); }
     </style>
 </head>
-<body class="pb-28">
+<body class="bg-[#0f172a] text-white">
 
-    <div id="notif-box" class="notif-float animate__animated animate__fadeInUp">
-        <div class="bg-white/95 shadow-2xl rounded-full px-5 py-2.5 border border-gray-100 flex items-center space-x-3">
-            <div class="bg-green-500 w-2 h-2 rounded-full animate-ping"></div>
-            <div class="text-[11px]">
-                <p class="font-bold text-gray-800"><span id="notif-nome">Mariana</span> acabou de doar</p>
-                <p class="text-green-600 font-black">R$ <span id="notif-valor">27,50</span></p>
-            </div>
-        </div>
+    <div class="bg-blue-600 text-white text-[10px] py-2 text-center font-bold uppercase tracking-[0.2em]">
+        Oferta de Carnaval: O preço sobe em <span id="timer">14:59</span>
     </div>
 
-    <header class="bg-white p-4 flex justify-between items-center border-b sticky top-0 z-50">
-        <img src="https://logodownload.org/wp-content/uploads/2018/10/vakinha-logo.png" class="h-7">
-        <div class="flex space-x-1.5 items-center">
-            <span class="text-[10px] font-black text-red-500 uppercase tracking-tighter">Ao vivo: 842 ajudando</span>
-            <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-        </div>
-    </header>
-
-    <main class="max-w-md mx-auto bg-white min-h-screen shadow-sm">
+    <section class="px-6 pt-12 pb-16 text-center bg-glow">
+        <h1 class="text-3xl md:text-5xl font-black leading-tight mb-6">
+            PARE DE PASSAR CALOR E <span class="text-blue-400">GANHE DINHEIRO</span> NESTE CARNAVAL!
+        </h1>
+        <p class="text-gray-300 text-sm md:text-lg mb-8 max-w-xl mx-auto">
+            Aprenda a limpar, diagnosticar e consertar ar-condicionado Split em poucos minutos. Sem ferramentas caras e sem enrolação.
+        </p>
         
-        <div class="p-6">
-            <div class="flex items-center space-x-2 mb-2">
-                <span class="bg-green-100 text-green-700 text-[9px] font-black px-2 py-0.5 rounded uppercase">Campanha Verificada</span>
-                <span class="text-[9px] text-gray-400 font-bold uppercase">ID: 928374</span>
-            </div>
-            <h1 class="text-2xl font-black text-gray-800 leading-tight">Escolher entre minha faculdade ou o prato deles foi a dor mais forte que senti...</h1>
-        </div>
-
-        <div class="relative px-4">
-            <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=600" class="w-full rounded-2xl h-72 object-cover shadow-lg border-2 border-white">
-            <div class="absolute bottom-6 left-8 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[10px] font-bold">
-                📸 Ver 12 fotos da garagem
+        <div class="relative max-w-lg mx-auto mb-10">
+            <img src="https://images.unsplash.com/photo-1621905252507-b35222407583?q=80&w=800" class="rounded-3xl shadow-2xl border-2 border-blue-500/20">
+            <div class="absolute -top-4 -right-4 bg-yellow-400 text-black px-4 py-2 rounded-xl font-black -rotate-6 text-sm">
+                PDF PASSO A PASSO
             </div>
         </div>
 
-        <div class="p-6 flex items-center space-x-4 border-b border-gray-50">
-            <div class="w-14 h-14 rounded-full border-2 border-green-500 p-0.5">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-full h-full rounded-full object-cover">
-            </div>
-            <div>
-                <h3 class="font-black text-gray-800 text-sm">Luana Oliveira</h3>
-                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Vila Velha / ES</p>
-                <div class="flex space-x-3 mt-1 text-[10px] font-bold text-green-600">
-                    <span>14 resgatados hoje</span>
-                    <span>9 vaquinhas concluídas</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="p-6">
-            <div class="flex justify-between items-end mb-1">
-                <span class="text-2xl font-black text-green-500">R$ <span id="money">2.418,92</span></span>
-                <span class="text-[10px] text-gray-400 font-bold mb-1 uppercase">Meta: R$ 5.000,00</span>
-            </div>
-            <div class="w-full bg-gray-100 h-3 rounded-full overflow-hidden border border-gray-50">
-                <div id="prog-bar" class="bg-green-500 h-full progress-fill" style="width: 48%"></div>
-            </div>
-            <p class="text-[11px] text-gray-400 font-medium mt-3 italic underline decoration-green-300 underline-offset-4 tracking-tighter uppercase">536 pessoas já contribuíram para essa missão</p>
-        </div>
-
-        <div class="px-6 py-4 space-y-5 text-[15px] text-gray-700 leading-relaxed font-medium">
-            <p>Oi, eu sou a Luana. Tudo começou com o <b>Bolinha</b>. Ele dormia exatamente na frente do meu portão todo santo dia. Comecei dando um resto de comida, depois comprei um saquinho de ração... e meu coração não me deixou parar ali.</p>
-            
-            <p>Em poucos meses, minha garagem virou o abrigo de 14 anjos. Eu já doei 3 filhotes para amigos próximos, mas sou muito rigorosa, pois eles merecem o melhor. Em breve vou abrir um formulário de adoção oficial.</p>
-            
-            <div class="bg-green-50 p-5 rounded-2xl border-l-4 border-green-500 italic text-green-900 font-bold shadow-sm">
-                "Paguei minha faculdade e meu orçamento zerou. Tive que escolher entre os livros do semestre e a ração dos meus anjos. Eu escolhi eles, mas hoje não tenho mais nada para amanhã."
-            </div>
-
-            <p>Tive um imprevisto familiar pesado, onde tive que ajudar com remédios e cirurgia em casa, o que quebrou meu orçamento. Não peço por mim, peço por eles. Salve uma vida agora.</p>
-        </div>
-
-        <div class="p-6 bg-gray-50 mt-10">
-            <h4 class="font-black text-gray-700 text-sm mb-6 flex items-center">
-                <span class="bg-green-500 w-1 h-4 mr-2"></span> Comentários (14)
-            </h4>
-            <div class="space-y-6">
-                <div class="flex space-x-3">
-                    <img src="https://randomuser.me/api/portraits/women/67.jpg" class="w-9 h-9 rounded-full border">
-                    <div class="text-xs">
-                        <p class="font-black text-blue-700">Beatriz Helena</p>
-                        <p class="text-gray-600 mt-1 font-medium">Lu, você é um anjo! Acabei de doar R$ 50 para ajudar na ração. Parabéns pela coragem!</p>
-                        <p class="text-[10px] font-bold text-gray-400 mt-2 uppercase">Curtir • Responder • 2 min</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <div id="modal-pix" class="modal">
-        <div class="bg-white rounded-[40px] p-8 max-w-xs w-full text-center relative animate__animated animate__fadeInUp shadow-2xl">
-            <button onclick="closePix()" class="absolute top-6 right-6 text-gray-300 text-2xl font-bold">&times;</button>
-            <p class="text-green-500 font-black text-[10px] uppercase tracking-widest mb-2">Pague com PIX Copia e Cola</p>
-            <h2 class="text-3xl font-black text-gray-900 mb-6">R$ <span id="modal-vlr">0,00</span></h2>
-            
-            <img id="modal-qr" src="" class="w-48 h-48 mx-auto mb-6 p-2 border-2 border-dashed border-green-200 rounded-3xl shadow-inner">
-            
-            <button id="btn-copy" onclick="copy()" class="w-full bg-green-500 text-white font-black py-4 rounded-2xl shadow-lg active:scale-95 transition mb-3 uppercase text-sm tracking-wider">Copiar Código PIX</button>
-            <p id="msg-copy" class="text-blue-600 text-[10px] font-black hidden">CÓDIGO COPIADO! AGORA COLE NO SEU BANCO.</p>
-        </div>
-    </div>
-
-    <div class="sticky-footer max-w-md mx-auto">
-        <button onclick="scrollToTop()" class="w-full bg-green-500 hover:bg-green-600 text-white font-black py-4 rounded-2xl text-lg shadow-xl shadow-green-200 transition-transform active:scale-95 uppercase">
-            Quero Ajudar Agora
+        <button onclick="window.location.href='SEU_LINK_DE_PAGAMENTO'" class="w-full max-w-sm bg-blue-600 hover:bg-blue-500 py-5 rounded-2xl font-black text-xl shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all active:scale-95 uppercase tracking-wide">
+            Quero Acesso Imediato
         </button>
+    </section>
+
+    <section class="py-16 px-6 bg-white text-slate-900 rounded-t-[40px]">
+        <h2 class="text-2xl font-black text-center mb-10 uppercase italic">O que tem no Guia:</h2>
+        
+        <div class="space-y-4 max-w-md mx-auto">
+            <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                <span class="text-3xl">🧼</span>
+                <div>
+                    <h4 class="font-bold">Limpeza Completa</h4>
+                    <p class="text-xs text-gray-500">Aprenda a higienizar a turbina e serpentina sem bagunça.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                <span class="text-3xl">🔌</span>
+                <div>
+                    <h4 class="font-bold">Teste de Sensores</h4>
+                    <p class="text-xs text-gray-500">O ar não gela? Pode ser um sensor de 20 reais.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                <span class="text-3xl">❄️</span>
+                <div>
+                    <h4 class="font-bold">Carga de Gás</h4>
+                    <p class="text-xs text-gray-500">Entenda quando e como o fluido precisa ser reposto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6">
+        <h2 class="text-2xl font-black text-center mb-10 uppercase">Quem já aprendeu:</h2>
+        
+        <div class="space-y-6 max-w-md mx-auto">
+            <div class="bg-[#e7fed3] text-slate-800 p-4 rounded-2xl rounded-tl-none shadow-md relative max-w-[90%]">
+                <p class="text-sm font-medium">"Cara, o guia é top! Meu ar tava só ventilando, segui o passo a passo da limpeza e do capacitor e voltou a gelar na hora. Economizei R$ 250 da visita!"</p>
+                <span class="text-[10px] text-gray-500 block mt-2 text-right">Marcos Silva - 14:32</span>
+            </div>
+
+            <div class="bg-[#e7fed3] text-slate-800 p-4 rounded-2xl rounded-tl-none shadow-md relative max-w-[90%] ml-auto">
+                <p class="text-sm font-medium">"Tô fazendo uma grana extra nesse carnaval limpando o ar dos vizinhos aqui do condomínio. Já fiz 3 só hoje. O PDF se pagou na primeira hora."</p>
+                <span class="text-[10px] text-gray-500 block mt-2 text-right">Ricardo Oliveira - 10:15</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-slate-800">
+        <h2 class="text-xl font-black text-center mb-8">DÚVIDAS FREQUENTES</h2>
+        <div class="max-w-md mx-auto space-y-4">
+            <details class="bg-slate-700 p-4 rounded-xl">
+                <summary class="font-bold text-sm cursor-pointer">Como recebo o acesso?</summary>
+                <p class="text-xs text-gray-400 mt-2">Imediatamente após o PIX, você recebe o link para baixar o PDF no seu e-mail e no WhatsApp.</p>
+            </details>
+            <details class="bg-slate-700 p-4 rounded-xl">
+                <summary class="font-bold text-sm cursor-pointer">Preciso de ferramentas caras?</summary>
+                <p class="text-xs text-gray-400 mt-2">Não! Mostramos como começar com ferramentas que você provavelmente já tem em casa.</p>
+            </details>
+        </div>
+    </section>
+
+    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/10 backdrop-blur-md border-t border-white/10 z-50">
+        <div class="max-w-md mx-auto flex items-center justify-between gap-4">
+            <div>
+                <p class="text-blue-400 font-black text-2xl">R$ 27,90</p>
+                <p class="text-[10px] text-gray-400 uppercase font-bold">Acesso Vitalício</p>
+            </div>
+            <button onclick="window.location.href='SEU_LINK_DE_PAGAMENTO'" class="flex-1 bg-green-500 text-white font-black py-3 rounded-xl shadow-lg shadow-green-500/20 text-center animate-pulse">
+                COMPRAR AGORA
+            </button>
+        </div>
     </div>
 
     <script>
-        let pixCode = "";
-        let currentAmt = 2418.92;
-
-        // Efeito de valor subindo
+        // Timer de escassez
+        let minutes = 14;
+        let seconds = 59;
         setInterval(() => {
-            currentAmt += Math.random() * 3.50;
-            document.getElementById('money').innerText = currentAmt.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-            document.getElementById('prog-bar').style.width = (currentAmt / 5000 * 100) + "%";
-        }, 12000);
-
-        // Notificações flutuantes
-        const nomes = ["Camila", "Fernanda", "Rodrigo", "Sérgio", "Márcia", "Talita"];
-        const valores = ["12,00", "27,50", "50,00", "15,00"];
-        function showNotif() {
-            document.getElementById('notif-nome').innerText = nomes[Math.floor(Math.random()*nomes.length)];
-            document.getElementById('notif-valor').innerText = valores[Math.floor(Math.random()*valores.length)];
-            const n = document.getElementById('notif-box');
-            n.style.display = 'block';
-            setTimeout(() => { n.style.display = 'none'; }, 4500);
-        }
-        setInterval(showNotif, 15000);
-
-        function scrollToTop() {
-            // No mobile, abriremos as opções direto para facilitar
-            openPix('27,50', 'COLE_SEU_PIX_AQUI', 'LINK_QR_27');
-        }
-
-        function openPix(v, p, i) {
-            document.getElementById('modal-vlr').innerText = v;
-            document.getElementById('modal-qr').src = i;
-            document.getElementById('modal-pix').classList.add('active');
-            pixCode = p;
-        }
-        function closePix() { document.getElementById('modal-pix').classList.remove('active'); }
-        function copy() {
-            navigator.clipboard.writeText(pixCode);
-            document.getElementById('btn-copy').innerText = "CÓDIGO COPIADO!";
-        }
+            if (seconds == 0) {
+                minutes--;
+                seconds = 59;
+            } else {
+                seconds--;
+            }
+            document.getElementById('timer').innerText = minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+        }, 1000);
     </script>
 </body>
 </html>
