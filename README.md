@@ -3,158 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-CRED | Consulta de Crédito 2026</title>
+    <title>E-CRED | Solicitação de Crédito</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #111; }
-        .app-container { max-width: 500px; margin: 0 auto; background: white; min-height: 100vh; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
-        .step { display: none; padding: 25px; animation: slideIn 0.3s ease-out; }
+        body { font-family: 'Inter', sans-serif; background-color: #f4f7fa; color: #1a1a1a; }
+        .app-card { max-width: 500px; margin: 0 auto; background: white; min-height: 100vh; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .step { display: none; padding: 25px; animation: fadeIn 0.4s ease; }
         .step.active { display: block; }
-        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .btn-primary { background: #0057ff; color: white; width: 100%; padding: 18px; border-radius: 12px; font-weight: 700; transition: 0.2s; }
-        .btn-primary:active { transform: scale(0.98); background: #0046cc; }
-        
-        .progress-bar { height: 6px; background: #e5e7eb; border-radius: 10px; margin-bottom: 30px; overflow: hidden; }
-        .progress-fill { height: 100%; background: #0057ff; width: 0%; transition: width 0.4s; }
-        
-        input { width: 100%; border: 1.5px solid #e5e7eb; padding: 16px; border-radius: 10px; margin-bottom: 15px; font-size: 16px; outline: none; transition: 0.3s; }
-        input:focus { border-color: #0057ff; }
-        
-        .bank-card { border: 1.5px solid #e5e7eb; padding: 15px; border-radius: 12px; margin-bottom: 10px; display: flex; align-items: center; cursor: pointer; }
-        .bank-card.selected { border-color: #0057ff; background: #f0f6ff; }
+        .option-card { border: 2px solid #e5e7eb; padding: 18px; border-radius: 15px; margin-bottom: 12px; cursor: pointer; transition: 0.2s; }
+        .option-card:hover { border-color: #0057ff; background: #f0f6ff; }
+        .option-card.selected { border-color: #0057ff; background: #f0f6ff; box-shadow: 0 4px 12px rgba(0,87,255,0.1); }
 
-        /* LOADING ANIMATION */
-        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #0057ff; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .btn-next { background: #0057ff; color: white; width: 100%; padding: 20px; border-radius: 15px; font-weight: 800; font-size: 18px; transition: 0.3s; }
+        input, select { width: 100%; border: 2px solid #e5e7eb; padding: 16px; border-radius: 12px; margin-bottom: 15px; font-size: 16px; outline: none; }
+        input:focus { border-color: #0057ff; }
+
+        .loader-bar { width: 100%; background: #eee; height: 12px; border-radius: 10px; overflow: hidden; margin: 20px 0; }
+        .progress { width: 0%; height: 100%; background: #0057ff; transition: width 0.5s; }
     </style>
 </head>
 <body>
 
-<div class="app-container">
-    <header class="p-5 flex items-center justify-between border-b">
-        <div class="flex items-center">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-2">
-                <span class="text-white font-black text-xs italic">EC</span>
-            </div>
-            <span class="font-extrabold text-xl tracking-tighter">E-CRED</span>
+<div class="app-card">
+    <header class="p-6 border-b flex justify-between items-center bg-white sticky top-0 z-50">
+        <div class="flex items-center space-x-2">
+            <div class="bg-blue-600 p-2 rounded-lg text-white font-black text-sm">EC</div>
+            <span class="font-bold text-xl tracking-tighter">E-CRED DIGITAL</span>
         </div>
-        <div class="text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded font-bold">● SISTEMA OPERACIONAL</div>
+        <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">PLATAFORMA OFICIAL</span>
     </header>
 
-    <div class="progress-bar mx-5 mt-4">
-        <div class="progress-fill" id="progressFill"></div>
-    </div>
-
     <div class="step active" id="step1">
-        <h2 class="text-2xl font-extrabold mb-2">Bem-vindo(a)!</h2>
-        <p class="text-gray-500 mb-6 text-sm">Para começar, como deseja ser chamado(a)?</p>
-        <input type="text" id="userName" placeholder="Nome Completo">
-        <button class="btn-primary mt-4" onclick="nextStep(2, '25%')">CONTINUAR</button>
+        <h2 class="text-2xl font-black mb-1">Qual crédito você precisa?</h2>
+        <p class="text-gray-500 text-sm mb-6">Selecione a modalidade abaixo:</p>
+        
+        <div class="option-card" onclick="selectOption(this, 1)">
+            <div class="font-bold">Empréstimo para Negativados</div>
+            <div class="text-xs text-gray-500">Liberação sem consulta SPC/Serasa</div>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 1)">
+            <div class="font-bold">Antecipação FGTS / Aniversário</div>
+            <div class="text-xs text-gray-500">Receba o saldo do seu fundo hoje</div>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 1)">
+            <div class="font-bold">Crédito Pessoal Online</div>
+            <div class="text-xs text-gray-500">Para autônomos e assalariados</div>
+        </div>
+        <button class="btn-next mt-4" onclick="goStep(2)">CONTINUAR</button>
     </div>
 
     <div class="step" id="step2">
-        <h2 class="text-2xl font-extrabold mb-2">Ótimo, <span id="displayName" class="text-blue-600"></span>!</h2>
-        <p class="text-gray-500 mb-6 text-sm">Precisamos do seu CPF e data de nascimento para verificar o limite disponível no IP da sua rede.</p>
-        <input type="tel" id="userCPF" placeholder="000.000.000-00">
-        <input type="tel" placeholder="Data de Nascimento (DD/MM/AAAA)">
-        <button class="btn-primary mt-4" onclick="nextStep(3, '50%')">ANALISAR CRÉDITO</button>
+        <h2 class="text-2xl font-black mb-1">De quanto você precisa?</h2>
+        <p class="text-gray-500 text-sm mb-6">Escolha o valor que deseja receber via PIX:</p>
+        
+        <div class="option-card" onclick="selectOption(this, 2)">
+            <div class="text-xl font-black">R$ 2.500,00</div>
+            <div class="text-xs text-gray-400">Parcelas de 12x R$ 248,00</div>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 2)">
+            <div class="text-xl font-black">R$ 5.000,00</div>
+            <div class="text-xs text-gray-400">Parcelas de 24x R$ 265,00</div>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 2)">
+            <div class="text-xl font-black">R$ 10.000,00</div>
+            <div class="text-xs text-gray-400">Parcelas de 36x R$ 342,00</div>
+        </div>
+        <button class="btn-next mt-4" onclick="goStep(3)">ANALISAR MARGEM ➤</button>
     </div>
 
     <div class="step" id="step3">
-        <h2 class="text-2xl font-extrabold mb-2">Onde recebe?</h2>
-        <p class="text-gray-500 mb-6 text-sm">Selecione a instituição onde deseja receber o PIX do empréstimo.</p>
-        <div class="bank-card" onclick="selectBank(this)">
-            <img src="https://cdn-icons-png.flaticon.com/512/584/584067.png" width="24" class="mr-3">
-            <span class="font-bold">Nubank</span>
-        </div>
-        <div class="bank-card" onclick="selectBank(this)">
-            <img src="https://cdn-icons-png.flaticon.com/512/584/584067.png" width="24" class="mr-3">
-            <span class="font-bold">Itaú</span>
-        </div>
-        <div class="bank-card" onclick="selectBank(this)">
-            <img src="https://cdn-icons-png.flaticon.com/512/584/584067.png" width="24" class="mr-3">
-            <span class="font-bold">Caixa Econômica</span>
-        </div>
-        <div class="bank-card" onclick="selectBank(this)">
-            <span class="font-bold">Outros Bancos</span>
-        </div>
-        <button class="btn-primary mt-6" onclick="startAnalysis()">SOLICITAR ANÁLISE ➤</button>
+        <h2 class="text-2xl font-black mb-1">Dados do Titular</h2>
+        <p class="text-gray-500 text-sm mb-6">Preencha para vincular ao contrato digital:</p>
+        
+        <input type="text" placeholder="Nome Completo">
+        <input type="tel" placeholder="CPF">
+        <input type="tel" placeholder="Data de Nascimento">
+        <input type="email" placeholder="E-mail para receber o contrato">
+        
+        <button class="btn-next mt-4" onclick="goStep(4)">VERIFICAR APROVAÇÃO</button>
+    </div>
+
+    <div class="step" id="step4">
+        <h2 class="text-2xl font-black mb-1">Onde quer receber?</h2>
+        <p class="text-gray-500 text-sm mb-6">Informe os dados para o envio do PIX:</p>
+        
+        <select>
+            <option disabled selected>Selecione seu Banco</option>
+            <option>Nubank</option>
+            <option>Itaú</option>
+            <option>Caixa Econômica</option>
+            <option>Banco do Brasil</option>
+            <option>Bradesco</option>
+            <option>Santander</option>
+            <option>Inter</option>
+            <option>Outros Bancos</option>
+        </select>
+
+        <select>
+            <option disabled selected>Tipo de Chave PIX</option>
+            <option>CPF</option>
+            <option>Celular</option>
+            <option>E-mail</option>
+            <option>Chave Aleatória</option>
+        </select>
+
+        <input type="text" placeholder="Digite sua Chave PIX aqui">
+
+        <button class="btn-next mt-4" onclick="finalProcess()">CONCLUIR E RECEBER AGORA</button>
     </div>
 
     <div class="step text-center" id="stepLoading">
-        <h2 class="text-2xl font-extrabold mb-4">Consultando Servidores...</h2>
-        <div class="loader"></div>
-        <p class="text-gray-500 text-sm animate-pulse" id="loadingText">Rastreando margem via IP...</p>
+        <h2 class="text-2xl font-black mb-4">Enviando PIX...</h2>
+        <div class="loader-bar"><div class="progress" id="finalBar"></div></div>
+        <p class="text-blue-600 font-bold animate-pulse text-sm" id="loadingText">Sincronizando com o Banco Central...</p>
     </div>
 
-    <div class="step" id="stepResult">
-        <div class="bg-green-50 p-6 rounded-2xl border-2 border-green-100 text-center mb-6">
-            <h2 class="text-green-600 font-black text-3xl uppercase">Crédito Aprovado!</h2>
-            <p class="text-gray-600 text-sm mt-1">Limite localizado para o seu Perfil Bancário:</p>
-            <div class="text-4xl font-black my-4">R$ 4.750,00</div>
-            <p class="text-[10px] text-gray-400">DISPONÍVEL PARA ENVIO VIA PIX IMEDIATO</p>
+    <div class="step" id="stepCheckout">
+        <div class="bg-green-50 border-2 border-green-200 p-6 rounded-2xl text-center mb-6">
+            <h2 class="text-green-600 font-black text-3xl uppercase">Crédito Liberado!</h2>
+            <p class="text-gray-600 text-sm mt-2">Valor pronto para transferência:</p>
+            <div class="text-4xl font-black my-4 text-slate-800">R$ 4.750,00</div>
         </div>
 
-        <div class="bg-blue-50 p-4 rounded-xl text-xs text-blue-800 mb-6 leading-relaxed">
-            <strong>⚠️ INFORMAÇÃO IMPORTANTE:</strong><br>
-            Devido ao protocolo de segurança 892, para liberar o envio do valor para sua conta, é necessária a ativação da sua <b>Chave de Custódia Digital</b>. A taxa de ativação é de <b>R$ 97,00</b> e será 100% estornada (devolvida) junto com o valor do empréstimo.
+        <div class="bg-amber-50 border border-amber-200 p-5 rounded-xl text-xs text-amber-900 leading-relaxed mb-6">
+            <strong>⚠️ PENDÊNCIA DE LIBERAÇÃO:</strong><br><br>
+            Para concluir o envio do valor para sua conta, o sistema identificou a necessidade do pagamento da <b>TAC (Taxa de Abertura de Crédito)</b> no valor de <b>R$ 97,00</b>.<br><br>
+            Esta taxa é obrigatória para contratos digitais e será <b>estornada automaticamente</b> junto com o valor do seu empréstimo após a ativação.
         </div>
 
-        <a href="https://go.perfectpay.com.br/PPU38CQ79SG" class="btn-primary block text-center uppercase tracking-tighter">
-            LIBERAR MEU CRÉDITO AGORA
-        </a>
+        <a href="https://go.perfectpay.com.br/PPU38CQ79SG" class="btn-next block text-center uppercase">PAGAR TAXA E RECEBER PIX ➤</a>
+        <p class="text-[10px] text-gray-400 text-center mt-4 uppercase">Pagamento seguro via Perfect Pay</p>
     </div>
 
-    <div class="p-6 border-t mt-10">
-        <div class="flex items-center mb-4">
-            <div class="flex -space-x-2">
-                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/1.jpg">
-                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/2.jpg">
-                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/3.jpg">
-            </div>
-            <span class="text-[10px] text-gray-500 ml-4 font-bold uppercase tracking-widest">+1.420 PESSOAS RECEBERAM HOJE</span>
-        </div>
-    </div>
 </div>
 
 <script>
-    function nextStep(step, progress) {
-        if(step === 2) {
-            const name = document.getElementById('userName').value;
-            if(!name) return alert('Por favor, digite seu nome');
-            document.getElementById('displayName').innerText = name.split(' ')[0];
-        }
-        
-        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-        document.getElementById('step' + step).classList.add('active');
-        document.getElementById('progressFill').style.width = progress;
-    }
-
-    function selectBank(el) {
-        document.querySelectorAll('.bank-card').forEach(c => c.classList.remove('selected'));
+    function selectOption(el, step) {
+        document.querySelectorAll(`#step${step} .option-card`).forEach(c => c.classList.remove('selected'));
         el.classList.add('selected');
     }
 
-    function startAnalysis() {
-        nextStep('Loading', '85%');
-        const phrases = [
-            "Autenticando via Endereço de IP...",
-            "Localizando margem no Banco Central...",
-            "Aplicando Protocolo 892...",
-            "Finalizando liberação de saldo..."
-        ];
+    function goStep(n) {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById('step' + n).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    function finalProcess() {
+        goStep('Loading');
+        let width = 0;
+        let bar = document.getElementById('finalBar');
+        let text = document.getElementById('loadingText');
         
-        let i = 0;
-        const interval = setInterval(() => {
-            document.getElementById('loadingText').innerText = phrases[i];
-            i++;
-            if(i >= phrases.length) {
+        let interval = setInterval(() => {
+            width += 1;
+            bar.style.width = width + '%';
+            
+            if(width == 30) text.innerText = "Verificando Chave PIX...";
+            if(width == 60) text.innerText = "Gerando TED/PIX de transferência...";
+            if(width == 90) text.innerText = "Aguardando confirmação de taxa TAC...";
+            if(width >= 100) {
                 clearInterval(interval);
-                nextStep('Result', '100%');
+                goStep('Checkout');
             }
-        }, 1500);
+        }, 50);
     }
 </script>
 
