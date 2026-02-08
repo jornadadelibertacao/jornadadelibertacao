@@ -3,203 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-CRED | Crédito Digital Instantâneo</title>
+    <title>Ecred | Simulação de Crédito</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; color: #111; }
-        .container-app { max-width: 480px; margin: 0 auto; background: white; min-height: 100vh; box-shadow: 0 0 40px rgba(0,0,0,0.03); }
-        .step { display: none; padding: 20px; animation: slideUp 0.4s ease; }
+        body { font-family: 'Inter', sans-serif; background-color: #f4f7fa; color: #1a1a1a; }
+        .app-container { max-width: 500px; margin: 0 auto; background: white; min-height: 100vh; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .step { display: none; padding: 20px; animation: fadeIn 0.4s ease; }
         .step.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .card-loan { border: 1.5px solid #e5e7eb; border-radius: 16px; padding: 20px; margin-bottom: 15px; cursor: pointer; transition: 0.2s; }
-        .card-loan:hover { border-color: #2563eb; background: #f8faff; }
-        .card-loan.selected { border-color: #2563eb; background: #f0f6ff; border-width: 2px; }
+        .card-option { border: 2px solid #e5e7eb; border-radius: 16px; padding: 20px; margin-bottom: 15px; cursor: pointer; transition: 0.3s; position: relative; }
+        .card-option.selected { border-color: #2563eb; background: #f0f6ff; }
+        .badge { position: absolute; top: -10px; left: 20px; background: #22c55e; color: white; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 20px; }
 
-        .btn-main { background: #2563eb; color: white; width: 100%; padding: 18px; border-radius: 12px; font-weight: 700; font-size: 16px; }
-        input, select { width: 100%; border: 1.5px solid #d1d5db; padding: 14px; border-radius: 10px; margin-bottom: 12px; font-size: 15px; }
+        .btn-blue { background: #2563eb; color: white; width: 100%; padding: 18px; border-radius: 12px; font-weight: 700; font-size: 16px; transition: 0.2s; }
+        .btn-blue:active { transform: scale(0.98); }
+
+        input, select { width: 100%; border: 1.5px solid #d1d5db; padding: 16px; border-radius: 12px; margin-bottom: 15px; font-size: 16px; outline: none; }
+        input:focus { border-color: #2563eb; }
+
+        .loading-circle { border: 4px solid #f3f3f3; border-top: 4px solid #2563eb; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        .progress-container { width: 100%; background: #eee; height: 8px; border-radius: 10px; overflow: hidden; margin: 20px 0; }
-        .progress-bar { width: 0%; height: 100%; background: #2563eb; transition: width 0.3s; }
-        
-        .terms-box { background: #f3f4f6; border: 1px solid #e5e7eb; padding: 15px; border-radius: 10px; height: 120px; overflow-y: scroll; font-size: 11px; color: #666; line-height: 1.5; margin-bottom: 15px; }
+        .progress-bar { width: 100%; background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin: 20px 0; }
+        .progress-fill { height: 100%; background: #2563eb; width: 0%; transition: width 0.4s; }
+
+        .terms-area { background: #f9fafb; border: 1px solid #e5e7eb; padding: 15px; border-radius: 10px; font-size: 12px; color: #666; height: 100px; overflow-y: scroll; margin-bottom: 15px; }
     </style>
 </head>
 <body>
 
-<div class="container-app">
-    <header class="p-5 border-b flex items-center justify-between sticky top-0 bg-white z-50">
-        <div class="flex items-center space-x-2">
-            <img src="https://cdn-icons-png.flaticon.com/512/584/584067.png" width="28">
-            <span class="font-extrabold text-xl tracking-tight text-blue-600">Ecred</span>
+<div class="app-container">
+    <header class="p-5 border-b flex items-center space-x-2 bg-white sticky top-0 z-50">
+        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-xs">$</span>
         </div>
-        <div class="flex items-center space-x-1">
-            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            <span class="text-[10px] font-bold text-gray-400">SISTEMA ATIVO</span>
-        </div>
+        <span class="font-extrabold text-xl tracking-tighter text-blue-800">Ecred</span>
     </header>
 
     <div class="step active" id="step1">
-        <div class="text-center mb-8">
-            <h1 class="text-2xl font-extrabold mb-2">Empréstimo online, receba hoje via <span class="text-blue-600">PIX!</span></h1>
+        <div class="text-center mb-6">
+            <h1 class="text-2xl font-black leading-tight mb-2">Empréstimo online, receba hoje via <span class="text-blue-600 font-black">PIX!</span></h1>
             <p class="text-gray-500 text-sm">Mesmo com <span class="bg-yellow-100 px-1">nome sujo</span> ou <span class="bg-yellow-100 px-1">score baixo</span>.</p>
         </div>
 
-        <h2 class="font-bold text-gray-400 text-xs uppercase tracking-widest mb-4 text-center">Modalidades</h2>
-        
-        <div class="card-loan" onclick="selectLoan(this, 'Para Negativados', 'R$ 18.000', 'R$ 180,00')">
-            <div class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded w-fit mb-2">MAIS PROCURADO</div>
+        <div class="card-option" onclick="selectLoan(this, 'Para Negativados', '18.000')">
+            <div class="badge">MAIS PROCURADO</div>
             <h3 class="font-bold text-lg">Para Negativados</h3>
-            <p class="text-gray-400 text-xs mb-3">CPF com restrições no Serasa/SPC</p>
-            <div class="text-blue-600 font-extrabold text-2xl">R$ 18.000</div>
-            <div class="text-[10px] text-gray-400 mt-1">1ª parcela em 90 dias</div>
+            <p class="text-gray-400 text-xs">CPF com restrições no Serasa/SPC</p>
+            <div class="mt-3 text-blue-600 font-extrabold text-2xl">Até R$ 18.000</div>
         </div>
 
-        <div class="card-loan" onclick="selectLoan(this, 'Pessoa Física', 'R$ 27.000', 'R$ 270,00')">
+        <div class="card-option" onclick="selectLoan(this, 'Pessoa Física', '27.000')">
             <h3 class="font-bold text-lg">Pessoa Física</h3>
-            <p class="text-gray-400 text-xs mb-3">CPF sem restrições, tire planos do papel</p>
-            <div class="text-blue-600 font-extrabold text-2xl">R$ 27.000</div>
-            <div class="text-[10px] text-gray-400 mt-1">1ª parcela em 90 dias</div>
+            <p class="text-gray-400 text-xs">CPF sem restrições, tire planos do papel</p>
+            <div class="mt-3 text-blue-600 font-extrabold text-2xl">Até R$ 27.000</div>
         </div>
 
-        <button class="btn-main mt-4" onclick="nextStep(2)">COMEÇAR SIMULAÇÃO</button>
+        <button class="btn-blue mt-4" onclick="nextStep(2)">Começar Simulação</button>
     </div>
 
     <div class="step" id="step2">
-        <h2 class="text-xl font-bold mb-1">Dados Cadastrais</h2>
-        <p class="text-gray-500 text-sm mb-6">Preencha corretamente para análise imediata.</p>
-        
-        <input type="text" id="nome" placeholder="Nome Completo">
-        <input type="tel" id="cpf" placeholder="CPF">
-        <input type="tel" placeholder="Data de Nascimento">
-        <input type="tel" placeholder="Telefone (WhatsApp)">
-        
-        <button class="btn-main mt-4" onclick="nextStep(3)">CONTINUAR ➤</button>
+        <div class="text-center mb-6">
+            <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            </div>
+            <h2 class="text-xl font-black">Vamos começar sua análise</h2>
+            <p class="text-gray-500 text-sm">Informe seu CPF para começar</p>
+        </div>
+        <input type="tel" id="cpf" placeholder="000.000.000-00" oninput="maskCPF(this)">
+        <button class="btn-blue" onclick="startAnalysis()">Continuar</button>
+        <div class="mt-6 space-y-2">
+            <div class="flex items-center text-xs text-green-600 font-semibold"><svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg> Seus dados estão protegidos</div>
+            <div class="flex items-center text-xs text-green-600 font-semibold"><svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg> Análise em tempo real</div>
+        </div>
     </div>
 
-    <div class="step" id="step3">
-        <h2 class="text-xl font-bold mb-1">Recebimento via PIX</h2>
-        <p class="text-gray-500 text-sm mb-6">Onde você deseja receber o valor?</p>
-        
-        <label class="text-xs font-bold text-gray-400 uppercase">Instituição Bancária</label>
-        <select>
-            <option>Nubank</option>
-            <option>Itaú Unibanco</option>
-            <option>Caixa Econômica Federal</option>
-            <option>Banco do Brasil</option>
-            <option>Bradesco</option>
-            <option>Santander</option>
-            <option>Inter</option>
-            <option>C6 Bank</option>
-            <option>Outros Bancos</option>
-        </select>
-
-        <label class="text-xs font-bold text-gray-400 uppercase">Chave PIX</label>
-        <input type="text" placeholder="Digite sua chave PIX">
-        
-        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 mb-6">
-            <p class="text-blue-800 text-xs font-bold">PLANO DE PAGAMENTO:</p>
-            <p class="text-blue-600 text-lg font-black" id="resumoPlano">100x de R$ 180,00</p>
-            <p class="text-[10px] text-blue-400">Juros fixos de 1.2% a.m (Incluso)</p>
+    <div class="step text-center" id="stepAnalysis">
+        <div class="loading-circle"></div>
+        <h2 class="text-xl font-black">Analisando seus dados</h2>
+        <p class="text-gray-500 text-sm">Processando informações...</p>
+        <div class="mt-8 text-left bg-blue-50 p-4 rounded-xl border border-blue-100">
+            <div class="flex items-center space-x-3 mb-3">
+                <div class="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center text-[10px] text-white">1</div>
+                <span class="text-sm font-bold" id="ana1">Consultando banco de dados...</span>
+            </div>
+            <div class="flex items-center space-x-3 opacity-30" id="anaRow2">
+                <div class="w-5 h-5 bg-gray-400 rounded-full flex items-center justify-center text-[10px] text-white">2</div>
+                <span class="text-sm font-bold">Finalizando verificação</span>
+            </div>
         </div>
-
-        <button class="btn-main" onclick="nextStep(4)">VER TERMOS DE ADESÃO</button>
     </div>
 
     <div class="step" id="step4">
-        <h2 class="text-xl font-bold mb-4">Contrato de Crédito</h2>
-        <div class="terms-box">
-            CONTRATO DE ADESÃO AO CRÉDITO DIGITAL E-CRED 2026. <br><br>
-            1. OBJETO: Liberação de crédito pessoal imediato via PIX. <br>
-            2. JUROS: Taxa fixa de 1.2% ao mês aplicada sobre o saldo devedor. <br>
-            3. LIBERAÇÃO: O crédito será enviado após a validação da Chave de Segurança de Envio. <br>
-            4. ESTORNO: Taxas de liberação são 100% reembolsáveis no ato do depósito. <br>
-            5. PAGAMENTO: As parcelas serão enviadas mensalmente via boleto ou débito automático.
-        </div>
+        <h2 class="text-xl font-black mb-1">Análise Concluída!</h2>
+        <p class="text-gray-500 text-sm mb-6">Complete seu cadastro para receber o valor.</p>
         
-        <div class="flex items-start space-x-2 mb-6">
-            <input type="checkbox" id="checkTerms" class="w-5 h-5 mt-1">
-            <label for="checkTerms" class="text-xs text-gray-600 font-semibold">Li e estou de acordo com os termos de liberação e as parcelas baixas.</label>
+        <label class="text-[10px] font-bold text-gray-400 uppercase">Nome Completo</label>
+        <input type="text" placeholder="Como no documento">
+        
+        <label class="text-[10px] font-bold text-gray-400 uppercase">Data de Nascimento</label>
+        <input type="text" placeholder="00/00/0000" oninput="maskData(this)" maxlength="10">
+
+        <label class="text-[10px] font-bold text-gray-400 uppercase">Instituição de Recebimento</label>
+        <select>
+            <option>Nubank</option>
+            <option>Itaú</option>
+            <option>Caixa Econômica</option>
+            <option>Inter</option>
+            <option>Outros Bancos</option>
+        </select>
+
+        <label class="text-[10px] font-bold text-gray-400 uppercase">Chave PIX</label>
+        <input type="text" placeholder="CPF, Celular ou E-mail">
+
+        <label class="text-[10px] font-bold text-gray-400 uppercase">Parcelas</label>
+        <select id="parcelas">
+            <option>12x de R$ 180,00</option>
+            <option>24x de R$ 98,00</option>
+            <option>48x de R$ 52,00</option>
+            <option>100x de R$ 28,00</option>
+        </select>
+
+        <button class="btn-blue" onclick="nextStep(5)">Confirmar Dados</button>
+    </div>
+
+    <div class="step" id="step5">
+        <h2 class="text-xl font-black mb-4">Termos e Condições</h2>
+        <div class="terms-area">
+            CONTRATO DE ADESÃO AO CRÉDITO DIGITAL ECRED. <br><br>
+            Ao prosseguir, você concorda com as parcelas selecionadas e autoriza o envio do valor para a chave PIX informada. O crédito está sujeito às normas internas de segurança bancária. A liberação do montante total ocorre após a validação sistêmica de envio e confirmação do protocolo de transferência imediata.
         </div>
-
-        <button class="btn-main" onclick="startSending()">CONCORDAR E RECEBER PIX ➤</button>
+        <div class="flex items-start space-x-2 mb-6">
+            <input type="checkbox" id="aceito" class="w-5 h-5">
+            <label for="aceito" class="text-xs text-gray-600 font-semibold">Li e aceito os termos do contrato de empréstimo.</label>
+        </div>
+        <button class="btn-blue" onclick="startSending()">Receber PIX Agora ➤</button>
     </div>
 
-    <div class="step text-center" id="stepLoading">
-        <h2 class="text-2xl font-black mb-2">Processando Envio...</h2>
-        <p class="text-gray-400 text-xs">Não feche esta página</p>
-        <div class="progress-container"><div class="progress-bar" id="barFinal"></div></div>
-        <p class="text-blue-600 font-bold text-sm animate-pulse" id="statusText">Estabelecendo conexão com o Banco Central...</p>
+    <div class="step text-center" id="stepSending">
+        <h2 class="text-2xl font-black mb-2">Enviando seu PIX...</h2>
+        <p class="text-gray-400 text-xs">Transferindo para sua conta</p>
+        <div class="progress-bar"><div class="progress-fill" id="barFinal"></div></div>
+        <p class="text-blue-600 font-bold text-sm" id="sendText">Sincronizando com o Banco Central...</p>
     </div>
 
-    <div class="step" id="stepFinal">
+    <div class="step" id="stepCheckout">
         <div class="bg-blue-600 text-white p-6 rounded-2xl text-center mb-6">
-            <h2 class="font-black text-3xl uppercase italic tracking-tighter">Atenção!</h2>
-            <div class="w-16 h-1 bg-white mx-auto my-3 opacity-30"></div>
-            <p class="text-sm opacity-90">O envio do seu PIX de <span class="font-bold" id="finalValor">R$ 18.000</span> foi interrompido.</p>
+            <h2 class="font-black text-4xl italic tracking-tighter">ALERTA!</h2>
+            <p class="text-sm mt-2 opacity-90">Transferência de <span class="font-bold">R$ 18.000</span> interrompida.</p>
         </div>
 
         <div class="bg-white border-2 border-dashed border-gray-200 p-5 rounded-xl text-center mb-6">
-            <p class="text-gray-500 text-xs font-bold uppercase mb-2">Motivo da Retenção:</p>
-            <p class="text-red-500 font-bold text-sm leading-tight">NECESSÁRIA ATIVAÇÃO DA TAXA DE ENVIO (T.E.D)</p>
+            <p class="text-red-500 font-black">TAXA DE ENVIO PENDENTE</p>
         </div>
 
-        <div class="text-gray-600 text-xs leading-relaxed mb-8">
-            Para que o sistema conclua a transferência dos seus <b>R$ 18.000</b> hoje, é necessário efetuar o pagamento da taxa de envio de <b>R$ 97,00</b>. <br><br>
-            <span class="text-black font-bold">⚠️ IMPORTANTE:</span> Este valor de R$ 97 é <span class="text-green-600 uppercase font-black">estornado automaticamente</span> para sua conta junto com o valor do empréstimo.
-        </div>
+        <p class="text-gray-600 text-sm leading-relaxed mb-8">
+            Para concluir o envio do seu empréstimo de <b>R$ 18.000</b> imediatamente, o sistema exige o pagamento da <b>Taxa de Liberação de Crédito Digital</b> no valor de <b>R$ 97,00</b>. 
+            <br><br>
+            O envio será concluído em 2 minutos após a confirmação.
+        </p>
 
-        <a href="https://go.perfectpay.com.br/PPU38CQ79SG" class="btn-main block text-center shadow-xl shadow-blue-200">
-            PAGAR TAXA E LIBERAR PIX AGORA
-        </a>
+        <a href="https://go.perfectpay.com.br/SEU_ID_AQUI" class="btn-blue block text-center uppercase">Pagar Taxa e Receber Agora</a>
     </div>
 
     <footer class="p-8 text-center border-t mt-10">
         <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest">© 2026 Ecred LTDA - Todos os direitos reservados</p>
-        <p class="text-[9px] text-gray-300 mt-2">CNPJ 41.906.644/0001-20</p>
+        <p class="text-[9px] text-gray-300 mt-1">CNPJ 41.906.644/0001-20</p>
     </footer>
 </div>
 
 <script>
-    let selectedAmount = "R$ 18.000";
-    let selectedInstallment = "100x de R$ 180,00";
-
-    function selectLoan(el, title, amount, installment) {
-        document.querySelectorAll('.card-loan').forEach(c => c.classList.remove('selected'));
-        el.classList.add('selected');
-        selectedAmount = amount;
-        selectedInstallment = `100x de ${installment}`;
-        document.getElementById('resumoPlano').innerText = selectedInstallment;
-        document.getElementById('finalValor').innerText = selectedAmount;
-    }
-
     function nextStep(n) {
-        if(n === 4 && !document.getElementById('nome').value) return alert("Preencha seus dados.");
         document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
         document.getElementById('step' + n).classList.add('active');
         window.scrollTo(0,0);
     }
 
+    function selectLoan(el, title, amount) {
+        document.querySelectorAll('.card-option').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+
+    function maskCPF(i) {
+        let v = i.value.replace(/\D/g, "");
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");
+        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        i.value = v;
+    }
+
+    function maskData(i) {
+        let v = i.value.replace(/\D/g, "");
+        v = v.replace(/(\d{2})(\d)/, "$1/$2");
+        v = v.replace(/(\d{2})(\d)/, "$1/$2");
+        i.value = v;
+    }
+
+    function startAnalysis() {
+        if(document.getElementById('cpf').value.length < 14) return alert("CPF Inválido");
+        nextStep('Analysis');
+        setTimeout(() => {
+            document.getElementById('ana1').innerText = "Dados localizados!";
+            document.getElementById('anaRow2').classList.remove('opacity-30');
+            setTimeout(() => { nextStep(4); }, 1500);
+        }, 2000);
+    }
+
     function startSending() {
-        if(!document.getElementById('checkTerms').checked) return alert("Você precisa aceitar os termos.");
-        
-        nextStep('Loading');
+        if(!document.getElementById('aceito').checked) return alert("Aceite os termos.");
+        nextStep('Sending');
         let width = 0;
         let bar = document.getElementById('barFinal');
-        let status = document.getElementById('statusText');
+        let text = document.getElementById('sendText');
         
         let interval = setInterval(() => {
             width += 0.5;
             bar.style.width = width + '%';
-            
-            if(width > 20) status.innerText = "Preparando remessa PIX...";
-            if(width > 50) status.innerText = "Autenticando chave de segurança...";
-            if(width > 85) status.innerText = "ERRO: Taxa de Envio não identificada...";
+            if(width > 30) text.innerText = "Preparando remessa PIX...";
+            if(width > 60) text.innerText = "Validando chave de destino...";
+            if(width > 90) text.innerText = "Finalizando envio 99%...";
             
             if(width >= 99) {
                 clearInterval(interval);
-                setTimeout(() => { nextStep('Final'); }, 800);
+                setTimeout(() => { nextStep('Checkout'); }, 1000);
             }
         }, 30);
     }
