@@ -3,262 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CREDPIX - Empréstimos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>CREDPIX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #00d35d; /* Verde Noverde */
-            --text-dark: #2c2c2c;
-            --text-gray: #757575;
-            --bg-body: #ffffff;
-            --input-bg: #f5f7fa;
-        }
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow: hidden; }
+        .step { display: none; height: 100vh; width: 100vw; flex-direction: column; padding: 24px; background: #fff; }
+        .step.active { display: flex; animation: slideIn 0.3s forwards; }
+        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        
+        input:focus { outline: none; border-bottom: 2px solid #00d35d !important; }
+        .btn-green { background: #00d35d; color: white; font-weight: 700; border-radius: 99px; padding: 18px; width: 100%; transition: 0.2s; box-shadow: 0 4px 14px 0 rgba(0,211,93,0.39); }
+        .btn-green:active { transform: scale(0.95); opacity: 0.9; }
+        
+        .option-card { border: 1.5px solid #e5e7eb; border-radius: 16px; padding: 20px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #374151; }
+        .option-card:active { border-color: #00d35d; background: #f0fff4; }
 
-        * { box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
-
-        body { margin: 0; padding: 0; background-color: var(--bg-body); color: var(--text-dark); overflow-x: hidden; }
-
-        /* Header Superior */
-        header {
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .logo { font-size: 22px; font-weight: 800; color: #004a8d; }
-        .logo span { color: var(--primary); }
-
-        /* Barra de Progresso no topo */
-        .progress-line {
-            height: 4px;
-            width: 100%;
-            background: #eee;
-            position: relative;
-        }
-        .progress-fill {
-            height: 100%;
-            background: var(--primary);
-            width: 10%;
-            transition: width 0.4s ease;
-        }
-
-        /* Container de Etapas */
-        .container {
-            padding: 30px 25px;
-            max-width: 500px;
-            margin: 0 auto;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .step { display: none; animation: fadeIn 0.4s ease; }
-        .step.active { display: flex; flex-direction: column; }
-
-        h1 { font-size: 24px; font-weight: 700; margin-bottom: 15px; line-height: 1.2; }
-        p.desc { font-size: 16px; color: var(--text-gray); margin-bottom: 30px; line-height: 1.4; }
-
-        /* Cards de Opção */
-        .card-opt {
-            background: #fff;
-            border: 2px solid #f0f0f0;
-            padding: 20px;
-            border-radius: 16px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .card-opt.selected { border-color: var(--primary); background: #f0fff4; }
-        .card-opt span { font-size: 16px; font-weight: 600; }
-
-        /* Inputs Modernos */
-        .input-group { margin-bottom: 20px; }
-        label { display: block; font-size: 13px; font-weight: 600; color: var(--text-gray); margin-bottom: 8px; }
-        input {
-            width: 100%;
-            padding: 18px;
-            background: var(--input-bg);
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            outline: none;
-            transition: 0.3s;
-        }
-        input:focus { background: #fff; box-shadow: 0 0 0 2px var(--primary); }
-
-        /* Botão Fixo/Ação */
-        .footer-btn { margin-top: auto; padding-top: 20px; }
-        .btn-main {
-            background: var(--primary);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 20px;
-            border-radius: 16px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0, 211, 93, 0.2);
-        }
-        .btn-main:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
-
-        /* Animação Loading */
-        .loader-box { text-align: center; padding: 50px 0; }
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 6px solid #f3f3f3;
-            border-top: 6px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        /* Modal de Erro (Gatilho Final) */
-        .modal-error {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 100;
-        }
-        .modal-content {
-            background: #fff; width: 90%; max-width: 400px; padding: 30px; border-radius: 24px; text-align: center;
-        }
-
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .loading-bar { width: 0%; height: 6px; background: #00d35d; border-radius: 10px; transition: 0.1s; }
     </style>
 </head>
-<body>
+<body class="bg-gray-50">
 
-<header>
-    <div class="logo">CRED<span>PIX</span></div>
-    <i class="fas fa-bars" style="color: #ccc;"></i>
-</header>
-<div class="progress-line"><div class="progress-fill" id="p-fill"></div></div>
-
-<div class="container">
-    
-    <div id="step1" class="step active">
-        <h1>Para começar, qual o seu perfil?</h1>
-        <p class="desc">Isso nos ajuda a encontrar a melhor taxa para o seu caso.</p>
-        <div class="card-opt" onclick="selOpt(this, 2)"><span>Negativado / Nome Sujo</span> <i class="fas fa-chevron-right"></i></div>
-        <div class="card-opt" onclick="selOpt(this, 2)"><span>Aposentado ou Pensionista</span> <i class="fas fa-chevron-right"></i></div>
-        <div class="card-opt" onclick="selOpt(this, 2)"><span>Autônomo ou CLT</span> <i class="fas fa-chevron-right"></i></div>
-    </div>
-
-    <div id="step2" class="step">
-        <h1>Qual o seu nome completo?</h1>
-        <p class="desc">Conforme consta no seu documento de identidade.</p>
-        <div class="input-group">
-            <input type="text" id="nome" placeholder="Seu nome aqui" oninput="checkInput('nome', 'btn2')">
-        </div>
-        <div class="footer-btn">
-            <button class="btn-main" id="btn2" disabled onclick="next(3, 40)">CONTINUAR</button>
+    <div class="fixed top-0 left-0 w-full p-6 bg-white z-50 flex justify-between items-center border-b border-gray-100">
+        <div class="text-2xl font-extrabold text-[#004a8d]">CRED<span class="text-[#00d35d]">PIX</span></div>
+        <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+            <div class="w-4 h-0.5 bg-gray-400"></div>
         </div>
     </div>
 
-    <div id="step3" class="step">
-        <h1>Informe seu CPF</h1>
-        <p class="desc">Fique tranquilo, seus dados estão protegidos.</p>
-        <div class="input-group">
-            <input type="tel" id="cpf" placeholder="000.000.000-00" oninput="maskCPF(this); checkInput('cpf', 'btn3')">
-        </div>
-        <div class="footer-btn">
-            <button class="btn-main" id="btn3" disabled onclick="next(4, 60)">ANALISAR CRÉDITO</button>
-        </div>
-    </div>
-
-    <div id="step4" class="step">
-        <div class="loader-box">
-            <div class="spinner"></div>
-            <h2>Analisando perfil...</h2>
-            <p id="load-msg">Consultando Score no Banco Central</p>
-        </div>
-    </div>
-
-    <div id="step5" class="step">
-        <h1>Onde deseja receber o valor?</h1>
-        <p class="desc">O valor aprovado foi de <b>R$ 5.000,00</b> com carência de 180 dias.</p>
-        <div class="input-group">
-            <label>CHAVE PIX</label>
-            <input type="text" id="pix" placeholder="CPF, Celular ou E-mail" oninput="checkInput('pix', 'btn5')">
-        </div>
-        <div class="footer-btn">
-            <button class="btn-main" id="btn5" disabled onclick="startFinal()">SOLICITAR PIX AGORA</button>
-        </div>
-    </div>
-
-    <div id="step6" class="step">
-        <h1 id="f-title">Enviando seu PIX...</h1>
-        <div class="loader-box">
-            <h1 style="font-size: 48px; color: var(--primary);" id="f-pct">0%</h1>
-            <p id="f-status">Estabelecendo conexão segura...</p>
-        </div>
-    </div>
-
-</div>
-
-<div class="modal-error" id="modalTaxa">
-    <div class="modal-content">
-        <div style="font-size: 60px; margin-bottom: 20px;">⚠️</div>
-        <h2 style="color: #e63946;">Transferência Retida</h2>
-        <p style="color: #555; line-height: 1.5;">Notamos que para liberar o envio de <b>R$ 5.000,00</b> para sua conta, é necessário o pagamento da <b>Taxa TAC (Tarifa de Abertura)</b> no valor de <b>R$ 97,00</b>.</p>
-        <button class="btn-main" onclick="location.href='https://pay.infinitepay.io/SEU_LINK'">PAGAR TAXA E LIBERAR PIX</button>
-    </div>
-</div>
-
-<script>
-    function next(s, pct) {
-        document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
-        document.getElementById('step'+s).classList.add('active');
-        document.getElementById('p-fill').style.width = pct + '%';
+    <div id="step1" class="step active pt-28">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Qual o seu perfil?</h1>
+        <p class="text-gray-500 mb-8">Selecione para onde vai o crédito.</p>
         
-        if(s === 4) {
-            setTimeout(() => { document.getElementById('load-msg').innerText = "Verificando margem disponível..."; }, 1500);
-            setTimeout(() => { next(5, 80); }, 3500);
-        }
-    }
+        <div class="option-card" onclick="nextStep(2)"><span>Negativado / Nome Sujo</span> <span class="text-gray-300 text-xl">❯</span></div>
+        <div class="option-card" onclick="nextStep(2)"><span>Aposentado e Pensionista</span> <span class="text-gray-300 text-xl">❯</span></div>
+        <div class="option-card" onclick="nextStep(2)"><span>Autônomo / CLT</span> <span class="text-gray-300 text-xl">❯</span></div>
+    </div>
 
-    function selOpt(el, s) {
-        el.classList.add('selected');
-        setTimeout(() => { next(s, 20); }, 300);
-    }
+    <div id="step2" class="step pt-28">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Seu nome completo</h1>
+        <p class="text-gray-500 mb-10">Conforme seu documento.</p>
+        
+        <div class="flex-grow">
+            <label class="text-[11px] font-bold text-[#00d35d] uppercase tracking-wider">Nome Completo</label>
+            <input type="text" id="nome" placeholder="Digite seu nome" class="w-full text-xl py-3 border-b-2 border-gray-200">
+        </div>
+        
+        <div class="pb-10">
+            <button class="btn-green" onclick="nextStep(3)">CONTINUAR</button>
+        </div>
+    </div>
 
-    function checkInput(id, btnId) {
-        const val = document.getElementById(id).value;
-        document.getElementById(btnId).disabled = val.length < 3;
-    }
+    <div id="step3" class="step pt-28">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Informe seu CPF</h1>
+        <p class="text-gray-500 mb-10">Para consulta imediata no sistema.</p>
+        
+        <div class="flex-grow">
+            <label class="text-[11px] font-bold text-[#00d35d] uppercase tracking-wider">CPF</label>
+            <input type="tel" id="cpf" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)" class="w-full text-xl py-3 border-b-2 border-gray-200">
+        </div>
+        
+        <div class="pb-10">
+            <button class="btn-green" onclick="nextStep(4)">VERIFICAR CRÉDITO</button>
+        </div>
+    </div>
 
-    function maskCPF(i) {
-        let v = i.value.replace(/\D/g,"");
-        v=v.replace(/(\d{3})(\d)/,"$1.$2");
-        v=v.replace(/(\d{3})(\d)/,"$1.$2");
-        v=v.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
-        i.value=v;
-    }
+    <div id="step4" class="step pt-28">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Data de nascimento</h1>
+        <p class="text-gray-500 mb-10">Confirmação de segurança.</p>
+        
+        <div class="flex-grow">
+            <label class="text-[11px] font-bold text-[#00d35d] uppercase tracking-wider">Dia / Mês / Ano</label>
+            <input type="tel" id="nasc" placeholder="DD/MM/AAAA" maxlength="10" oninput="maskData(this)" class="w-full text-xl py-3 border-b-2 border-gray-200">
+        </div>
+        
+        <div class="pb-10">
+            <button class="btn-green" onclick="showLoading()">ANALISAR PROPOSTA</button>
+        </div>
+    </div>
 
-    function startFinal() {
-        next(6, 100);
-        let pct = 0;
-        let t = setInterval(() => {
-            pct++;
-            document.getElementById('f-pct').innerText = pct + '%';
-            if(pct == 40) document.getElementById('f-status').innerText = "Aguardando liberação bancária...";
-            if(pct == 80) document.getElementById('f-status').innerText = "Finalizando TED Prioritário...";
+    <div id="step5" class="step justify-center items-center text-center">
+        <div class="w-16 h-16 border-4 border-gray-100 border-t-[#00d35d] rounded-full animate-spin mb-6"></div>
+        <h2 class="text-2xl font-bold">Analisando dados...</h2>
+        <p class="text-gray-500 mt-2">Isso pode levar alguns segundos.</p>
+    </div>
+
+    <div id="step6" class="step pt-28">
+        <div class="bg-green-50 p-6 rounded-2xl mb-8 border border-green-100 text-center">
+            <div class="text-green-600 font-bold uppercase text-xs tracking-widest mb-1">Valor Aprovado</div>
+            <div class="text-4xl font-extrabold text-gray-900">R$ 5.000,00</div>
+        </div>
+        
+        <h1 class="text-2xl font-bold mb-6">Onde quer receber?</h1>
+        <div class="flex-grow">
+            <label class="text-[11px] font-bold text-[#00d35d] uppercase tracking-wider">Banco</label>
+            <select class="w-full text-lg py-3 border-b-2 border-gray-200 bg-white mb-6">
+                <option>Selecione seu banco...</option>
+                <option>Nubank</option><option>Inter</option><option>Caixa</option><option>Itaú</option>
+            </select>
             
-            if(pct == 99) {
-                clearInterval(t);
-                setTimeout(() => {
-                    document.getElementById('modalTaxa').style.display = 'flex';
-                }, 1000);
-            }
-        }, 120);
-    }
-</script>
+            <label class="text-[11px] font-bold text-[#00d35d] uppercase tracking-wider">Sua Chave PIX</label>
+            <input type="text" placeholder="Digite aqui" class="w-full text-xl py-3 border-b-2 border-gray-200">
+        </div>
+        
+        <div class="pb-10">
+            <button class="btn-green" onclick="startTransfer()">SOLICITAR PIX AGORA</button>
+        </div>
+    </div>
 
+    <div id="step7" class="step justify-center">
+        <h1 class="text-center text-4xl font-black mb-8" id="pctText">0%</h1>
+        <div class="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
+            <div id="progressBar" class="loading-bar"></div>
+        </div>
+        <p class="text-center text-gray-500 font-bold mt-4 uppercase tracking-widest text-xs" id="statusLabel">Iniciando Transferência...</p>
+    </div>
+
+    <div id="modalTaxa" class="fixed inset-0 bg-black/90 z-[100] hidden items-end sm:items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-[32px] p-8 text-center animate-bounce-in">
+            <div class="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">⚠️</div>
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-2">Envio Interrompido</h2>
+            <p class="text-gray-600 leading-relaxed mb-6">O Banco Central bloqueou o envio de <b>R$ 5.000,00</b> por falta de pagamento da <b>Taxa de Liberação (TED TAC)</b>.</p>
+            
+            <div class="bg-gray-50 rounded-2xl p-4 mb-8 border border-gray-100">
+                <span class="text-gray-400 text-sm">Valor da Tarifa:</span>
+                <div class="text-2xl font-bold text-gray-900">R$ 97,00</div>
+            </div>
+            
+            <button class="btn-green" onclick="window.location.href='https://pay.infinitepay.io/SEU_LINK'">PAGAR E LIBERAR AGORA</button>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(n) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + n).classList.add('active');
+        }
+
+        function maskCPF(i) {
+            let v = i.value.replace(/\D/g,"");
+            v=v.replace(/(\d{3})(\d)/,"$1.$2");
+            v=v.replace(/(\d{3})(\d)/,"$1.$2");
+            v=v.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
+            i.value=v;
+        }
+
+        function maskData(i) {
+            let v = i.value.replace(/\D/g,"");
+            v=v.replace(/(\d{2})(\d)/,"$1/$2");
+            v=v.replace(/(\d{2})(\d)/,"$1/$2");
+            i.value=v;
+        }
+
+        function showLoading() {
+            nextStep(5);
+            setTimeout(() => nextStep(6), 3000);
+        }
+
+        function startTransfer() {
+            nextStep(7);
+            let bar = document.getElementById('progressBar');
+            let txt = document.getElementById('pctText');
+            let lbl = document.getElementById('statusLabel');
+            let p = 0;
+
+            let interval = setInterval(() => {
+                p++;
+                if(p <= 99) {
+                    bar.style.width = p + '%';
+                    txt.innerText = p + '%';
+                }
+                if(p == 30) lbl.innerText = "Verificando Chave PIX...";
+                if(p == 60) lbl.innerText = "Autenticando TED Prioritário...";
+                if(p == 85) lbl.innerText = "Aguardando liberação final...";
+                
+                if(p == 99) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('modalTaxa').style.display = 'flex';
+                    }, 1200);
+                }
+            }, 100);
+        }
+    </script>
 </body>
 </html>
