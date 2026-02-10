@@ -3,247 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CredPix Mobile</title>
+    <title>CredPix | Oficial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #111827; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; -webkit-font-smoothing: antialiased; }
         .page { display: none; min-height: 100vh; flex-direction: column; }
-        .page.active { display: flex; }
-        .btn-gigante { background-color: #fbbf24; color: #000; font-weight: 900; font-size: 1.25rem; border-radius: 1rem; padding: 1.25rem; width: 100%; text-transform: uppercase; box-shadow: 0 4px 0 #d97706; }
-        .btn-gigante:active { transform: translateY(2px); box-shadow: 0 2px 0 #d97706; }
-        .glass-card { background: white; border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; }
-        input, select { font-size: 16px !important; border: 2px solid #d1d5db !important; border-radius: 0.75rem !important; padding: 1rem !important; font-weight: 700 !important; color: #000 !important; }
-        .footer-bloco { background-color: #1e3a8a; color: white; padding: 2rem 1rem; text-align: center; width: 100%; margin-top: auto; }
-        .carousel-item { min-width: 100%; padding: 1rem; }
+        .page.active { display: flex; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .rounded-super { border-radius: 24px; }
+        .btn-pix { background: #00e5ff; color: #003333; font-weight: 900; border-radius: 20px; padding: 1.2rem; font-size: 1.1rem; box-shadow: 0 8px 0 #00b3cc; transition: 0.1s; text-transform: uppercase; }
+        .btn-pix:active { transform: translateY(4px); box-shadow: 0 4px 0 #00b3cc; }
+        
+        input, select { background: #f1f5f9 !important; border: 2px solid #e2e8f0 !important; border-radius: 18px !important; padding: 1.1rem !important; font-weight: 700 !important; font-size: 16px !important; outline: none; }
+        input:focus { border-color: #00e5ff !important; }
+        
+        .footer-premium { background: #0f172a; color: #64748b; padding: 2.5rem 1.5rem; border-radius: 40px 40px 0 0; }
+        .badge-step { background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 99px; font-size: 10px; font-weight: 900; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
     <section id="step1" class="page active">
-        <header class="bg-blue-700 p-6 text-center shadow-lg">
-            <h1 class="text-white font-black text-4xl italic tracking-tighter">CREDP<span class="text-yellow-400">IX</span></h1>
-            <p class="text-yellow-300 font-bold text-sm mt-1 uppercase tracking-widest">A solução financeira em 2 minutos</p>
+        <header class="bg-white p-6 text-center">
+            <h1 class="text-3xl font-black italic tracking-tighter text-slate-900">CREDP<span class="text-cyan-500">IX</span></h1>
+            <p class="text-slate-400 font-bold text-[10px] uppercase tracking-[4px]">A solução financeira em 2 minutos</p>
         </header>
 
-        <main class="p-4">
-            <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl overflow-hidden mb-6 relative">
-                <div class="flex transition-transform duration-500" id="carousel">
-                    <div class="carousel-item text-center">
-                        <p class="text-blue-800 font-black text-lg italic">1. SIMULE SEU CRÉDITO</p>
-                        <p class="text-blue-600 text-sm font-bold">Escolha de R$ 2.000 a R$ 10.000</p>
+        <main class="p-5">
+            <div class="bg-white border-2 border-slate-100 rounded-super overflow-hidden mb-6 shadow-sm">
+                <div class="flex transition-transform duration-700" id="carousel">
+                    <div class="min-w-full p-8 text-center">
+                        <span class="badge-step">Passo 01</span>
+                        <h3 class="text-xl font-extrabold mt-2 italic">Simule seu limite</h3>
+                        <p class="text-slate-500 text-xs font-medium mt-1">Valores de R$ 2.000 a R$ 10.000 liberados hoje.</p>
                     </div>
-                    <div class="carousel-item text-center">
-                        <p class="text-blue-800 font-black text-lg italic">2. ANALISE GRATUITA</p>
-                        <p class="text-blue-600 text-sm font-bold">Sem consulta ao Serasa ou SPC</p>
-                    </div>
-                    <div class="carousel-item text-center">
-                        <p class="text-blue-800 font-black text-lg italic">3. RECEBA NA HORA</p>
-                        <p class="text-blue-600 text-sm font-bold">Dinheiro via PIX em instantes</p>
+                    <div class="min-w-full p-8 text-center">
+                        <span class="badge-step">Passo 02</span>
+                        <h3 class="text-xl font-extrabold mt-2 italic">Aprovação em 60s</h3>
+                        <p class="text-slate-500 text-xs font-medium mt-1">Análise interna sem burocracia bancária.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="glass-card mb-6">
-                <h2 class="text-2xl font-black text-center mb-6 leading-tight">PREENCHA PARA ANALISAR SEU LIMITE</h2>
-                <div class="space-y-4">
+            <div class="bg-white rounded-super p-6 shadow-xl border border-slate-50 mb-8">
+                <h2 class="text-xl font-black text-center mb-6 uppercase italic">Análise de Crédito</h2>
+                <div class="space-y-5">
                     <div>
-                        <label class="block text-xs font-black text-gray-500 uppercase ml-1 mb-1">Nome Completo</label>
-                        <input type="text" id="nome_in" placeholder="Ex: João Silva Santos" class="w-full">
+                        <label class="text-[10px] font-black text-slate-400 ml-2 uppercase">Nome Completo</label>
+                        <input type="text" id="nome_user" placeholder="Digite seu nome" class="w-full">
                     </div>
                     <div>
-                        <label class="block text-xs font-black text-gray-500 uppercase ml-1 mb-1">Seu CPF</label>
-                        <input type="tel" id="cpf_in" placeholder="000.000.000-00" class="w-full">
+                        <label class="text-[10px] font-black text-slate-400 ml-2 uppercase">CPF</label>
+                        <input type="tel" id="cpf_user" placeholder="000.000.000-00" class="w-full">
                     </div>
                     <div>
-                        <label class="block text-xs font-black text-gray-500 uppercase ml-1 mb-1">Data de Nascimento</label>
-                        <input type="date" id="data_in" class="w-full">
+                        <label class="text-[10px] font-black text-slate-400 ml-2 uppercase">Data de Nascimento</label>
+                        <input type="date" id="data_user" class="w-full">
                     </div>
-                    <button onclick="nextStep(2)" class="btn-gigante mt-4">CONSULTAR LIMITE AGORA</button>
+                    <button onclick="iniciarAnalise()" class="w-full btn-pix mt-2">Consultar Grátis</button>
                 </div>
             </div>
 
-            <div class="space-y-3 mb-6">
-                <p class="font-black text-gray-400 text-xs uppercase tracking-widest ml-1">Depoimentos</p>
-                <div class="bg-white p-4 rounded-xl border-l-4 border-yellow-400 shadow-sm font-bold text-sm">"Caiu na hora que paguei a taxa de transferência. Muito bom!" - Maria S.</div>
-                <div class="bg-white p-4 rounded-xl border-l-4 border-yellow-400 shadow-sm font-bold text-sm">"O único que aprovou com meu score baixo." - José R.</div>
-                <div class="bg-white p-4 rounded-xl border-l-4 border-yellow-400 shadow-sm font-bold text-sm">"A carência de 180 dias me ajudou muito." - Regina N.</div>
-                <div class="bg-white p-4 rounded-xl border-l-4 border-yellow-400 shadow-sm font-bold text-sm">"Prático e sem burocracia bancária." - Antônio F.</div>
-                <div class="bg-white p-4 rounded-xl border-l-4 border-yellow-400 shadow-sm font-bold text-sm">"Recomendei pra família toda, aprovou geral." - Sueli A.</div>
+            <div class="space-y-4 mb-6">
+                <div class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm">
+                    <div class="w-10 h-10 bg-slate-100 rounded-full"></div>
+                    <div>
+                        <p class="text-xs font-black">Maria Auxiliadora</p>
+                        <p class="text-[10px] text-slate-500 font-medium">"O valor caiu na hora. O suporte é excelente!"</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm">
+                    <div class="w-10 h-10 bg-slate-100 rounded-full"></div>
+                    <div>
+                        <p class="text-xs font-black">Antônio José Ferreira</p>
+                        <p class="text-[10px] text-slate-500 font-medium">"Simples, rápido e sem burocracia. Nota 10!"</p>
+                    </div>
+                </div>
             </div>
         </main>
 
-        <footer class="footer-bloco">
-            <p class="font-black text-lg mb-2">CREDPX BRASIL LTDA</p>
-            <p class="text-xs opacity-80">Av. Brigadeiro Faria Lima, 3477 - São Paulo/SP</p>
-            <p class="text-xs opacity-80 mt-1 font-bold">CNPJ: 44.650.594/0001-30</p>
+        <footer class="footer-premium">
+            <div class="text-center">
+                <p class="text-white font-black text-sm uppercase mb-2">CredPix Soluções Digitais</p>
+                <p class="text-[10px] leading-relaxed">
+                    Av. Brigadeiro Faria Lima, 3477 - São Paulo/SP<br>
+                    CNPJ: 44.650.594/0001-30 | Contato: (11) 4003-8921
+                </p>
+            </div>
         </footer>
     </section>
 
-    <section id="step2" class="page bg-white items-center justify-center p-10 text-center">
-        <div class="w-20 h-20 border-8 border-gray-100 border-t-blue-700 rounded-full animate-spin"></div>
-        <h2 class="text-2xl font-black mt-8 italic uppercase">CONSULTANDO SCORE INTERNO...</h2>
-        <p class="text-gray-500 font-bold mt-2">NÃO FECHE ESTA TELA</p>
+    <section id="step2" class="page items-center justify-center p-10 text-center bg-white">
+        <div class="w-16 h-16 border-4 border-slate-100 border-t-cyan-500 rounded-full animate-spin"></div>
+        <h2 id="loader-txt" class="text-xl font-black mt-8 uppercase italic italic">Consultando CPF...</h2>
+        <p class="text-slate-400 text-xs font-bold mt-2 uppercase tracking-widest">Aguarde a resposta do sistema</p>
     </section>
 
-    <section id="step3" class="page p-4">
-        <div class="glass-card mt-10 text-center">
-            <h2 class="text-2xl font-black italic uppercase mb-8">LIMITE DISPONÍVEL</h2>
-            <p class="text-6xl font-black text-blue-700 mb-8">R$ <span id="val-txt">2000</span></p>
-            <input type="range" min="2000" max="10000" step="1" value="2000" oninput="updateVal(this.value)" class="w-full mb-10">
-            <button onclick="approveProcess()" class="btn-gigante">CONFIRMAR VALOR</button>
+    <section id="step3" class="page p-5 bg-slate-50">
+        <div class="bg-white rounded-super p-8 mt-10 shadow-2xl text-center">
+            <h2 class="text-xl font-black uppercase italic mb-8">Quanto você precisa?</h2>
+            <p class="text-5xl font-black text-cyan-600 mb-8">R$ <span id="val-render">2000</span></p>
+            <input type="range" min="2000" max="10000" step="1" value="2000" oninput="updateRange(this.value)" class="w-full h-3 mb-12">
+            <button onclick="finalizarValor()" class="w-full btn-pix">Confirmar Valor</button>
         </div>
     </section>
 
     <section id="step4" class="page items-center justify-center p-6 text-center">
-        <div class="bg-white p-10 rounded-3xl shadow-2xl border-4 border-green-500">
-            <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
-            </div>
-            <h2 class="text-3xl font-black italic uppercase mb-2">APROVADO!</h2>
-            <p class="text-xl font-bold text-gray-600 mb-10">R$ <span class="v-final">2000</span> LIBERADOS</p>
-            <button onclick="nextStep(5)" class="btn-gigante">ESCOLHER PARCELAS</button>
+        <div class="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-green-200">
+            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
         </div>
+        <h2 class="text-3xl font-black italic uppercase">APROVADO!</h2>
+        <p class="text-lg font-bold text-slate-500 mt-2">R$ <span class="v-total">2000</span> disponível.</p>
+        <button onclick="nextStep(5)" class="w-full btn-pix mt-12">Escolher Parcelas</button>
     </section>
 
-    <section id="step5" class="page p-4">
-        <h2 class="text-2xl font-black text-center mt-10 mb-8 italic uppercase text-blue-900">PLANO DE PAGAMENTO</h2>
+    <section id="step5" class="page p-5">
+        <h2 class="text-xl font-black text-center mt-8 mb-8 uppercase italic">Plano de Carência</h2>
         <div class="space-y-4">
-            <button onclick="setPlan('36x', 58.33)" class="glass-card w-full text-left flex justify-between items-center border-2 border-gray-100 active:border-blue-500">
-                <div>
-                    <p class="text-3xl font-black">36x</p>
-                    <p class="text-green-600 font-bold text-xs uppercase">180 dias de carência</p>
-                </div>
-                <p class="text-2xl font-black text-blue-700">R$ <span class="p36">58,33</span></p>
+            <button onclick="setPlan('36x', 58.33)" class="bg-white p-6 rounded-super w-full flex justify-between items-center shadow-md active:border-cyan-500 border-2 border-transparent">
+                <div><p class="text-2xl font-black">36x</p><p class="text-[10px] text-green-500 font-bold uppercase">Início em 180 dias</p></div>
+                <p class="text-xl font-black text-cyan-600 italic">R$ <span class="calc-36">58,33</span></p>
             </button>
-            <button onclick="setPlan('48x', 44.12)" class="glass-card w-full text-left flex justify-between items-center border-2 border-gray-100 active:border-blue-500">
-                <div>
-                    <p class="text-3xl font-black">48x</p>
-                    <p class="text-green-600 font-bold text-xs uppercase">180 dias de carência</p>
-                </div>
-                <p class="text-2xl font-black text-blue-700">R$ <span class="p48">44,12</span></p>
+            <button onclick="setPlan('48x', 44.12)" class="bg-white p-6 rounded-super w-full flex justify-between items-center shadow-md active:border-cyan-500 border-2 border-transparent">
+                <div><p class="text-2xl font-black">48x</p><p class="text-[10px] text-green-500 font-bold uppercase">Início em 180 dias</p></div>
+                <p class="text-xl font-black text-cyan-600 italic">R$ <span class="calc-48">44,12</span></p>
             </button>
-            <button onclick="setPlan('64x', 33.08)" class="glass-card w-full text-left flex justify-between items-center border-2 border-gray-100 active:border-blue-500">
-                <div>
-                    <p class="text-3xl font-black">64x</p>
-                    <p class="text-green-600 font-bold text-xs uppercase">180 dias de carência</p>
-                </div>
-                <p class="text-2xl font-black text-blue-700">R$ <span class="p64">33,08</span></p>
+            <button onclick="setPlan('64x', 33.08)" class="bg-white p-6 rounded-super w-full flex justify-between items-center shadow-md active:border-cyan-500 border-2 border-transparent">
+                <div><p class="text-2xl font-black">64x</p><p class="text-[10px] text-green-500 font-bold uppercase">Início em 180 dias</p></div>
+                <p class="text-xl font-black text-cyan-600 italic">R$ <span class="calc-64">33,08</span></p>
             </button>
         </div>
     </section>
 
-    <section id="step6" class="page p-4">
-        <div class="glass-card mt-10">
-            <h2 class="text-xl font-black text-center mb-6 uppercase italic">DESTINO DO PIX</h2>
+    <section id="step6" class="page p-5">
+        <div class="bg-white rounded-super p-8 mt-10 shadow-xl">
+            <h2 class="text-xl font-black text-center mb-8 uppercase italic">Destino do PIX</h2>
             <div class="space-y-4">
-                <input type="text" id="px_k" placeholder="Sua Chave PIX" class="w-full">
-                <select id="bn_u" class="w-full">
-                    <option>Escolha seu Banco</option>
-                    <option>Nubank</option><option>Inter</option><option>Caixa</option><option>Itaú</option><option>Bradesco</option><option>Santander</option><option>C6 Bank</option><option>Banco do Brasil</option><option>Neon</option><option>PagBank</option>
+                <input type="text" id="pix_key" placeholder="Digite sua Chave PIX" class="w-full">
+                <select id="banco_user" class="w-full">
+                    <option>Selecione seu Banco</option>
+                    <option>Nubank</option><option>Inter</option><option>C6 Bank</option><option>Itaú</option><option>Bradesco</option><option>Caixa</option><option>Santander</option><option>Banco do Brasil</option>
                 </select>
-                <input type="tel" id="wt_u" placeholder="WhatsApp com DDD" class="w-full">
-                <button onclick="compile()" class="btn-gigante mt-4">REVISAR DADOS</button>
+                <input type="tel" id="whatsapp_user" placeholder="Seu WhatsApp" class="w-full">
+                <button onclick="revisar()" class="w-full btn-pix mt-4">Próximo Passo</button>
             </div>
         </div>
     </section>
 
-    <section id="step7" class="page p-4">
-        <div class="glass-card mt-10">
-            <h2 class="text-xl font-black text-center mb-6 uppercase italic">CONFERIR DADOS</h2>
-            <div class="bg-gray-100 p-6 rounded-2xl space-y-3 font-bold text-sm">
-                <p class="flex justify-between border-b pb-2">NOME: <span id="r_nome" class="text-blue-700 text-right">---</span></p>
-                <p class="flex justify-between border-b pb-2">CPF: <span id="r_cpf" class="text-blue-700">---</span></p>
-                <p class="flex justify-between border-b pb-2">VALOR: <span id="r_val" class="text-blue-700">---</span></p>
-                <p class="flex justify-between border-b pb-2">PLANO: <span id="r_pla" class="text-blue-700">---</span></p>
-                <p class="flex justify-between">CHAVE: <span id="r_cha" class="text-blue-700 text-right">---</span></p>
+    <section id="step7" class="page p-5">
+        <div class="bg-white rounded-super p-8 mt-10 shadow-xl">
+            <h2 class="text-xl font-black text-center mb-8 uppercase italic">Confirmar Pedido</h2>
+            <div class="bg-slate-50 p-6 rounded-2xl space-y-4 font-bold text-xs uppercase text-slate-500">
+                <p class="flex justify-between border-b pb-2">Nome: <span id="r-nome" class="text-slate-900">---</span></p>
+                <p class="flex justify-between border-b pb-2">CPF: <span id="r-cpf" class="text-slate-900">---</span></p>
+                <p class="flex justify-between border-b pb-2">Valor: <span id="r-val" class="text-slate-900">---</span></p>
+                <p class="flex justify-between border-b pb-2">Plano: <span id="r-pla" class="text-slate-900">---</span></p>
+                <p class="flex justify-between">Chave PIX: <span id="r-cha" class="text-slate-900">---</span></p>
             </div>
-            <button onclick="nextStep(8)" class="btn-gigante mt-8">TUDO CERTO, RECEBER</button>
+            <button onclick="nextStep(8)" class="w-full btn-pix mt-8">Confirmar e Assinar</button>
         </div>
     </section>
 
-    <section id="step8" class="page p-4">
-        <div class="glass-card mt-10">
-            <h2 class="text-xl font-black text-center mb-4 italic uppercase tracking-tighter">CONTRATO DIGITAL</h2>
-            <div class="h-48 overflow-y-scroll bg-gray-50 p-4 rounded-xl text-[10px] font-bold text-gray-500 leading-relaxed mb-6 border">
-                <p class="mb-2">1. O CredPix realiza a intermediação de crédito direto para pessoas físicas.</p>
-                <p class="mb-2">2. O cliente declara que as informações são reais para fins de contrato.</p>
-                <p class="mb-2">3. A liberação do crédito é protegida por protocolos de segurança criptografados.</p>
-                <p class="mb-2">4. Fica garantido o prazo de 180 dias para o início do pagamento das parcelas.</p>
-                <p class="mb-2">5. O sistema opera 24h por dia para envios via PIX.</p>
-                <p>6. Este documento tem validade jurídica de assinatura eletrônica.</p>
-            </div>
-            <button onclick="final()" class="btn-gigante">ASSINAR E RECEBER</button>
+    <section id="step8" class="page p-5 text-center">
+        <h2 class="text-xl font-black uppercase italic mb-6">Contrato Digital</h2>
+        <div class="bg-white p-6 rounded-super text-[10px] font-bold text-slate-400 text-left h-64 overflow-y-scroll border leading-relaxed mb-6">
+            <p class="mb-3 uppercase text-slate-600">Cláusula 1: Objeto do Contrato</p>
+            <p>O presente instrumento tem por objetivo a concessão de crédito direto ao consumidor através da plataforma CredPix.</p>
+            <p class="mb-3 uppercase text-slate-600 mt-4">Cláusula 2: Liberação de Valores</p>
+            <p>A liberação dos valores na conta indicada pelo contratante ocorre imediatamente após a validação do protocolo de segurança do sistema de pagamentos instantâneos.</p>
+            <p class="mb-3 uppercase text-slate-600 mt-4">Cláusula 3: Carência</p>
+            <p>O contratante gozará de 180 (cento e oitenta) dias de carência antes do primeiro vencimento da parcela escolhida.</p>
+            <p>Este contrato possui validade jurídica conforme a lei de assinaturas digitais vigente no Brasil.</p>
         </div>
+        <button onclick="iniciarEnvio()" class="w-full btn-pix">Assinar e Receber PIX</button>
     </section>
 
-    <section id="step9" class="page p-6 items-center pt-20">
-        <h2 class="text-2xl font-black italic uppercase mb-10">ENVIANDO SEU PIX...</h2>
-        <div class="w-full bg-gray-200 h-10 rounded-full overflow-hidden border-2 border-white shadow-inner mb-4">
-            <div id="bar" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
+    <section id="step9" class="page p-6 items-center pt-24">
+        <h2 class="text-2xl font-black italic uppercase mb-10">Enviando PIX...</h2>
+        <div class="w-full bg-slate-100 h-10 rounded-full overflow-hidden border-2 border-white shadow-inner mb-4">
+            <div id="progress-bar" class="bg-cyan-500 h-full w-0 transition-all duration-300"></div>
         </div>
-        <p id="b-txt" class="font-black text-blue-800 uppercase tracking-tighter">PROCESSANDO (0%)</p>
+        <p id="progress-txt" class="font-black text-cyan-600 text-sm uppercase italic">Iniciando (0%)</p>
 
-        <div id="m-ted" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center p-6 z-50">
-            <div class="bg-white rounded-3xl p-8 text-center max-w-sm border-4 border-red-500">
+        <div id="modal-ted" class="hidden fixed inset-0 bg-slate-900/90 backdrop-blur-md flex items-center justify-center p-6 z-50">
+            <div class="bg-white rounded-[32px] p-8 text-center max-w-sm border-4 border-red-500">
                 <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                 </div>
-                <h3 class="font-black text-2xl mb-4 italic uppercase">ERRO NO ENVIO!</h3>
-                <p class="text-gray-600 font-bold text-sm leading-tight mb-8">
-                    O Banco Central bloqueou o envio de R$ <span class="v-final">2000</span> por falta da <span class="text-red-600 underline text-lg">TAXA DE TED</span> obrigatória para novos clientes. Pague R$ 34,00 agora para desbloquear o valor imediatamente.
+                <h3 class="font-black text-2xl mb-4 italic uppercase">ERRO NO SISTEMA</h3>
+                <p class="text-slate-500 font-bold text-xs leading-tight mb-8">
+                    O Banco Central identificou a ausência do recolhimento da <span class="text-red-600 underline">TARIFA DE TRANSFERÊNCIA (TED)</span> para este CPF. O valor de R$ <span class="v-total">2000</span> está bloqueado e será liberado imediatamente após o pagamento da tarifa bancária de R$ 34,00.
                 </p>
-                <button onclick="window.location.href='https://checkout.exemplo.com/ted34'" class="btn-gigante">PAGAR TED E RECEBER AGORA</button>
+                <button onclick="window.location.href='https://checkout.exemplo.com/ted34'" class="w-full btn-pix">Recolher Tarifa e Receber</button>
             </div>
         </div>
     </section>
 
     <script>
-        let val = 2000; let pla = ""; let cur = 0;
-        setInterval(() => { cur = (cur+1)%3; document.getElementById('carousel').style.transform = `translateX(-${cur*100}%)`; }, 4000);
-        
+        let chosenVal = 2000; let chosenPlan = ""; let slide = 0;
+        setInterval(() => { slide = (slide+1)%2; document.getElementById('carousel').style.transform = `translateX(-${slide*100}%)`; }, 5000);
+
         function nextStep(s) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('step'+s).classList.add('active');
             window.scrollTo(0,0);
-            if(s === 2) setTimeout(() => nextStep(3), 3000);
         }
 
-        function updateVal(v) {
-            val = v; document.getElementById('val-txt').innerText = v;
-            document.querySelectorAll('.v-final').forEach(e => e.innerText = v);
-            document.querySelector('.p36').innerText = (v/36 * 1.05).toFixed(2);
-            document.querySelector('.p48').innerText = (v/48 * 1.05).toFixed(2);
-            document.querySelector('.p64').innerText = (v/64 * 1.05).toFixed(2);
+        function iniciarAnalise() {
+            nextStep(2);
+            let phrases = ["Consultando Score...", "Verificando Margem...", "Validando CPF...", "Liberando Oferta..."];
+            let i = 0;
+            let int = setInterval(() => {
+                document.getElementById('loader-txt').innerText = phrases[i];
+                i++;
+                if(i === 4) { clearInterval(int); setTimeout(() => nextStep(3), 800); }
+            }, 1800);
         }
 
-        function approveProcess() {
-            nextStep(4);
-            setTimeout(() => {
-                document.getElementById('approve-title').innerText = "R$ " + val + " LIBERADOS!";
-                document.getElementById('check-icon').classList.remove('hidden');
-                document.getElementById('approve-btn').classList.remove('hidden');
-                document.getElementById('approve-desc').innerText = "VALOR DISPONÍVEL PARA SAQUE";
-            }, 3000);
+        function updateRange(v) {
+            chosenVal = v; document.getElementById('val-render').innerText = v;
+            document.querySelectorAll('.v-total').forEach(e => e.innerText = v);
+            document.querySelector('.calc-36').innerText = (v/36 * 1.05).toFixed(2);
+            document.querySelector('.calc-48').innerText = (v/48 * 1.05).toFixed(2);
+            document.querySelector('.calc-64').innerText = (v/64 * 1.05).toFixed(2);
         }
 
-        function setPlan(p, v) { pla = p; nextStep(6); }
+        function finalizarValor() {
+            nextStep(2); // Volta pro loader pra dar "peso" à aprovação do valor
+            document.getElementById('loader-txt').innerText = "Processando Valor...";
+            setTimeout(() => nextStep(4), 4000);
+        }
 
-        function compile() {
-            document.getElementById('r_nome').innerText = document.getElementById('nome_in').value.toUpperCase();
-            document.getElementById('r_cpf').innerText = document.getElementById('cpf_in').value;
-            document.getElementById('r_val').innerText = "R$ " + val;
-            document.getElementById('r_pla').innerText = pla;
-            document.getElementById('r_cha').innerText = document.getElementById('px_k').value;
+        function setPlan(p, v) { chosenPlan = p; nextStep(6); }
+
+        function revisar() {
+            document.getElementById('r-nome').innerText = document.getElementById('nome_user').value.toUpperCase();
+            document.getElementById('r-cpf').innerText = document.getElementById('cpf_user').value;
+            document.getElementById('r-val').innerText = "R$ " + chosenVal;
+            document.getElementById('r-pla').innerText = chosenPlan;
+            document.getElementById('r-cha').innerText = document.getElementById('pix_key').value;
             nextStep(7);
         }
 
-        function final() {
+        function iniciarEnvio() {
             nextStep(9); let w = 0;
+            let bar = document.getElementById('progress-bar');
+            let txt = document.getElementById('progress-txt');
             let int = setInterval(() => {
-                if(w >= 99) { clearInterval(int); document.getElementById('m-ted').classList.remove('hidden'); }
-                else { w++; document.getElementById('bar').style.width = w+'%'; document.getElementById('b-txt').innerText = "ENVIANDO ("+w+"%)"; }
-            }, 60);
+                if(w >= 99) { clearInterval(int); document.getElementById('modal-ted').classList.remove('hidden'); }
+                else { w++; bar.style.width = w+'%'; txt.innerText = "ENVIANDO ("+w+"%)"; }
+            }, 80);
         }
     </script>
 </body>
