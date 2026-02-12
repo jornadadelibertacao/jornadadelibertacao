@@ -1,195 +1,146 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Programação na Era da IA</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Fonte da Juventude - Método Europeu</title>
+    <style>
+        /* RESET E CORES */
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; color: #1c1e21; line-height: 1.6; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        
+        /* HEADER */
+        header { background: #003366; color: white; padding: 15px; text-align: center; font-size: 13px; font-weight: bold; border-bottom: 4px solid #f39c12; }
+        
+        /* SEÇÃO PRINCIPAL */
+        .headline-container { padding: 25px 15px; text-align: center; }
+        h1 { font-size: 26px; color: #d63031; line-height: 1.2; margin-bottom: 15px; }
+        h2 { font-size: 19px; color: #2d3436; font-weight: normal; margin-bottom: 20px; }
+        
+        /* VÍDEO / IMAGEM */
+        .video-placeholder { width: 100%; aspect-ratio: 16/9; background: #000; display: flex; align-items: center; justify-content: center; color: white; position: relative; cursor: pointer; }
+        .play-button { font-size: 60px; opacity: 0.8; }
 
-<style>
-body{
-    margin:0;
-    font-family:'Inter',sans-serif;
-    background:#0f1115;
-    color:#fff;
-}
+        /* BOTÃO DE COMPRA */
+        .btn-container { padding: 30px 20px; text-align: center; }
+        .btn-pix { background: #27ae60; color: white; text-decoration: none; padding: 20px 30px; font-size: 22px; font-weight: bold; border-radius: 10px; display: block; animation: pulse 1.5s infinite; box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4); }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        
+        /* PREÇO E ESCASSEZ */
+        .price { margin-bottom: 10px; }
+        .old-price { text-decoration: line-through; color: #636e72; font-size: 18px; }
+        .new-price { color: #27ae60; font-size: 32px; font-weight: bold; }
+        .vagas { color: #d63031; font-weight: bold; font-size: 14px; margin-top: 10px; }
 
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:40px 20px;
-}
+        /* TEXTO DE CONTEÚDO */
+        .content { padding: 20px; font-size: 18px; text-align: justify; }
+        .content b { color: #003366; }
 
-.hero{
-    text-align:center;
-    padding:60px 20px;
-    background:linear-gradient(180deg,#0f1115,#111827);
-}
+        /* DEPOIMENTOS FACEBOOK */
+        .fb-comments { border-top: 1px solid #ddd; padding: 20px; background: #fff; }
+        .fb-title { font-size: 14px; color: #4b4f56; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+        .comment { display: flex; margin-bottom: 15px; }
+        .avatar { width: 48px; height: 48px; border-radius: 50%; margin-right: 10px; background: #eee; }
+        .comment-box { background: #f0f2f5; padding: 10px; border-radius: 18px; flex: 1; }
+        .comment-name { color: #385898; font-weight: bold; font-size: 13px; cursor: pointer; }
+        .comment-text { font-size: 14px; color: #1c1e21; display: block; margin-top: 3px; }
+        .comment-actions { font-size: 12px; color: #90949c; margin-top: 5px; margin-left: 10px; }
 
-.hero img{
-    width:300px;
-    max-width:90%;
-    margin-bottom:30px;
-}
+        /* POPUP */
+        #popup { position: fixed; bottom: 20px; left: 20px; background: #333; color: white; padding: 15px; border-radius: 10px; display: none; font-size: 14px; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-left: 5px solid #27ae60; }
 
-h1{
-    font-size:38px;
-    font-weight:800;
-}
-
-.subtitle{
-    font-size:18px;
-    color:#bdbdbd;
-    max-width:700px;
-    margin:20px auto;
-}
-
-.button{
-    background:#2563eb;
-    padding:15px 35px;
-    border:none;
-    border-radius:6px;
-    font-size:18px;
-    color:#fff;
-    cursor:pointer;
-    margin-top:20px;
-}
-
-.vagas{
-    margin-top:15px;
-    color:#f87171;
-    font-weight:600;
-}
-
-.section{
-    padding:60px 0;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-
-.card{
-    background:#1a1f2b;
-    padding:25px;
-    border-radius:8px;
-}
-
-.footer{
-    background:#0c0e12;
-    text-align:center;
-    padding:30px;
-    font-size:14px;
-    color:#777;
-}
-
-/* Modal */
-
-.modal{
-    display:none;
-    position:fixed;
-    z-index:1000;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.8);
-}
-
-.modal-content{
-    background:#1a1f2b;
-    padding:40px;
-    max-width:400px;
-    margin:10% auto;
-    border-radius:8px;
-    text-align:center;
-}
-
-.close{
-    float:right;
-    cursor:pointer;
-    color:#aaa;
-}
-</style>
+        /* FOOTER */
+        footer { padding: 30px; text-align: center; font-size: 12px; color: #636e72; background: #f0f2f5; }
+    </style>
 </head>
 <body>
 
-<div class="hero">
-    <img src="INSTQ_LINK_AQUI" alt="Robô IA">
-    <h1>Programação Prática para a Era da IA</h1>
-    <p class="subtitle">
-        Aprenda a criar automações e agentes inteligentes antes que isso vire obrigatório no mercado.
-    </p>
-    <button class="button" onclick="abrirModal()">Quero Começar Agora</button>
-    <div class="vagas">Vagas restantes: <span id="contador">25</span></div>
-</div>
+<div class="container">
+    <header>ESTUDO REVELA MÉTODO DA EUROPA PARA ALÍVIO DE DORES</header>
 
-<div class="container section">
-    <h2>O que você vai aprender</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>Fundamentos</h3>
-            <p>Lógica simples para começar mesmo do zero.</p>
-        </div>
-        <div class="card">
-            <h3>Automação</h3>
-            <p>Como criar agentes que executam tarefas reais.</p>
-        </div>
-        <div class="card">
-            <h3>IA na prática</h3>
-            <p>Integração com ferramentas atuais do mercado.</p>
-        </div>
-        <div class="card">
-            <h3>Vantagem Profissional</h3>
-            <p>Como aplicar isso no trabalho e ganhar diferencial.</p>
-        </div>
+    <div class="headline-container">
+        <h1>O "Interruptor da Juventude": Destrave seu corpo em apenas 7 minutos por dia</h1>
+        <h2>O segredo para viver sem dores e sem depender de remédios de farmácia.</h2>
     </div>
+
+    <div class="video-placeholder">
+        <div class="play-button">▶</div>
+        <p style="position:absolute; bottom:10px; font-size:12px;">Clique para iniciar o áudio</p>
+    </div>
+
+    <div class="content">
+        <p>Você já sentiu que seu corpo está <b>"enferrujado"</b>? De acordo com pesquisadores da <b>Universidade de Heidelberg</b>, na Alemanha, isso ocorre pela inflamação das articulações.</p>
+        <p>Desenvolvemos o guia <b>"A Fonte da Juventude"</b>, focado em movimentos simples para fazer sentado, que lubrificam suas juntas e devolvem sua disposição.</p>
+        <p><b>O QUE VOCÊ VAI RECEBER HOJE:</b></p>
+        <ul>
+            <li>Guia "A Fonte da Juventude" (Vídeos e PDF)</li>
+            <li>Bônus: O Chá Anti-inflamatório Europeu</li>
+            <li>Bônus: Protocolo Adeus Remédios</li>
+        </ul>
+    </div>
+
+    <div class="btn-container">
+        <div class="price">
+            <span class="old-price">De R$ 197,00 por</span><br>
+            <span class="new-price">R$ 47,00</span>
+        </div>
+        <a href="SEU_LINK_DA_KIRVANO_AQUI" class="btn-pix">QUERO MEU ACESSO AGORA</a>
+        <p class="vagas">⚠️ ATENÇÃO: Restam apenas 7 unidades com desconto.</p>
+    </div>
+
+    <div class="fb-comments">
+        <div class="fb-title">12 comentários</div>
+        
+        <div class="comment">
+            <img class="avatar" src="https://i.pravatar.cc/150?u=98">
+            <div class="comment-box">
+                <span class="comment-name">Maria das Graças</span>
+                <span class="comment-text">Gente, eu estava quase marcando cirurgia. Com 4 dias fazendo o método sentado já me sinto outra pessoa!</span>
+            </div>
+        </div>
+        <div class="comment-actions">Curtir · Responder · 12 min</div>
+
+        <div class="comment" style="margin-top:15px;">
+            <img class="avatar" src="https://i.pravatar.cc/150?u=12">
+            <div class="comment-box">
+                <span class="comment-name">Roberto Silva</span>
+                <span class="comment-text">O chá que o Emmanuel ensina no bônus é tiro e queda. Recomendo muito o guia.</span>
+            </div>
+        </div>
+        <div class="comment-actions">Curtir · Responder · 25 min</div>
+
+        <div class="comment" style="margin-top:15px;">
+            <img class="avatar" src="https://i.pravatar.cc/150?u=5">
+            <div class="comment-box">
+                <span class="comment-name">Zuleide Pereira</span>
+                <span class="comment-text">Consegui comprar! Só tinham 7 vagas quando entrei. Ansiosa pra começar.</span>
+            </div>
+        </div>
+        <div class="comment-actions">Curtir · Responder · 43 min</div>
+    </div>
+
+    <footer>
+        A Fonte da Juventude © 2026<br>
+        Este site não é afiliado ao Facebook. Todo o conteúdo é meramente informativo.
+    </footer>
 </div>
 
-<div class="container section">
-    <h2>Garantia</h2>
-    <p>
-        7 dias de garantia. Se não fizer sentido para você, devolvemos seu dinheiro.
-    </p>
-</div>
-
-<div class="footer">
-    © 2026 Programação na Era da IA
-</div>
-
-<!-- Modal -->
-
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">X</span>
-    <h2>Finalizar Compra</h2>
-    <p>Valor: R$97</p>
-    <a href="SEU_LINK_DE_PAGAMENTO_AQUI">
-        <button class="button" onclick="diminuirVagas()">Ir para Pagamento</button>
-    </a>
-  </div>
-</div>
+<div id="popup">✅ <b>Joana G.</b> acabou de garantir o acesso!</div>
 
 <script>
-
-function abrirModal(){
-    document.getElementById("modal").style.display = "block";
-}
-
-function fecharModal(){
-    document.getElementById("modal").style.display = "none";
-}
-
-function diminuirVagas(){
-    var contador = document.getElementById("contador");
-    var valor = parseInt(contador.innerText);
-    if(valor > 1){
-        contador.innerText = valor - 1;
-    }
-}
-
+    // Script do Popup a cada 7 segundos
+    const nomes = ["Ricardo S.", "Maria L.", "Antônio P.", "Dona Cida", "Geraldo M.", "Terezinha F."];
+    const popup = document.getElementById('popup');
+    
+    setInterval(() => {
+        const nomeAleatorio = nomes[Math.floor(Math.random() * nomes.length)];
+        popup.innerHTML = `✅ <b>${nomeAleatorio}</b> acabou de garantir o acesso!`;
+        popup.style.display = 'block';
+        
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 4000); // Fica visível por 4 segundos
+    }, 7000); // Repete a cada 7 segundos
 </script>
 
 </body>
