@@ -3,309 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Fonte da Juventude - Método Europeu</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <title>Ajude Juiz de Fora - Corrente de Solidariedade</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0066FF;
-            --secondary: #22C55E;
-            --accent: #F59E0B;
-            --danger: #EF4444;
-            --bg: #F8FAFC;
+            --primary: #28a745;
+            --secondary: #f8f9fa;
+            --text: #333;
+            --highlight: #ffc107;
         }
 
-        body { 
-            font-family: 'Nunito', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background-color: var(--bg); 
-            color: #1E293B; 
-            overflow-x: hidden;
-        }
-
-        .top-banner {
-            background: linear-gradient(90deg, #1E40AF, #3B82F6);
-            color: white;
-            text-align: center;
-            padding: 12px;
-            font-weight: 800;
-            font-size: 14px;
-            text-transform: uppercase;
-        }
-
-        .container {
-            max-width: 550px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-        }
-
-        .hero {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 32px;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            color: #0F172A;
-            font-weight: 900;
-        }
-
-        .highlight {
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-        }
-
-        .video-box {
-            margin: 0 15px;
-            background: #000;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            border: 4px solid white;
-        }
-
-        .vsl-placeholder {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            color: white;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7));
-            cursor: pointer;
         }
 
-        .play-btn {
-            width: 70px;
-            height: 70px;
-            background: var(--danger);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            font-size: 30px;
-            animation: pulse-shadow 2s infinite;
-        }
-
-        @keyframes pulse-shadow {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-
-        .bonus-card {
-            margin: 20px;
-            padding: 25px;
-            background: #EFF6FF;
-            border-radius: 24px;
-            border: 2px solid #DBEAFE;
-        }
-
-        .bonus-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+        .container {
+            max-width: 500px;
             background: white;
-            padding: 12px;
-            border-radius: 16px;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .bonus-icon { font-size: 32px; }
+        h2 { text-align: center; color: var(--text); margin-bottom: 5px; }
+        p.subtitle { text-align: center; color: #666; font-size: 14px; margin-bottom: 25px; }
 
-        .price-tag {
-            text-align: center;
-            padding: 30px 20px;
+        /* Barra de Progresso */
+        .progress-container {
+            background: #eee;
+            border-radius: 20px;
+            height: 25px;
+            width: 100%;
+            margin-bottom: 10px;
+            overflow: hidden;
+            position: relative;
         }
 
-        .old-price { text-decoration: line-through; color: #94A3B8; font-size: 18px; }
-        .new-price { font-size: 56px; font-weight: 900; color: var(--secondary); display: block; }
-
-        .btn-buy {
-            background: var(--secondary);
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 22px;
-            border-radius: 50px;
-            font-size: 24px;
-            font-weight: 900;
-            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
-            margin: 20px 0;
-            animation: bounce 2s infinite;
+        #progress-bar {
+            background: linear-gradient(90deg, #28a745, #5cd65c);
+            height: 100%;
+            width: 4.8%; /* Começa em 24k de 500k */
+            transition: width 1s ease-in-out;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .fb-section {
-            padding: 20px;
-            border-top: 8px solid #F1F5F9;
-        }
-
-        .comment {
+        .stats {
             display: flex;
-            gap: 12px;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Grid de Valores */
+        .value-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
             margin-bottom: 20px;
         }
 
-        .avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
+        .value-card {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
         }
 
-        .comment-bubble {
-            background: #F1F5F9;
-            padding: 12px 16px;
-            border-radius: 18px;
-            flex: 1;
+        .value-card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
 
-        .comment-name {
-            font-weight: 800;
-            color: #2563EB;
-            font-size: 14px;
+        .value-card.featured {
+            border-color: var(--primary);
+            background: #f0fff4;
+            transform: scale(1.05);
+        }
+
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: -5px;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            font-size: 10px;
+            border-radius: 5px;
+        }
+
+        /* Input Custom */
+        .custom-value {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .pix-box {
+            background: #f1f1f1;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px dashed #999;
+        }
+
+        .pix-key {
+            font-family: monospace;
+            word-break: break-all;
             display: block;
-            margin-bottom: 4px;
+            margin: 10px 0;
+            font-weight: bold;
         }
 
-        .visitor-counter {
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        /* Pop-up Doação */
+        #donation-popup {
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(15, 23, 42, 0.9);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            display: flex;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: none;
             align-items: center;
-            gap: 8px;
-            z-index: 100;
-            backdrop-filter: blur(5px);
+            gap: 10px;
+            z-index: 1000;
+            border-left: 5px solid var(--primary);
         }
-
-        .live-dot {
-            height: 8px;
-            width: 8px;
-            background: var(--secondary);
-            border-radius: 50%;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink { 50% { opacity: 0; } }
-
     </style>
 </head>
 <body>
 
-    <div class="top-banner">⚠️ ÚLTIMAS 7 VAGAS COM DESCONTO DISPONÍVEIS</div>
+<div class="container">
+    <h2>Ajude quem mais precisa</h2>
+    <p class="subtitle">Faça parte dessa corrente de amor e solidariedade por Juiz de Fora.</p>
 
-    <div class="container">
-        <section class="hero">
-            <h1>Recupere sua <span class="highlight">Agilidade</span> de 20 Anos atrás</h1>
-            <h2>Destrave seu corpo em 7 minutos com o segredo Europeu. Sem remédios e sem sair de casa.</h2>
-        </section>
+    <div class="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+    <div class="stats">
+        <span>Arrecadado: <span id="current-amt">R$ 24.000</span></span>
+        <span>Meta: R$ 500.000</span>
+    </div>
 
-        <div class="video-box">
-            <div class="vsl-placeholder">
-                <div class="play-btn">▶</div>
-                <p>Clique para assistir o método</p>
-            </div>
+    <div class="value-grid">
+        <div class="value-card">
+            <img src="COLE_LINK_QRCODE_20_AQUI" alt="QR Code 20">
+            <strong>R$ 20,00</strong>
         </div>
-
-        <section class="price-tag">
-            <span class="old-price">De R$ 197,00 por</span>
-            <span class="new-price">R$ 47,00</span>
-            <a href="SEU_LINK_KIRVANO" class="btn-buy">QUERO ACESSO AGORA</a>
-            <p style="color:var(--danger); font-weight: 800; font-size: 14px;">PROMOÇÃO VÁLIDA SOMENTE HOJE!</p>
-        </section>
-
-        <section class="bonus-card">
-            <p style="text-align:center; font-weight:900; color:var(--primary); margin-top:0;">VOCÊ TAMBÉM LEVA GRÁTIS:</p>
-            
-            <div class="bonus-item">
-                <span class="bonus-icon">🍵</span>
-                <div class="bonus-text">
-                    <b style="display:block">O Chá Mágico Europeu</b>
-                    <small>Desinflamação profunda enquanto dorme.</small>
-                </div>
-            </div>
-
-            <div class="bonus-item">
-                <span class="bonus-icon">🧘</span>
-                <div class="bonus-text">
-                    <b style="display:block">Guia Articulações Blindadas</b>
-                    <small>Como nunca mais travar a coluna ou joelho.</small>
-                </div>
-            </div>
-        </section>
-
-        <section class="fb-section">
-            <p style="font-weight:900; margin-bottom:20px;">Comentários (12)</p>
-
-            <div class="comment">
-                <img src="https://randomuser.me/api/portraits/women/45.jpg" class="avatar">
-                <div class="comment-bubble">
-                    <span class="comment-name">Maria Helena</span>
-                    <span>Emmanuel, meu filho, Deus te abençoe! Fiz os movimentos hoje cedo e já consegui caminhar sem dor.</span>
-                </div>
-            </div>
-
-            <div class="comment">
-                <img src="https://randomuser.me/api/portraits/men/33.jpg" class="avatar">
-                <div class="comment-bubble">
-                    <span class="comment-name">Antônio Silva</span>
-                    <span>Tava cético, mas o bônus do chá valeu o investimento. Me sinto mais leve. Recomendo!</span>
-                </div>
-            </div>
-
-            <div class="comment">
-                <img src="https://randomuser.me/api/portraits/women/68.jpg" class="avatar">
-                <div class="comment-bubble">
-                    <span class="comment-name">Sônia Regina</span>
-                    <span>Consegui pegar a penúltima vaga! Ansiosa pra ver os resultados.</span>
-                </div>
-            </div>
-        </section>
-
-        <footer style="text-align:center; padding: 40px; font-size: 12px; color: #94A3B8;">
-            A Fonte da Juventude &copy; 2026<br>
-            CNPJ: 00.000.000/0001-00
-        </footer>
+        <div class="value-card">
+            <img src="COLE_LINK_QRCODE_30_AQUI" alt="QR Code 30">
+            <strong>R$ 30,00</strong>
+        </div>
+        <div class="value-card featured">
+            <span class="badge">MAIS DOADO</span>
+            <img src="COLE_LINK_QRCODE_50_AQUI" alt="QR Code 50">
+            <strong>R$ 50,00</strong>
+        </div>
+        <div class="value-card">
+            <img src="COLE_LINK_QRCODE_100_AQUI" alt="QR Code 100">
+            <strong>R$ 100,00</strong>
+        </div>
     </div>
 
-    <div class="visitor-counter">
-        <span class="live-dot"></span>
-        <span id="v-count">47</span> pessoas vendo agora
-    </div>
+    <input type="number" class="custom-value" placeholder="Outro valor (R$ 0,00)">
 
-    <script>
-        const count = document.getElementById('v-count');
-        setInterval(() => {
-            let n = parseInt(count.innerText);
-            let diff = Math.floor(Math.random() * 5) - 2;
-            let final = n + diff;
-            if(final < 40) final = 40;
-            if(final > 62) final = 62;
-            count.innerText = final;
-        }, 3000);
-    </script>
+    <div class="pix-box">
+        <span>Copia e Cola qualquer valor:</span>
+        <span class="pix-key" id="pixKey">SUA_CHAVE_PIX_GERAL_AQUI</span>
+        <button class="copy-btn" onclick="copyPix()">COPIAR CHAVE PIX</button>
+    </div>
+</div>
+
+<div id="donation-popup">
+    <i class="fas fa-heart" style="color: #e74c3c;"></i>
+    <div id="popup-text">Alguém doou R$ 45,00</div>
+</div>
+
+<script>
+    let currentTotal = 24000;
+    const goal = 500000;
+
+    function updateProgress() {
+        const percent = (currentTotal / goal) * 100;
+        document.getElementById('progress-bar').style.width = percent + '%';
+        document.getElementById('current-amt').innerText = 'R$ ' + currentTotal.toLocaleString('pt-BR');
+    }
+
+    function copyPix() {
+        const key = document.getElementById('pixKey').innerText;
+        navigator.clipboard.writeText(key);
+        alert("Chave Pix copiada!");
+    }
+
+    // Inicializa a barra
+    updateProgress();
+
+    // Sistema de Pop-up e Barra Dinâmica a cada 17 segundos
+    setInterval(() => {
+        const randomVal = Math.floor(Math.random() * 80) + 20; // Valor entre 20 e 100
+        const names = ['João', 'Maria', 'Pedro', 'Ana', 'Lucas', 'Carla', 'Marcos', 'Julia'];
+        const name = names[Math.floor(Math.random() * names.length)];
+        
+        // Atualiza Texto e Mostra Pop-up
+        document.getElementById('popup-text').innerText = `${name} acabou de doar R$ ${randomVal},00`;
+        const popup = document.getElementById('donation-popup');
+        popup.style.display = 'flex';
+        
+        // Soma na barra
+        currentTotal += randomVal;
+        updateProgress();
+
+        // Esconde pop-up após 5 segundos
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 5000);
+
+    }, 17000);
+</script>
 
 </body>
 </html>
