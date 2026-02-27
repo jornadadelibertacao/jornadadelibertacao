@@ -3,289 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CREDPIX</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>SOS JUIZ DE FORA - AJUDA IMEDIATA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f0f2f5; }
-        .step { display: none; }
-        .step.active { display: block; animation: fadeIn 0.3s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        :root { --red: #cc0000; --green: #25d366; --dark: #0f0f0f; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; background: #f0f2f5; color: #1c1e21; }
         
-        .btn-green { background: linear-gradient(135deg, #00d35d 0%, #00b34f 100%); color: white; font-weight: 800; border-radius: 15px; padding: 20px; width: 100%; box-shadow: 0 8px 20px rgba(0, 211, 93, 0.3); text-align: center; display: block; }
+        /* Headline e Alerta */
+        .urgente-topo { background: var(--red); color: white; text-align: center; padding: 12px; font-weight: bold; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero { background: var(--dark); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--red); }
+        .headline { font-size: 32px; font-weight: 900; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; }
+        .headline span { color: var(--red); }
         
-        .value-card { background: white; border: 2px solid #e5e7eb; border-radius: 20px; padding: 20px; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .value-card:active { border-color: #00d35d; background: #f0fff4; transform: scale(0.98); }
-        
-        .footer-full { background: #000; color: #fff; width: 100%; padding: 40px 20px; margin-top: 50px; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        
-        .loading-bar-bg { width: 100%; height: 16px; background: #e5e7eb; border-radius: 50px; overflow: hidden; position: relative; }
-        .loading-bar-fill { height: 100%; background: #00d35d; width: 0%; transition: 0.2s; }
+        /* Texto Explicativo Agressivo */
+        .contexto { max-width: 600px; margin: 30px auto; padding: 0 20px; text-align: left; background: white; border-radius: 8px; padding: 20px; border-left: 5px solid var(--red); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .contexto h3 { color: var(--red); margin-top: 0; }
+        .contexto p { font-size: 16px; color: #444; }
+
+        /* Checkout e Barra */
+        .checkout-container { max-width: 480px; margin: -40px auto 40px; background: white; border-radius: 12px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); position: relative; }
+        .progress-box { margin-bottom: 25px; }
+        .progress-bar-bg { background: #e0e0e0; border-radius: 10px; height: 22px; overflow: hidden; position: relative; }
+        #progress-fill { background: linear-gradient(90deg, #28a745, #85e085); height: 100%; width: 4.8%; transition: width 0.8s ease; }
+        .stats { display: flex; justify-content: space-between; font-weight: 900; font-size: 14px; margin-top: 8px; color: #333; }
+
+        /* Valores Grid */
+        .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+        .value-card { border: 2px solid #eee; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .value-card img { width: 100%; border-radius: 4px; margin-bottom: 8px; }
+        .value-card.featured { border-color: var(--green); background: #fafffa; transform: scale(1.03); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2); }
+        .badge-destaque { background: var(--green); color: white; font-size: 10px; padding: 2px 8px; border-radius: 10px; position: absolute; top: -8px; right: 10px; font-weight: bold; }
+
+        /* Depoimentos */
+        .depoimentos { max-width: 600px; margin: 40px auto; padding: 0 20px; }
+        .depoimento-card { background: white; border-radius: 10px; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; display: flex; gap: 15px; align-items: center; }
+        .depoimento-card img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        .depoimento-info b { display: block; font-size: 14px; }
+        .depoimento-info p { margin: 5px 0 0; font-size: 13px; color: #555; font-style: italic; }
+
+        /* Pix e CTA */
+        .pix-area { background: #f8f9fa; border: 2px dashed #007bff; border-radius: 8px; padding: 15px; text-align: center; margin-top: 20px; }
+        .pix-key { font-family: 'Courier New', Courier, monospace; font-size: 12px; font-weight: bold; word-break: break-all; color: #007bff; }
+        .btn-pix { background: var(--green); color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-weight: 900; font-size: 18px; cursor: pointer; margin-top: 10px; }
+
+        /* Notificação */
+        #notify { position: fixed; bottom: 20px; left: 20px; background: white; padding: 12px 20px; border-radius: 50px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); display: none; align-items: center; gap: 10px; z-index: 1000; border-left: 6px solid var(--green); animation: slideIn 0.5s ease; }
+        @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
     </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
-    <header class="bg-white border-b-2 border-green-500 p-4 sticky top-0 z-50 flex justify-between items-center shadow-sm">
-        <div class="text-2xl font-black text-[#004a8d]">CRED<span class="text-[#00d35d]">PIX</span></div>
-        <div class="flex items-center gap-2">
-            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span class="text-[10px] font-bold text-gray-500 uppercase">Servidor Seguro</span>
+<div class="urgente-topo">⚠️ ESTADO DE CALAMIDADE EM JUIZ DE FORA - RESTAM POUCAS HORAS PARA O PRÓXIMO RESGATE ⚠️</div>
+
+<section class="hero">
+    <h1 class="headline">O CENÁRIO É DE <span>GUERRA</span>. FAMÍLIAS ESTÃO SOTERRADAS E SEM COMIDA AGORA!</h1>
+    <div style="background: #000; width: 100%; max-width: 600px; height: 300px; margin: 20px auto; border: 2px solid #444; display: flex; align-items: center; justify-content: center;">
+        <span style="color: #666;">[COLE SEU VÍDEO OU IMAGEM DE IMPACTO AQUI]</span>
+    </div>
+</section>
+
+<div class="contexto">
+    <h3>O QUE ESTÁ ACONTECENDO?</h3>
+    <p>Juiz de Fora foi atingida por chuvas devastadoras em Fevereiro de 2026. Bairros inteiros desapareceram sob a lama. O que você está vendo no jornal não é nem metade do pesadelo.</p>
+    <p><b>Para que serve sua doação?</b> Cada centavo arrecadado nesta vaquinha será convertido em:</p>
+    <ul>
+        <li>Água potável (as tubulações estouraram)</li>
+        <li>Cestas básicas emergenciais</li>
+        <li>Colchões e cobertores para os desabrigados</li>
+        <li>Kits de higiene para crianças e idosos</li>
+    </ul>
+    <p>Não estamos aqui para pedir, estamos aqui para <b>suplicar</b>. Se você tem R$ 20,00 sobrando, isso é o preço de uma vida hoje.</p>
+</div>
+
+<div class="checkout-container" id="fazer-doacao">
+    <div class="progress-box">
+        <div class="progress-bar-bg"><div id="progress-fill"></div></div>
+        <div class="stats">
+            <span>ARRECADADO: <span id="val-atual" style="color: var(--green);">R$ 24.000</span></span>
+            <span>META: R$ 500.000</span>
         </div>
-    </header>
-
-    <div class="max-w-md mx-auto min-h-screen bg-white shadow-2xl">
-
-        <div id="step1" class="step active">
-            <div class="p-6 bg-gradient-to-b from-white to-gray-50">
-                <h1 class="text-3xl font-black text-gray-900 leading-tight text-center mb-6">Crédito imediato no PIX para <span class="text-[#00d35d]">Negativados.</span></h1>
-                
-                <div class="rounded-3xl overflow-hidden border-4 border-white shadow-lg mb-6">
-                    <img src="https://img.freepik.com/fotos-gratis/homem-bonito-apontando-o-dedo-para-a-tela-do-smartphone-com-uma-expressao-animada_23-2148759114.jpg" class="w-full h-52 object-cover">
-                </div>
-
-                <h2 class="text-center font-bold text-gray-700 mb-6 uppercase text-sm tracking-widest">Quanto você precisa hoje?</h2>
-
-                <div class="space-y-4 mb-10">
-                    <div onclick="selectValue('5.000', '24x R$ 284,00')" class="value-card flex justify-between items-center cursor-pointer border-l-8 border-l-blue-500">
-                        <span class="font-black text-xl text-gray-800">R$ 5.000</span>
-                        <span class="text-[10px] font-bold text-white bg-blue-500 px-3 py-1 rounded-full uppercase">Liberação 5min</span>
-                    </div>
-                    <div onclick="selectValue('15.000', '48x R$ 342,00')" class="value-card flex justify-between items-center cursor-pointer border-l-8 border-l-green-500">
-                        <span class="font-black text-xl text-gray-800">R$ 15.000</span>
-                        <span class="text-[10px] font-bold text-white bg-green-500 px-3 py-1 rounded-full uppercase">Mais solicitado</span>
-                    </div>
-                    <div onclick="selectValue('30.000', '60x R$ 590,00')" class="value-card flex justify-between items-center cursor-pointer border-l-8 border-l-orange-500">
-                        <span class="font-black text-xl text-gray-800">R$ 30.000</span>
-                        <div class="text-right">
-                            <span class="block text-[9px] font-black text-orange-600 uppercase">Aposentado / CLT</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex gap-4 overflow-x-auto pb-6 no-scrollbar">
-                    <div class="min-w-[240px] bg-blue-50 p-5 rounded-2xl border border-blue-100 shadow-sm">
-                        <div class="flex text-yellow-400 mb-2">★★★★★</div>
-                        <p class="text-[12px] text-blue-900 leading-relaxed font-medium">"Melhor plataforma que já usei, o atendimento é excelente e a CREDPIX é super confiável!"</p>
-                        <p class="font-bold mt-2 text-blue-400 text-[10px]">Rodrigo Lima</p>
-                    </div>
-                    <div class="min-w-[240px] bg-green-50 p-5 rounded-2xl border border-green-100 shadow-sm">
-                        <div class="flex text-yellow-400 mb-2">★★★★★</div>
-                        <p class="text-[12px] text-green-900 leading-relaxed font-medium">"A CREDPIX me salvou quando nenhum banco me dava crédito. Atendimento nota 10!"</p>
-                        <p class="font-bold mt-2 text-green-400 text-[10px]">Mariana Costa</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-full">
-                <div class="max-w-md mx-auto text-center">
-                    <div class="text-2xl font-black mb-4">CRED<span class="text-[#00d35d]">PIX</span></div>
-                    <p class="text-[11px] text-gray-400 font-bold mb-2 uppercase tracking-widest">CredPix Soluções Financeiras Ltda</p>
-                    <p class="text-[10px] text-gray-500 mb-6 leading-loose">Av. Brigadeiro Faria Lima, 3477 - 14º Andar<br>Itaim Bibi, São Paulo - SP, 04538-133</p>
-                    <a href="https://wa.me/5511983836605" class="bg-gray-900 px-6 py-3 rounded-full border border-gray-800 text-[#00d35d] font-bold text-sm">Suporte: (11) 98383-6605</a>
-                    <p class="text-[9px] text-gray-700 mt-10">© 2024 Todos os direitos reservados.</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="step2" class="step p-6">
-            <h2 class="text-2xl font-black mb-6 text-gray-800">Pré-análise Gratuita</h2>
-            <div class="space-y-4">
-                <div class="bg-gray-50 p-4 rounded-xl border-2 border-gray-100">
-                    <label class="text-[10px] font-bold text-gray-400 uppercase">Nome Completo</label>
-                    <input type="text" id="in_nome" placeholder="Seu nome aqui" class="w-full bg-transparent font-bold outline-none pt-1">
-                </div>
-                <div class="bg-gray-50 p-4 rounded-xl border-2 border-gray-100">
-                    <label class="text-[10px] font-bold text-gray-400 uppercase">CPF</label>
-                    <input type="tel" id="in_cpf" placeholder="000.000.000-00" oninput="mask(this, '###.###.###-##')" class="w-full bg-transparent font-bold outline-none pt-1">
-                </div>
-                <div class="bg-gray-50 p-4 rounded-xl border-2 border-gray-100">
-                    <label class="text-[10px] font-bold text-gray-400 uppercase">Data Nascimento</label>
-                    <input type="tel" placeholder="00/00/0000" oninput="mask(this, '##/##/####')" class="w-full bg-transparent font-bold outline-none pt-1">
-                </div>
-                <div class="bg-gray-50 p-4 rounded-xl border-2 border-gray-100">
-                    <label class="text-[10px] font-bold text-gray-400 uppercase">WhatsApp</label>
-                    <input type="tel" placeholder="(11) 99999-9999" oninput="mask(this, '(##) #####-####')" class="w-full bg-transparent font-bold outline-none pt-1">
-                </div>
-                <p class="text-[10px] text-gray-400 font-bold italic px-1">* Contrato será enviado para este número.</p>
-            </div>
-            <button onclick="startAnalysis()" class="btn-green mt-10 uppercase tracking-widest">Verificar meu Limite</button>
-        </div>
-
-        <div id="step3" class="step p-10 text-center">
-            <div class="w-24 h-24 border-8 border-gray-100 border-t-[#00d35d] rounded-full animate-spin mx-auto mb-10"></div>
-            <h2 class="text-2xl font-black text-gray-800">Processando...</h2>
-            <p class="text-gray-400 text-sm mt-2 uppercase font-bold tracking-tighter">Consultando Bureau de Crédito</p>
-            <div class="loading-bar-bg mt-12"><div id="analysis-bar" class="loading-bar-fill"></div></div>
-        </div>
-
-        <div id="step4" class="step p-6">
-            <div class="bg-gradient-to-br from-green-500 to-green-700 p-8 rounded-[35px] text-center shadow-xl mb-8">
-                <span class="text-white/80 text-[10px] font-bold uppercase tracking-widest">Limite Liberado</span>
-                <div class="text-5xl font-black text-white mt-2" id="val_dinamico">R$ 0,00</div>
-            </div>
-            <h3 class="font-bold text-gray-700 mb-6">Plano de pagamento selecionado:</h3>
-            <div class="p-6 border-4 border-green-500 bg-green-50 rounded-2xl flex justify-between items-center shadow-inner">
-                <div>
-                    <div class="font-black text-xl text-gray-800" id="plano_dinamico">-</div>
-                    <div class="text-[10px] text-green-600 font-bold uppercase mt-1">Primeira parcela em 180 dias</div>
-                </div>
-                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                    <div class="w-2 h-2 bg-white rounded-full"></div>
-                </div>
-            </div>
-            <button onclick="nextStep(5)" class="btn-green mt-10 uppercase">Confirmar Plano</button>
-        </div>
-
-        <div id="step5" class="step p-6">
-            <h2 class="text-2xl font-black mb-8 text-gray-800 italic">Onde quer receber?</h2>
-            <div class="space-y-5">
-                <input type="text" placeholder="Qual o seu Banco?" class="w-full p-5 bg-white border-2 border-gray-200 rounded-2xl outline-none focus:border-green-500 shadow-sm">
-                <input type="text" id="in_pix" placeholder="Sua Chave PIX" class="w-full p-5 bg-white border-2 border-gray-200 rounded-2xl outline-none focus:border-green-500 shadow-sm">
-            </div>
-            <button onclick="nextStep(6)" class="btn-green mt-10 uppercase">Próximo Passo</button>
-        </div>
-
-        <div id="step6" class="step p-6">
-            <h2 class="text-2xl font-black mb-6">Contrato de Adesão</h2>
-            <div class="bg-white p-5 rounded-2xl border-2 border-gray-100 text-[11px] text-gray-600 h-72 overflow-y-auto mb-8 shadow-inner leading-relaxed">
-                <p class="mb-4"><strong>INSTRUMENTO PARTICULAR DE CONTRATO DE CRÉDITO PESSOAL</strong></p>
-                <p class="mb-3">1. DO OBJETO: O presente contrato tem por finalidade a concessão de crédito direto ao consumidor pela CREDPIX Soluções Financeiras.</p>
-                <p class="mb-3">2. DOS PRAZOS: O tomador terá o benefício de 180 (cento e oitenta) dias de carência para o pagamento da primeira parcela.</p>
-                <p class="mb-3">3. DA LIBERAÇÃO: A liberação do montante via PIX Prioritário é condicionada à validação de segurança mediante o pagamento da Tarifa de Abertura de Crédito (TAC).</p>
-                <p class="mb-3">4. DO REEMBOLSO: O valor da referida tarifa TAC será integralmente estornado para a conta do cliente juntamente com o valor total do empréstimo após a validação.</p>
-                <p class="mb-3">5. O não cumprimento das normas de segurança bancária implica na suspensão temporária do CPF para novas operações de crédito.</p>
-                <p>O cliente declara estar ciente e de acordo com todas as cláusulas acima citadas.</p>
-            </div>
-            <label class="flex items-center gap-4 mb-8 bg-gray-50 p-4 rounded-xl cursor-pointer">
-                <input type="checkbox" id="check_termo" class="w-6 h-6 accent-green-500"> 
-                <span class="text-sm font-bold text-gray-700">Li e concordo com os termos.</span>
-            </label>
-            <button onclick="showResumo()" class="btn-green uppercase">Revisar Proposta</button>
-        </div>
-
-        <div id="step7" class="step p-6">
-            <h2 class="text-2xl font-black mb-6">Resumo da Solicitação</h2>
-            <div class="bg-white p-8 rounded-[40px] border-4 border-gray-50 shadow-2xl space-y-5">
-                <div class="flex justify-between border-b border-gray-100 pb-3">
-                    <span class="text-gray-400 text-xs font-bold uppercase">Cliente</span>
-                    <span class="font-black text-gray-800" id="res_nome">---</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-100 pb-3">
-                    <span class="text-gray-400 text-xs font-bold uppercase">Valor</span>
-                    <span class="font-black text-green-600" id="res_valor">---</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-100 pb-3">
-                    <span class="text-gray-400 text-xs font-bold uppercase">Chave PIX</span>
-                    <span class="font-black text-gray-800" id="res_pix">---</span>
-                </div>
-                <div class="text-center pt-6">
-                    <p class="text-[10px] text-blue-500 font-black uppercase tracking-widest mb-2">Protocolo de Envio</p>
-                    <p class="text-2xl font-mono font-black text-gray-900 bg-gray-100 py-3 rounded-2xl" id="protocolo">---</p>
-                </div>
-            </div>
-            <button onclick="startFinal()" class="btn-green mt-10 uppercase tracking-widest">Receber meu Pix agora</button>
-        </div>
-
-        <div id="step8" class="step p-8 text-center">
-            <div id="sending_content">
-                <div class="text-7xl font-black text-gray-900 mb-8" id="final-pct">0%</div>
-                <div class="loading-bar-bg mb-8 h-6"><div id="final-bar" class="loading-bar-fill h-full"></div></div>
-                <p class="text-gray-400 font-bold uppercase tracking-widest text-xs animate-pulse" id="status_envio">Iniciando Transferência...</p>
-            </div>
-
-            <div id="error-card" class="hidden mt-4">
-                <div class="bg-white rounded-[40px] p-8 border-t-8 border-red-500 shadow-2xl">
-                    <div class="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">!</div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-2 uppercase">Pix Retido</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-8">Sua conta exige o pagamento da <b>Tarifa TAC</b> para validar a transferência de <b id="val_final"></b>.</p>
-                    <div class="bg-gray-100 p-6 rounded-3xl mb-8">
-                        <span class="text-gray-400 text-[10px] font-bold uppercase">Valor da Tarifa</span>
-                        <div class="text-4xl font-black text-gray-900">R$ 97,00</div>
-                    </div>
-                    <button onclick="window.location.href='SEU_LINK_AQUI'" class="btn-green bg-red-600 shadow-none hover:bg-red-700 uppercase">Liberar meu Pix Agora</button>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <script>
-        let currentVal = "";
-        let currentPlano = "";
+    <div class="value-grid">
+        <div class="value-card">
+            <img src="LINK_QR_20" alt="Doar 20">
+            <b>R$ 20,00</b>
+        </div>
+        <div class="value-card">
+            <img src="LINK_QR_30" alt="Doar 30">
+            <b>R$ 30,00</b>
+        </div>
+        <div class="value-card featured">
+            <span class="badge-destaque">MAIS DOADO</span>
+            <img src="LINK_QR_50" alt="Doar 50">
+            <b>R$ 50,00</b>
+        </div>
+        <div class="value-card">
+            <img src="LINK_QR_100" alt="Doar 100">
+            <b>R$ 100,00</b>
+        </div>
+    </div>
 
-        function selectValue(v, p) {
-            currentVal = "R$ " + v;
-            currentPlano = p;
-            nextStep(2);
-        }
+    <input type="number" style="width:100%; padding:15px; border:2px solid #ddd; border-radius:8px; text-align:center; box-sizing:border-box; font-size:18px;" placeholder="Outro Valor (R$)">
 
-        function nextStep(n) {
-            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-            document.getElementById('step' + n).classList.add('active');
-            window.scrollTo(0,0);
-        }
+    <div class="pix-area">
+        <span style="font-size:12px; color:#666;">Copia e Cola (Qualquer valor):</span>
+        <span class="pix-key" id="pixKey">SUA_CHAVE_PIX_AQUI</span>
+        <button class="btn-pix" onclick="copyPix()">COPIAR PIX E DOAR AGORA</button>
+    </div>
+</div>
 
-        function mask(i, m) {
-            let v = i.value.replace(/\D/g, "");
-            let k = 0; let res = "";
-            for (let char of m) {
-                if (char === "#") { res += v[k] || ""; k++; } 
-                else { if (v[k]) res += char; }
-            }
-            i.value = res;
-        }
+<div class="depoimentos">
+    <h4 style="text-align:center; text-transform:uppercase; color:#666;">Quem já ajudou:</h4>
+    <div class="depoimento-card">
+        <img src="https://i.pravatar.cc/150?u=1" alt="User">
+        <div class="depoimento-info">
+            <b>Marcos S. (Juiz de Fora/MG)</b>
+            <p>"Eu perdi minha casa, mas estou ajudando quem perdeu a família. Doe o que puder!"</p>
+        </div>
+    </div>
+    <div class="depoimento-card">
+        <img src="https://i.pravatar.cc/150?u=2" alt="User">
+        <div class="depoimento-info">
+            <b>Ana Paula (São Paulo/SP)</b>
+            <p>"Vi as notícias e não consegui ficar parada. Doei R$ 100 e vou divulgar!"</p>
+        </div>
+    </div>
+</div>
 
-        function startAnalysis() {
-            nextStep(3);
-            let bar = document.getElementById('analysis-bar');
-            let p = 0;
-            let t = setInterval(() => {
-                p++;
-                bar.style.width = p + "%";
-                if(p >= 100) { 
-                    clearInterval(t); 
-                    document.getElementById('val_dinamico').innerText = currentVal + ",00";
-                    document.getElementById('plano_dinamico').innerText = currentPlano;
-                    nextStep(4); 
-                }
-            }, 80); // Análise com tempo realista
-        }
+<div id="notify">
+    <i class="fas fa-check-circle" style="color:var(--green)"></i>
+    <span id="notify-text">Novo doador acabou de ajudar!</span>
+</div>
 
-        function showResumo() {
-            if(!document.getElementById('check_termo').checked) return alert("Você precisa aceitar os termos do contrato.");
-            document.getElementById('res_nome').innerText = document.getElementById('in_nome').value || "Não informado";
-            document.getElementById('res_valor').innerText = currentVal + ",00";
-            document.getElementById('res_pix').innerText = document.getElementById('in_pix').value || "Não informado";
-            document.getElementById('protocolo').innerText = Math.floor(100000 + Math.random() * 900000);
-            nextStep(7);
-        }
+<script>
+    let current = 24000;
+    const meta = 500000;
 
-        function startFinal() {
-            nextStep(8);
-            let bar = document.getElementById('final-bar');
-            let pct = document.getElementById('final-pct');
-            let status = document.getElementById('status_envio');
-            let p = 0;
-            let t = setInterval(() => {
-                p++;
-                bar.style.width = p + "%";
-                pct.innerText = p + "%";
-                
-                if(p == 30) status.innerText = "Estabelecendo Conexão Bancária...";
-                if(p == 60) status.innerText = "Autenticando Chave PIX...";
-                if(p == 85) status.innerText = "Finalizando Envio de Saldo...";
+    function refresh() {
+        let percent = (current / meta) * 100;
+        document.getElementById('progress-fill').style.width = percent + '%';
+        document.getElementById('val-atual').innerText = 'R$ ' + current.toLocaleString('pt-BR');
+    }
 
-                if(p >= 99) {
-                    clearInterval(t);
-                    setTimeout(() => {
-                        document.getElementById('sending_content').classList.add('hidden');
-                        document.getElementById('val_final').innerText = currentVal + ",00";
-                        document.getElementById('error-card').classList.remove('hidden');
-                    }, 1500);
-                }
-            }, 250); // Barra de envio BEM MAIS LENTA (aprox 25 seg para 100%)
-        }
-    </script>
+    function copyPix() {
+        const key = document.getElementById('pixKey').innerText;
+        navigator.clipboard.writeText(key).then(() => alert("Pix Copiado! Abra seu banco e cole na opção Pix Copia e Cola."));
+    }
+
+    refresh();
+
+    // Loop de doações simuladas e barra subindo
+    setInterval(() => {
+        const doacao = Math.floor(Math.random() * 80) + 10; // Entre 10 e 90 reais
+        const nomes = ['Roberto', 'Luciana', 'Fernando', 'Camila', 'Gabriel', 'Marta', 'Bruno', 'Eliana'];
+        const nome = nomes[Math.floor(Math.random() * nomes.length)];
+        
+        current += doacao; // Aumenta o valor real da barra
+        refresh();
+
+        const notify = document.getElementById('notify');
+        document.getElementById('notify-text').innerText = `${nome} doou R$ ${doacao},00`;
+        notify.style.display = 'flex';
+
+        setTimeout(() => { notify.style.display = 'none'; }, 4500);
+    }, 17000);
+</script>
+
 </body>
 </html>
